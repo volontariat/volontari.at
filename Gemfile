@@ -34,7 +34,8 @@ gem 'twitter', '2.0.2'
 
 # mail
 
-gem 'markerb', git: 'https://github.com/plataformatec/markerb.git'
+# invalid byte sequence in US-ASCII on production
+#gem 'markerb', git: 'https://github.com/plataformatec/markerb.git'
 gem 'messagebus_ruby_api', '1.0.3'
 gem 'airbrake'
 gem 'newrelic_rpm'
