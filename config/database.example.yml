@@ -18,6 +18,7 @@ production:
   database: volontariat_production
   encoding: utf8
   pool: 5
+  host: localhost
   username: volontariat
   password:
   
