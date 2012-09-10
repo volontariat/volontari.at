@@ -1,4 +1,4 @@
-class RailsInfo::Presenter
+class Presenter
   def initialize(subject, options = {})
     @subject = subject
   end
