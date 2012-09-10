@@ -9,7 +9,7 @@ SimpleNavigation::Configuration.run do |navigation|
       if resource_exists?('area')
         areas.item :show, t('general.details'), area_path(@area) do |area|
           area.item :destroy, t('general.destroy'), area_path(@area), method: :delete, confirm: t('general.questions.are_you_sure')
-          area.item :show_under, t('general.details'), area_path(@area)
+          area.item :show, t('general.details'), "#{area_path(@area)}#top"
           area.item :edit, t('general.edit'), edit_area_path(@area)
             
           area.item :users, t('users.index.title'), area_users_path(@area)
@@ -24,7 +24,7 @@ SimpleNavigation::Configuration.run do |navigation|
       if @project.try(:id)
         projects.item :show, @project.name, project_path(@project) do |project|
           project.item :destroy, t('general.destroy'), project_path(@project), method: :delete, confirm: t('general.questions.are_you_sure')
-          project.item :show, t('general.details'), project_path(@project)
+          project.item :show, t('general.details'), "#{project_path(@project)}#top"
           project.item :edit, t('general.edit'), edit_project_path(@project)
           
           project.item :users, t('users.index.title'), project_users_path(@project)  
@@ -33,7 +33,7 @@ SimpleNavigation::Configuration.run do |navigation|
             vacancy.item :new, t('general.new'), new_project_vacancy_path(@project)
           end
           
-          project.item :comments, t('comments.index.title'), project_comments_path(@project) do |comments|
+          project.item :comments, t('comments.index.title'), "#{project_path(@project)}#comments" do |comments|
             comments.item(:new, t('general.new'), new_project_comment_path) if @comment
           end
         end
@@ -46,7 +46,7 @@ SimpleNavigation::Configuration.run do |navigation|
       if @vacancy.try(:id)
         vacancies.item :show, "#{@vacancy.name} @ #{@vacancy.project.name}", vacancy_path(@vacancy) do |vacancy|
           vacancy.item :destroy, t('general.destroy'), vacancy_path(@vacancy), method: :delete, confirm: t('general.questions.are_you_sure')
-          vacancy.item :show, t('general.details'), vacancy_path(@vacancy)
+          vacancy.item :show, t('general.details'), "#{vacancy_path(@vacancy)}#top"
           vacancy.item :edit, t('general.edit'), edit_vacancy_path(@vacancy)
             
           vacancy.item :candidatures, t('candidatures.index.title'), vacancy_candidatures_path(@vacancy) do |candidatures|
@@ -58,17 +58,17 @@ SimpleNavigation::Configuration.run do |navigation|
                 candidature_path(@candidature) 
               ) do |candidature|
                 candidature.item :destroy, t('general.destroy'), candidature_path(@candidature), method: :delete, confirm: t('general.questions.are_you_sure')
-                candidature.item :show, t('general.details'), candidature_path(@candidature)
+                candidature.item :show, t('general.details'), "#{candidature_path(@candidature)}#top"
                 candidature.item :edit, t('general.edit'), edit_candidature_path(@candidature)
                 
-                candidature.item :comments, t('comments.index.title'), candidature_comments_path(@candidature) do |comments|
+                candidature.item :comments, t('comments.index.title'), "#{candidature_path(@candidature)}#comments" do |comments|
                   comments.item(:new, t('general.new'), new_candidature_comment_path) if @comment
                 end 
               end
             end
           end
            
-          vacancy.item :comments, t('comments.index.title'), vacancy_comments_path(@vacancy) do |comments|
+          vacancy.item :comments, t('comments.index.title'), "#{vacancy_path(@vacancy)}#comments" do |comments|
             comments.item(:new, t('general.new'), new_vacancy_comment_path) if @comment && !@candidature
           end 
         end
@@ -77,7 +77,7 @@ SimpleNavigation::Configuration.run do |navigation|
     
     primary.item :users, t('users.index.title'), users_path do |users|
       if resource_exists?('user') && current_user.try(:id) != @user.id
-        users.item :show, t('general.details'), user_path(@user)
+        users.item :show, t('general.details'), "#{user_path(@user)}#top"
         
         users.item :projects, t('projects.index.title'), user_projects_path(@user)
         users.item :candidatures, t('candidatures.index.title'), user_candidatures_path(@user)
@@ -99,10 +99,13 @@ SimpleNavigation::Configuration.run do |navigation|
         end
       end
             
-      primary.item :profile, t('users.show.title'), user_path(current_user) do |user|
-        user.item :settings, t('users.edit.title'), edit_user_path(current_user)
-        user.item :projects, t('projects.index.title'), user_projects_path(current_user)
-        user.item :candidatures, t('candidatures.index.title'), user_candidatures_path(current_user)
+      primary.item :profile, t('users.show.title'), user_path(current_user) do |profile|
+        profile.item :show, t('users.show.title'), user_path(current_user) do |user|
+          user.item :show, t('users.show.title'), "#{user_path(current_user)}#top"
+          user.item :settings, t('users.edit.title'), edit_user_path(current_user)
+          user.item :projects, t('projects.index.title'), user_projects_path(current_user)
+          user.item :candidatures, t('candidatures.index.title'), user_candidatures_path(current_user)
+        end
       end
       
       primary.item :sign_out, t('authentication.sign_out'), destroy_user_session_path, method: :delete
