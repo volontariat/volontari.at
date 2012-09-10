@@ -1,12 +1,15 @@
 class Vendors::SimpleNavigation::Renderer::TwitterSidenav < SimpleNavigation::Renderer::Base
   def render(item_container)
-    content = ''
+    content, first_item_selected = '', false
       
     item_container.items.each do |item|
       selected = item.selected? && item.method.blank?
-      klass = selected ? 'active' : ''
+      klass = selected && !first_item_selected ? 'active' : ''
       options = {}
-     
+      
+      # only highlight on item
+      first_item_selected = true if selected
+      
       if item.method.present?
         options.merge!(method: item.method, confirm: I18n.t('general.questions.are_you_sure'))
       end
