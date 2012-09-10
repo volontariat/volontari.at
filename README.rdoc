@@ -4,11 +4,15 @@ Creative Open Crowd Source Platform Volontari.at
 
 == Installation
 
+Copy content of config/database.example.yml to a new file config/database.yml and customize to your needs.
+
   git clone https://github.com/Applicat/volontariat.git
   bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rake db:seed --trace
   bundle exec rails server
 
 = Future
+
+Something near Amazon's http://MTurk.com
 
 == Contribution
 
