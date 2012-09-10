@@ -4,7 +4,9 @@ Creative Open Crowd Source Platform Volontari.at
 
 == Installation
 
-git clone https://github.com/Applicat/volontariat.git
+  git clone https://github.com/Applicat/volontariat.git
+  bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rake db:seed --trace
+  bundle exec rails server
 
 = Future
 
