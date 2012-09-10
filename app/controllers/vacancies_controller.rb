@@ -26,7 +26,7 @@ class VacanciesController < ApplicationController
     if @vacancy.project.user_id == current_user.id
       @vacancy.do_open
     else
-      @vacancy.offeror_id = current_user.id 
+      @vacancy.author_id = current_user.id 
       @vacancy.recommend
     end
     

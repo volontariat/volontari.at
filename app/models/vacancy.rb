@@ -3,6 +3,7 @@ class Vacancy < ActiveRecord::Base
   
   belongs_to :project
   belongs_to :offeror, class_name: 'User'
+  belongs_to :author, class_name: 'User'
   belongs_to :user
   belongs_to :project_user
   
@@ -25,6 +26,7 @@ class Vacancy < ActiveRecord::Base
   private
   
   def set_defaults
-    self.offeror_id = project.user_id unless self.offeror_id.present?
+    self.offeror_id = project.user_id
+    self.author_id = project.user_id unless self.author_id.present?
   end
 end

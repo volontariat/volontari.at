@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(:version => 20120907144853) do
     t.string   "type"
     t.integer  "project_id"
     t.integer  "offeror_id"
+    t.integer  "author_id"
     t.integer  "user_id"
     t.integer  "project_user_id"
     t.string   "name"
@@ -202,6 +203,7 @@ ActiveRecord::Schema.define(:version => 20120907144853) do
     t.datetime "updated_at",                     :null => false
   end
 
+  add_index "vacancies", ["offeror_id"], :name => "index_vacancies_on_offeror_id"
   add_index "vacancies", ["project_id", "name"], :name => "index_vacancies_on_project_id_and_name", :unique => true
   add_index "vacancies", ["project_id"], :name => "index_vacancies_on_project_id"
   add_index "vacancies", ["project_user_id"], :name => "index_vacancies_on_project_user_id"

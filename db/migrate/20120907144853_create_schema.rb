@@ -96,6 +96,7 @@ class CreateSchema < ActiveRecord::Migration
       t.string :type # job, location, money
       t.integer :project_id
       t.integer :offeror_id
+      t.integer :author_id
       t.integer :user_id
       t.integer :project_user_id
       t.string :name
@@ -109,6 +110,7 @@ class CreateSchema < ActiveRecord::Migration
     add_index :vacancies, :slug, unique: true
     add_index :vacancies, [:project_id, :name], unique: true
     add_index :vacancies, :project_id
+    add_index :vacancies, :offeror_id
     add_index :vacancies, :user_id
     add_index :vacancies, :project_user_id
     
