@@ -1,4 +1,5 @@
 <h3>
+  <a name="top">&nbsp;</a>
 <% if @candidature.name.present? %>
   <%= @candidature.name %>
 <% else %>
@@ -15,7 +16,5 @@
 </dl>
 
 <%= markdown @candidature.text %>
-
-<h4><%= t('comments.index.title') %></h4>
 
 <%= render 'shared/comments', comment: @candidature.comments.new %>

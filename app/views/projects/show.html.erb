@@ -1,4 +1,7 @@
-<h3><%= @project.name %></h3>
+<h3>
+  <a name="top">&nbsp;</a>
+  <%= @project.name %>
+</h3>
 
 <dl class="dl-horizontal">
   <%= show_field(
@@ -7,7 +10,5 @@
 </dl>
 
 <%= markdown @project.text %>
-
-<h4><%= t('comments.index.title') %></h4>
 
 <%= render 'shared/comments', comment: @project.comments.new %>
