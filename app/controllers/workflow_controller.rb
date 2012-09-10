@@ -6,12 +6,16 @@ class WorkflowController < ApplicationController
     @candidatures = {}
     
     { vacancies: Vacancy::STATES, candidatures: Candidature::STATES }.each do |controller, states|
+      query = 'offeror_id = :user_id'
+      query += ' OR author_id = :user_id' if controller == :vacancies
+      query = "(#{query}) AND state = :state"
+      
       states.each do |state|
-        if controller == :vacancies
-          eval("@#{controller}[state] = Vacancy.where(offeror_id: current_user.id, state: state).order('created_at DESC').limit(5)")
-        else
-          eval("@#{controller}[state] = current_user.offeror_#{controller}.where(state: state).limit(5)")
-        end
+        # eval("@#{controller}[state] = current_user.offeror_#{controller}.where(state: state).limit(5)")
+        vacancies = controller.to_s.classify.constantize.where(
+          query, user_id: current_user.id, state: state
+        ).order('created_at DESC').limit(5)
+        eval("@#{controller}[state] = vacancies")
       end
     end
   end
