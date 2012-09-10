@@ -42,8 +42,6 @@ gem 'rpm_contrib', '~> 2.1.7'
 
 # model 
 gem 'foreigner', '~> 1.1.0'
-gem 'mysql2', '0.3.11' if ENV['DB'].nil? || ENV['DB'] == 'all' || ENV['DB'] == 'mysql'
-gem 'pg' if ENV['DB'] == 'all' || ENV['DB'] == 'postgres'
 gem 'ancestry'
 gem 'state_machine'
 gem 'acts_as_list'
@@ -111,6 +109,7 @@ gem 'typhoeus'
 group :production do # we don't install these on travis to speed up test runs
   # dependency nokogiri is incompatible with cucumber-rails
   #gem 'rails_admin', git: 'git://github.com/halida/rails_admin.git'
+  gem 'pg'
   
   gem 'fastercsv', '1.5.5', require: false
   gem 'rack-ssl', require: 'rack/ssl'
@@ -185,6 +184,7 @@ group :test do
 end
 
 group :test, :development do
+  gem 'mysql2', '0.3.11'
   gem 'awesome_print'
   gem 'debugger', platforms: :mri_19
   gem 'rspec-rails', '~> 2.10' 
