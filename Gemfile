@@ -104,7 +104,66 @@ gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on.
 gem 'addressable', '~> 2.2', require: 'addressable/uri'
 gem 'http_accept_language', '~> 1.0.2'
 gem 'typhoeus'
+gem 'capistrano'
 
+# view
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
+# ffi dependency older than the one from selenium-webdriver
+#gem 'pygments.rb'
+
+gem 'twitter-bootstrap-rails'
+gem 'simple-navigation-bootstrap'
+
+# web
+
+gem 'faraday'
+gem 'faraday_middleware'
+
+gem 'jasmine', git: 'https://github.com/pivotal/jasmine-gem.git'
+
+group :development do
+  #gem 'heroku'
+  #gem 'heroku_san', '3.0.2', platforms: :mri_19
+  gem 'capistrano', require: false
+  gem 'capistrano_colors', require: false
+  gem 'capistrano-ext', require: false
+  gem 'linecache', '0.46', platforms: :mri_18
+  gem 'yard', require: false
+
+  # for tracing AR object instantiation and memory usage per request
+  gem 'oink'
+end
+
+group :development, :test do
+  gem 'mysql2', '0.3.11'
+  gem 'awesome_print'
+  gem 'debugger', platforms: :mri_19
+  gem 'rspec-rails', '~> 2.10' 
+  gem 'ruby-debug', platforms: :mri_18
+end
+
+group :test do
+  gem 'capybara', '~> 1.1.2'
+  gem 'cucumber-rails', '1.3.0', require: false
+  gem 'database_cleaner', '0.7.1'
+
+  gem 'timecop'
+  gem 'factory_girl_rails', '1.7.0'
+  gem 'fixture_builder', '0.3.3'
+  gem 'fuubar', '>= 1.0'
+  gem 'rspec-instafail', '>= 0.1.7', require: false
+  gem 'selenium-webdriver', '~> 2.22.1'
+
+  gem 'webmock', '~> 1.7', require: false
+
+  gem 'spork', '~> 1.0rc2'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'guard-cucumber'
+
+end
 
 group :production do # we don't install these on travis to speed up test runs
   # dependency nokogiri is incompatible with cucumber-rails
@@ -143,64 +202,5 @@ group :assets do
   gem 'asset_sync', require: nil
   
   gem 'coffee-script'
-end
-
-# view
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
-
-# ffi dependency older than the one from selenium-webdriver
-#gem 'pygments.rb'
-
-gem 'twitter-bootstrap-rails'
-gem 'simple-navigation-bootstrap'
-
-# web
-
-gem 'faraday'
-gem 'faraday_middleware'
-
-gem 'jasmine', git: 'https://github.com/pivotal/jasmine-gem.git'
-
-group :test do
-  gem 'capybara', '~> 1.1.2'
-  gem 'cucumber-rails', '1.3.0', require: false
-  gem 'database_cleaner', '0.7.1'
-
-  gem 'timecop'
-  gem 'factory_girl_rails', '1.7.0'
-  gem 'fixture_builder', '0.3.3'
-  gem 'fuubar', '>= 1.0'
-  gem 'rspec-instafail', '>= 0.1.7', require: false
-  gem 'selenium-webdriver', '~> 2.22.1'
-
-  gem 'webmock', '~> 1.7', require: false
-
-  gem 'spork', '~> 1.0rc2'
-  gem 'guard-rspec'
-  gem 'guard-spork'
-  gem 'guard-cucumber'
-
-end
-
-group :test, :development do
-  gem 'mysql2', '0.3.11'
-  gem 'awesome_print'
-  gem 'debugger', platforms: :mri_19
-  gem 'rspec-rails', '~> 2.10' 
-  gem 'ruby-debug', platforms: :mri_18
-end
-
-group :development do
-  #gem 'heroku'
-  #gem 'heroku_san', '3.0.2', platforms: :mri_19
-  gem 'capistrano', require: false
-  gem 'capistrano_colors', require: false
-  gem 'capistrano-ext', require: false
-  gem 'linecache', '0.46', platforms: :mri_18
-  gem 'yard', require: false
-
-  # for tracing AR object instantiation and memory usage per request
-  gem 'oink'
 end
 
