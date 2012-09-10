@@ -1,0 +1,5 @@
+<h3><%= @area.name %></h3>
+
+<dl class="dl-horizontal">
+  <%= show_field t('activerecord.attributes.general.parent'), @area.parent.name if @area.parent %>
+</dl>

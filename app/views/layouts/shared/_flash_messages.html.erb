@@ -1,0 +1,7 @@
+<div class="flash">
+  <% flash.each do |type, message| -%>
+    <div class="message <%= type == :notice ? 'alert-info' : type %>">
+      <p><%= message %></p>
+    </div>
+  <% end -%>
+</div>

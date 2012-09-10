@@ -1,0 +1,5 @@
+<%= form_tag update_multiple_areas_path, method: :post do %>
+  <%= render partial: 'shared/collection/table', locals: { 
+    type: 'areas', collection: @areas, columns: ['name', 'users_count'] 
+  } %>
+<% end %>

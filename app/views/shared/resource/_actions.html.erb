@@ -1,0 +1,8 @@
+<div class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t('general.events') %> &gt;</a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+<% resource.state_events.each do |event| %>
+    <li><%= link_to t("#{type}.show.events.#{event}"), eval("#{event}_#{type.singularize}_path(resource)"), method: :put %></li>
+<% end %>
+  </ul>
+</div>

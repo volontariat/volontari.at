@@ -1,0 +1,11 @@
+<%= simple_form_for(@vacancy) do |f| %>
+  <%= render partial: 'shared/form/error_messages', locals: { resource: @vacancy } %>
+  
+  <%= @vacancy.project ? f.hidden_field(:project_id) : f.association(:project) %> 
+  
+  <%= f.input :name %>
+  <%= f.input :text, input_html: {style: 'width: 500px; height:300px;'} %>
+  <%= f.input :limit %> 
+  
+  <%= f.button :submit %>
+<% end %>

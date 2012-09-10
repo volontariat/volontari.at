@@ -1,0 +1,13 @@
+<h3><%= @project.name %></h3>
+
+<dl class="dl-horizontal">
+  <%= show_field(
+    t('areas.index.title'), raw(@project.areas.map{|a| link_to a.name, area_path(a)}.join(', '))
+  ) %>
+</dl>
+
+<%= markdown @project.text %>
+
+<h4><%= t('comments.index.title') %></h4>
+
+<%= render 'shared/comments', comment: @project.comments.new %>

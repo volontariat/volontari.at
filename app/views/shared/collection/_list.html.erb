@@ -1,0 +1,37 @@
+<h3><%= t("#{type}.index.title") %></h3>
+
+<% if collection.none? %>
+<p><%= I18n.t("#{type}.index.empty_collection")%></p>
+<% else %>
+  <% collection.each do |resource| %>
+<table class="table table-striped">
+  <thead>
+    <tr class="<%= cycle("odd", "even") %>">
+      <th>
+    <% (columns.is_a?(Hash) ? columns.keys : columns).each do |column| %>
+        <strong><%= t(
+          "activerecord.attributes.general.#{column}", 
+          default: t("activerecord.attributes.#{type.singularize}.#{column}")
+        ) %>:</strong> 
+        
+        <%= table_cell column, resource, columns.is_a?(Hash) ? columns[column] : nil %> 
+    <% end %>
+    <% if resource.respond_to? :state_events %>
+          <%= render partial: "shared/resource/actions", locals: { type: type, resource: resource } %>
+    <% end %>
+      </th>
+    </tr>
+  </thead>
+</table>
+
+<table class="table table-striped">
+  <tbody>
+    <tr class="<%= cycle("odd", "even") %>">
+      <td>
+        <%= resource.send(content_column) %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+  <% end %>
+<% end %>

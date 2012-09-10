@@ -1,0 +1,42 @@
+<% options ||= {} %>
+<% options = {show_title: true, append_new_link: true}.merge(options) %>
+<% if options[:show_title] %>
+<h3><%= t("#{type}.index.title") %></h3>
+<% end %>
+<% if collection.none? %>
+<p><%= I18n.t("#{type}.index.empty_collection")%></p>
+<% else %>
+<table class="table table-striped">
+  <thead>
+    <tr class="<%= cycle("odd", "even") %>">
+  <% (columns.is_a?(Hash) ? columns.keys : columns).map{|c| c.gsub('_id', '')}.each do |column| %>
+      <th><%= t("activerecord.attributes.#{type.singularize}.#{column}") %></th>
+  <% end %>
+    </tr>
+  </thead>
+  <tbody>
+  <% collection.each do |resource| %>
+    <tr class="<%= cycle("odd", "even") %>">
+    <% (columns.is_a?(Hash) ? columns.keys : columns).each do |column| %>
+      <td>
+        <%= table_cell column, resource, columns.is_a?(Hash) ? columns[column] : nil %>
+      </td>
+    <% end %>
+    <% if resource.respond_to? :state_events %>
+      <td>
+        <%= render partial: "shared/resource/actions", locals: { type: type, resource: resource } %>
+      </td>
+    <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>
+
+<% if options[:append_new_link] %>
+  <% if parent %>
+    <%= link_to t("#{type}.new.title"), eval("new_#{parent.class.name.tableize.singularize}_#{type.singularize}_path(parent)") %>
+  <% else %>
+    <%= link_to t("#{type}.new.title"), eval("new_#{type.singularize}_path") %>
+  <% end %>
+<% end %>

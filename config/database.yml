@@ -1,0 +1,23 @@
+development:
+ adapter: mysql2
+ database: volontariat_development
+ encoding: utf8
+ username: root
+ password:
+
+test: &TEST
+ adapter: mysql2
+ database: volontariat_test
+ username: root
+ password:
+ encoding: utf8
+
+production:
+  adapter: mysql2
+  database: volontariat_production
+  encoding: utf8
+  username: root
+  password:
+  
+cucumber:
+ <<: *TEST

@@ -1,0 +1,13 @@
+<h3><%= @vacancy.name %></h3>
+
+<dl class="dl-horizontal">
+  <%= show_field t('activerecord.models.project'), link_to(@vacancy.project.name, @vacancy.project) %>
+</dl>
+
+<%= render partial: "shared/resource/actions", locals: { type: 'vacancies', resource: @vacancy } %>
+
+<%= markdown @vacancy.text %>
+
+<h4><%= t('comments.index.title') %></h4>
+
+<%= render 'shared/comments', comment: @vacancy.comments.new %>

@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+<div class="error_messages">
+  <h2><%= t('general.form.errors_count', count: pluralize(resource.errors.count, t('general.error'))) %></h2>
+  <ul>
+  <% resource.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>

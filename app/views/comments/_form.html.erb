@@ -1,0 +1,12 @@
+<%= simple_form_for(resource, html: {class: 'form-horizontal'}) do |f| %>
+  <%= render partial: 'shared/form/error_messages', locals: { resource: resource } %>
+  
+  <%= f.hidden_field :parent_id %>
+  <%= f.hidden_field :commentable_type %>
+  <%= f.hidden_field :commentable_id %>
+  
+  <%= f.input :name %>  
+  <%= f.input :text, input_html: {style: 'width: 500px; height:300px;'} %>
+
+  <%= f.button :submit %>
+<% end %>

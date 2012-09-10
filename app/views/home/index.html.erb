@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="hero-unit">
+    <h1>Welcome</h1>
+    
+    <p>Volontari.at is an Open Source platform for voluntary Crowdsourcing projects:</p>
+    
+    <p><a href="http://github.com/Applicat/volontariat">Volontariat @ github (Ruby on Rails)</a>
+  </div>
+  <div class="row-fluid">
+    <div class="span6">
+      <h3><%= I18n.t('home.index.last_projects') %></h3>
+      <%= render partial: 'shared/collection/table', locals: { 
+        type: 'projects', collection: @projects, columns: ['name', 'user_id', 'url'],
+        options: {show_title: false } 
+      } %>
+    </div>
+    <div class="span6">
+      <h3><%= I18n.t('home.index.last_vacancies') %></h3>
+      <%= render partial: 'shared/collection/table', locals: { 
+        type: 'vacancies', collection: @vacancies, columns: ['name', 'project_id'],
+        options: {show_title: false, append_new_link: false } 
+      } %>
+    </div>
+  </div>
+</div>

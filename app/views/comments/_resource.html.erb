@@ -1,0 +1,12 @@
+<div class="comment">
+  <div class="created_at"><%= resource.created_at.strftime("%d.%m.%Y %H:%M:%S") %> <%= resource.name %></div>
+  <div class="content">
+    <%= markdown resource.text %>
+  </div>
+  <div class="actions">
+    <%= link_to "Reply", eval(
+      "new_#{resource.commentable_type.tableize.singularize}_comment_path(resource.commentable_id, comment: { parent_id: resource.id })" 
+    ) %> |
+    <%= link_to "Destroy", resource, confirm: "Are you sure?", method: :delete %>
+  </div>
+</div>

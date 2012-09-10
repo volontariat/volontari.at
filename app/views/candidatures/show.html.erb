@@ -1,0 +1,21 @@
+<h3>
+<% if @candidature.name.present? %>
+  <%= @candidature.name %>
+<% else %>
+  No Name
+<% end %>
+</h3>
+
+<dl class="dl-horizontal">
+  <%= show_field t('activerecord.models.project'), link_to(@candidature.vacancy.project.name, @candidature.vacancy.project) %>
+  <%= show_field t('activerecord.models.vacancy'), link_to(@candidature.vacancy.name, @candidature.vacancy) %>
+  <%= show_field t('activerecord.models.user'), link_to(@candidature.user.name, @candidature.user) %>
+  <dt>&nbsp;</dt>
+  <dd><%= render partial: "shared/resource/actions", locals: { type: 'candidatures', resource: @candidature } %> </dd>
+</dl>
+
+<%= markdown @candidature.text %>
+
+<h4><%= t('comments.index.title') %></h4>
+
+<%= render 'shared/comments', comment: @candidature.comments.new %>
