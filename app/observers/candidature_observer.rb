@@ -14,13 +14,13 @@ class CandidatureObserver < ActiveRecord::Observer
             
     case transition.to
       when 'accepted'
-        ProjectUser.create!(
+        ProjectUser.find_or_create_by_project_id_and_vacancy_id_and_user_id!(
           project_id: object.vacancy.project_id, vacancy_id: object.vacancy_id, 
           user_id: object.user_id
         )
         
-        if object.vacancy.limit == object.vacancy.candidatures.where(state: 'accepted').count
-          object.vacancy.close!
+        if object.vacancy.limit == object.vacancy.candidatures.accepted.count
+          object.vacancy.close! unless object.vacancy.closed?
         end
       when 'denied'
         # if comming from :accepted then the vacancy offerer has to reopen the vacancy manually
