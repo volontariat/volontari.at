@@ -7,6 +7,8 @@ class Candidature < ActiveRecord::Base
 
   has_many :comments, as: :commentable
 
+  scope :accepted, where(state: 'accepted')
+
   validates :vacancy_id, presence: true
   validates :offeror_id, presence: true
   validates :user_id, presence: true
