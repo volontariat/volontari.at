@@ -31,8 +31,6 @@ ActiveRecord::Schema.define(:version => 20120907144853) do
   create_table "areas_projects", :force => true do |t|
     t.integer  "area_id"
     t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   add_index "areas_projects", ["area_id", "project_id"], :name => "index_areas_projects_on_area_id_and_project_id", :unique => true
@@ -42,8 +40,6 @@ ActiveRecord::Schema.define(:version => 20120907144853) do
   create_table "areas_users", :force => true do |t|
     t.integer  "area_id"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   add_index "areas_users", ["area_id", "user_id"], :name => "index_areas_users_on_area_id_and_user_id", :unique => true
@@ -115,8 +111,6 @@ ActiveRecord::Schema.define(:version => 20120907144853) do
     t.integer  "role_id"
     t.integer  "user_id"
     t.string   "state"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   add_index "projects_users", ["project_id", "user_id", "vacancy_id"], :name => "index_projects_users_on_project_id_and_user_id_and_vacancy_id", :unique => true
@@ -181,8 +175,6 @@ ActiveRecord::Schema.define(:version => 20120907144853) do
     t.integer  "role_id"
     t.integer  "user_id"
     t.string   "state"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id", :unique => true
