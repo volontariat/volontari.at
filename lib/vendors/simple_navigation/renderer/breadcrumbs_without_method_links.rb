@@ -11,7 +11,7 @@ class Vendors::SimpleNavigation::Renderer::BreadcrumbsWithoutMethodLinks < Simpl
   def a_tags(item_container, parent_list = [])
     item_container.items.inject([]) do |list, item|
       if item.method.blank? && item.selected?
-        list << tag_for(item) unless parent_list.join('').match(item.url)
+        list << tag_for(item) unless parent_list.join('').match(item.url.split('#').first)
 
         if include_sub_navigation?(item)
           list.concat a_tags(item.sub_navigation, list.clone)
