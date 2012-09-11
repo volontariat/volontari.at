@@ -62,9 +62,9 @@ VolontariAt::Application.routes.draw do
   
   resources :comments
   
+  match 'workflow' => 'workflow#index', as: :workflow
+  
   namespace 'workflow' do
-    match '/' => 'workflow#index', as: :root
-    
     resources :vacancies, controller: 'vacancies', only: :index do
       collection do
         match '/' => 'vacancies#open', as: :open

@@ -85,7 +85,7 @@ SimpleNavigation::Configuration.run do |navigation|
     end
  
     if user_signed_in?
-      primary.item :workflow, t('workflow.index.title'), workflow_root_path do |workflow|
+      primary.item :workflow, t('workflow.index.title'), workflow_path do |workflow|
         workflow.item :vacancies, t('vacancies.index.title'), open_workflow_vacancies_path do |vacancies|
           Vacancy::STATES.each do |state|
             vacancies.item state, t("vacancies.show.states.#{state}"), eval("#{state}_workflow_vacancies_path")
