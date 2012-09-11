@@ -4,11 +4,19 @@ Creative Open Crowd Source Platform Volontari.at
 
 == Installation
 
+=== Localhost
+
+http://railscasts.com/episodes/342-migrating-to-postgresql
+
 Copy content of config/database.example.yml to a new file config/database.yml and customize to your needs.
 
   git clone https://github.com/Applicat/volontariat.git
   bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rake db:seed --trace
   bundle exec rails server
+
+=== Production
+
+http://railscasts.com/episodes/335-deploying-to-a-vps
 
 = Future
 
