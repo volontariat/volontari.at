@@ -1,6 +1,6 @@
 class RemoveTimestampsFromHabtmTables < ActiveRecord::Migration
   TABLES = [
-    :areas_projects, :areas_users, :areas_projects, :projects_users, :areas_users, :areas_projects
+    :areas_projects, :areas_users, :projects_users, :users_roles
   ]
   
   def up
