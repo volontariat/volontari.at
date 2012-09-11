@@ -10,6 +10,8 @@ class Vacancy < ActiveRecord::Base
   has_many :candidatures
   has_many :comments, as: :commentable
   
+  scope :open, where(state: 'open')
+  
   validates :project_id, presence: true
   validates :offeror_id, presence: true
   validates :name, presence: true, uniqueness: { scope: :project_id }
@@ -22,6 +24,10 @@ class Vacancy < ActiveRecord::Base
   friendly_id :name, use: :slugged
   
   before_validation :set_defaults
+  
+  def candidatures_left
+    limit - candidatures.accepted.count
+  end
   
   private
   
