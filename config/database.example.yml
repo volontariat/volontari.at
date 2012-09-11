@@ -1,17 +1,19 @@
 development:
- adapter: mysql2
+ adapter: postgresql
  database: volontariat_development
- encoding: utf8
+ encoding: unicode
  username: root
  password:
+ encoding: unicode
 
 test: &TEST
- adapter: mysql2
+ adapter: postgresql
+ encoding: unicode
  database: volontariat_test
+ pool: 5
  username: root
  password:
- encoding: utf8
-
+ 
 production:
   adapter: postgresql
   encoding: unicode

@@ -5,6 +5,8 @@ ruby '1.9.3' if ENV['HEROKU']
 
 gem 'rails', '3.2.6'
 
+gem 'pg'
+
 gem 'foreman', '0.46'
 
 gem 'thin', '~> 1.3.1', require: false
@@ -138,7 +140,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'mysql2', '0.3.11'
   gem 'awesome_print'
   gem 'debugger', platforms: :mri_19
   gem 'rspec-rails', '~> 2.10' 
@@ -169,8 +170,6 @@ end
 group :production do # we don't install these on travis to speed up test runs
   # dependency nokogiri is incompatible with cucumber-rails
   #gem 'rails_admin', git: 'git://github.com/halida/rails_admin.git'
-  gem 'pg'
-  
   gem 'fastercsv', '1.5.5', require: false
   gem 'rack-ssl', require: 'rack/ssl'
   gem 'rack-rewrite', '~> 1.2.1', require: false
