@@ -38,6 +38,7 @@ en:
         user_id: User
       vacancy:
         name: Name 
+        limit: Limit
       comment:
         name: Subject
    

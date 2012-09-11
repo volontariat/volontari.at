@@ -5,6 +5,7 @@
 
 <dl class="dl-horizontal">
   <%= show_field t('activerecord.models.project'), link_to(@vacancy.project.name, @vacancy.project) %>
+  <%= show_field t('activerecord.attributes.vacancy.limit'), "#{@vacancy.candidatures_left} / #{@vacancy.limit}" %>
 </dl>
 
 <%= render partial: "shared/resource/actions", locals: { type: 'vacancies', resource: @vacancy } %>
