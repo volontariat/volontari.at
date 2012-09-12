@@ -24,11 +24,22 @@ Something near Amazon's http://MTurk.com
 
 == Contribution
 
+Feedback: Tender coming soon
+Scrum Backlogs: https://www.pivotaltracker.com/projects/639533
+
 Just follow the screencast of Ryan Bates on railscasts.com: 
 
   http://railscasts.com/episodes/300-contributing-to-open-source
 
 Add a description about your changes to CHANGELOG.md under section volontariat (unreleased).
+
+== Development Tools
+
+Airbrake: https://applicat.airbrake.io/projects/82375
+New Relic
+Travis CI (Continous Integration): travis-ci.org/Applicat/volontariat
+Code Climate: https://codeclimate.com/github/Applicat/volontariat
+Gemnasium: https://gemnasium.com/Applicat/volontariat
 
 == License 
 
