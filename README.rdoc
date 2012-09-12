@@ -35,11 +35,11 @@ Add a description about your changes to CHANGELOG.md under section volontariat (
 
 == Development Tools
 
-Airbrake: https://applicat.airbrake.io/projects/82375
-New Relic
-Travis CI (Continous Integration): travis-ci.org/Applicat/volontariat
-Code Climate: https://codeclimate.com/github/Applicat/volontariat
-Gemnasium: https://gemnasium.com/Applicat/volontariat
+* Airbrake: https://applicat.airbrake.io/projects/82375
+* New Relic
+* Travis CI (Continous Integration): travis-ci.org/Applicat/volontariat
+* Code Climate: https://codeclimate.com/github/Applicat/volontariat
+* Gemnasium: https://gemnasium.com/Applicat/volontariat
 
 == License 
 
