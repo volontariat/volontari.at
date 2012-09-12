@@ -33,7 +33,7 @@ Just follow the screencast of Ryan Bates on railscasts.com:
 
 Add a description about your changes to CHANGELOG.md under section volontariat (unreleased).
 
-== Development Tools
+== Development Services
 
 * Airbrake: https://applicat.airbrake.io/projects/82375
 * New Relic
