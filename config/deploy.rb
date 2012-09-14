@@ -49,3 +49,6 @@ namespace :deploy do
   end
   before "deploy", "deploy:check_revision"
 end
+
+        require './config/boot'
+        require 'airbrake/capistrano'
