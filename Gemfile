@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'bundler', '> 1.1.0'
 ruby '1.9.3' if ENV['HEROKU']
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.8'
 
 gem 'pg'
 
@@ -149,6 +149,7 @@ end
 group :test do
   gem 'capybara', '~> 1.1.2'
   gem 'cucumber-rails', '1.3.0', require: false
+  gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner', '0.7.1'
 
   gem 'timecop'
@@ -196,7 +197,7 @@ group :assets do
   gem 'therubyracer', platforms: :ruby
 
   gem 'handlebars_assets'
-  gem 'uglifier'
+  gem 'uglifier', '>= 1.0.3'
 
   # asset_sync is required as needed by application.rb
   gem 'asset_sync', require: nil
