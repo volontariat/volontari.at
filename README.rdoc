@@ -14,6 +14,10 @@ Copy content of config/database.example.yml to a new file config/database.yml an
   bundle exec rake db:create && bundle exec rake db:migrate && bundle exec rake db:seed --trace
   bundle exec rails server
 
+=== Test
+
+bundle exec rake db:test:clone_structure
+
 === Production
 
 http://railscasts.com/episodes/335-deploying-to-a-vps
