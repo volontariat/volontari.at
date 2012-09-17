@@ -7,7 +7,7 @@ SimpleNavigation::Configuration.run do |navigation|
       areas.item :new, t('general.new'), new_area_path
       
       if resource_exists?('area')
-        areas.item :show, t('general.details'), area_path(@area) do |area|
+        areas.item :show, @area.name, area_path(@area) do |area|
           area.item :destroy, t('general.destroy'), area_path(@area), method: :delete, confirm: t('general.questions.are_you_sure')
           area.item :show, t('general.details'), "#{area_path(@area)}#top"
           area.item :edit, t('general.edit'), edit_area_path(@area)
@@ -48,10 +48,10 @@ SimpleNavigation::Configuration.run do |navigation|
           vacancy.item :destroy, t('general.destroy'), vacancy_path(@vacancy), method: :delete, confirm: t('general.questions.are_you_sure')
           vacancy.item :show, t('general.details'), "#{vacancy_path(@vacancy)}#top"
           vacancy.item :edit, t('general.edit'), edit_vacancy_path(@vacancy)
-            
+          
           vacancy.item :candidatures, t('candidatures.index.title'), vacancy_candidatures_path(@vacancy) do |candidatures|
             candidatures.item :new, t('general.new'), new_vacancy_candidature_path(@vacancy)
-            
+          
             if resource_exists?('candidature')
               candidatures.item(
                 :show, t('activerecord.models.candidature') + " of #{@candidature.user.name} @ #{@candidature.vacancy.project.name}", 
