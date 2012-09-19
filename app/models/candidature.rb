@@ -5,7 +5,7 @@ class Candidature < ActiveRecord::Base
   belongs_to :offeror, class_name: 'User'
   belongs_to :user
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
 
   scope :accepted, where(state: 'accepted')
 
