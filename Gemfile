@@ -148,6 +148,7 @@ end
 
 group :test do
   gem 'capybara', '~> 1.1.2'
+  gem 'capybara-webkit'
   gem 'cucumber-rails', '1.3.0', require: false
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner', '0.7.1'
@@ -158,14 +159,14 @@ group :test do
   gem 'fuubar', '>= 1.0'
   gem 'rspec-instafail', '>= 0.1.7', require: false
   gem 'selenium-webdriver', '~> 2.22.1'
-
+  gem 'timecop'
   gem 'webmock', '~> 1.7', require: false
 
   gem 'spork', '~> 1.0rc2'
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'guard-cucumber'
-
+  gem 'launchy'
 end
 
 group :production do # we don't install these on travis to speed up test runs

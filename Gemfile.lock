@@ -115,6 +115,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    capybara-webkit (0.12.1)
+      capybara (>= 1.0.0, < 1.2)
+      json
     carrierwave (0.6.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -254,6 +257,8 @@ GEM
     koala (1.5.0)
       faraday (~> 0.7)
       multi_json (~> 1.3)
+    launchy (2.1.2)
+      addressable (~> 2.3)
     less (2.2.2)
       commonjs (~> 0.2.6)
     less-rails (2.2.3)
@@ -496,6 +501,7 @@ DEPENDENCIES
   capistrano-ext
   capistrano_colors
   capybara (~> 1.1.2)
+  capybara-webkit
   carrierwave (= 0.6.2)
   client_side_validations
   coffee-rails (~> 3.2.1)
@@ -530,6 +536,7 @@ DEPENDENCIES
   jquery-ui-rails
   json
   koala
+  launchy
   linecache (= 0.46)
   messagebus_ruby_api (= 1.0.3)
   mini_magick (= 3.4)
