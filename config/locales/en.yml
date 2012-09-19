@@ -1,9 +1,7 @@
 # Sample localization file for English: Add more files in this directory for other locales:
 # See https://github:com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points:
 
-en: 
-  base:
-    access_denied: 'Access denied'
+en:  
   general:
     index:
       title: Home
@@ -11,16 +9,20 @@ en:
     edit: Edit
     destroy: Destroy
     error: Error
-    list_action: 'Back to the overview'
-    details: 'Details'
+    list_action: Back to the overview
+    details: Details
     form:
       errors_count: '%{count} prohibited this product from being saved:'
-      successfully_created: 'Creation successful'
-      successfully_updated: 'Update successful'
-      destroyed: 'Resource destroyed successfully.'
+      successfully_created: Creation successful
+      successfully_updated: Update successful
+      destroyed: Resource destroyed successfully.
     questions:
-      are_you_sure: 'Are you sure?'
-  
+      are_you_sure: Are you sure?
+    actions: Actions
+    exceptions:
+      access_denied: Access denied
+      not_found: Resource not found.
+      
   activerecord:
     models:
       area: Area
@@ -41,6 +43,9 @@ en:
         limit: Limit
       comment:
         name: Subject
+  
+  layout:
+    title: Volontari.at - Creative Open Crowdsource Platform
    
   home:
     index:
@@ -49,43 +54,43 @@ en:
     
   areas:
     index:
-      title: 'Areas'
-      name: 'Name'
-      users_count: 'Users count'
-      list_action: 'Back to the overview'
-      empty_collection: 'No areas available.'
+      title: Areas
+      name: Name
+      users_count: Users count
+      list_action: Back to the overview
+      empty_collection: No areas available.
       
     new: 
-      title: 'New Area'
+      title: New Area
     edit: 
-      title: 'Edit Area'
+      title: Edit Area
         
   users:
     index: 
-      title: 'Users'
-      empty_collection: 'No users available.'
+      title: Users
+      empty_collection: No users available.
     show:
-      title: 'Profile'
+      title: Profile
     edit:
-      title: 'Settings'
+      title: Settings
   
   projects:
     index:
-      title: 'Projects'
-      empty_collection: 'No projects available.'
+      title: Projects
+      empty_collection: No projects available.
     new:
-      title: 'New Project'
+      title: New Project
     edit:
-      title: 'Edit Project'
+      title: Edit Project
   
   vacancies:
     index:
-      title: 'Vacancies'
-      empty_collection: 'No vacancies available.'
+      title: Vacancies
+      empty_collection: No vacancies available.
     new:
-      title: 'New Vacancy'
+      title: New Vacancy
     edit:
-      title: 'Edit Vacancy'
+      title: Edit Vacancy
     show:
       states:
         open: Open
@@ -101,12 +106,12 @@ en:
         
   candidatures:
     index:
-      title: 'Candidatures'
-      empty_collection: 'No candidatures available.'
+      title: Candidatures
+      empty_collection: No candidatures available.
     new:
-      title: 'New Candidature'
+      title: New Candidature
     edit:
-      title: 'Edit Candidature'    
+      title: Edit Candidature    
     show:
       states:
         new: New
@@ -119,10 +124,14 @@ en:
         
   comments:
     index:
-      title: 'Comments'
-      empty_collection: 'No comments available.'
+      title: Comments
+      empty_collection: No comments available.
     new:
-      title: 'New Comment'
+      title: New Comment
+    show:
+      reply: Reply
+    edit:
+      title: Edit Comment
     
   workflow:
     index:
@@ -132,8 +141,8 @@ en:
       candidatures:    
       
   authentication:
-    title: 'Authentication'
-    sign_in: 'Sign in'
-    sign_up: 'Sign up'
-    rpx_sign_in: 'RPX sign in'
-    sign_out: 'Sign out'
+    title: Authentication
+    sign_in: Sign in
+    sign_up: Sign up
+    rpx_sign_in: RPX sign in
+    sign_out: Sign out
