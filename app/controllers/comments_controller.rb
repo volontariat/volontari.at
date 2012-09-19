@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
   load_and_authorize_resource
   
+  before_filter :find_commentable, only: [:new, :edit]
+  
   respond_to :html, :js, :json
   
   def index
@@ -13,10 +15,7 @@ class CommentsController < ApplicationController
   
   def new
     @comment = Comment.new(params[:comment])
-    commentable = commentable = @comment.commentable ? @comment.commentable : find_parent(Comment::COMMENTABLE_TYPES)
-    eval("@#{commentable.class.name.tableize.singularize} = commentable")
-    @vacancy = commentable.vacancy if commentable.is_a?(Candidature)
-    @comment.commentable = commentable
+    @comment.commentable = @commentable
   end
   
   def create
@@ -24,7 +23,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     
     if @comment.save
-      redirect_to @comment.commentable, notice: t('comments.show.successfully_created')
+      redirect_to @comment.commentable, notice: t('general.form.successfully_created')
     else
       render :new
     end
@@ -38,7 +37,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     
     if @comment.update_attributes(params[:comment])
-      redirect_to @comment, notice: t('comments.show.successfully_updated')
+      redirect_to @comment.commentable, notice: t('general.form.successfully_updated')
     else
       render :edit
     end
@@ -47,6 +46,19 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to comments_url, notice: t('comments.show.destroyed')
+    redirect_to comments_url, notice: t('general.form.destroyed')
+  end
+  
+  private
+  
+  def find_commentable
+    @commentable = @comment.commentable ? @comment.commentable : find_parent(Comment::COMMENTABLE_TYPES)
+    eval("@#{@commentable.class.name.tableize.singularize} = @commentable")
+    
+    if @commentable.is_a?(Candidature)
+      @vacancy = @commentable.vacancy 
+    elsif @commentable.is_a?(Project) 
+      @twitter_sidenav_level = 4
+    end
   end
 end
