@@ -7,8 +7,8 @@ class Vacancy < ActiveRecord::Base
   belongs_to :user
   belongs_to :project_user
   
-  has_many :candidatures
-  has_many :comments, as: :commentable
+  has_many :candidatures, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
   
   scope :open, where(state: 'open')
   
@@ -16,6 +16,7 @@ class Vacancy < ActiveRecord::Base
   validates :offeror_id, presence: true
   validates :name, presence: true, uniqueness: { scope: :project_id }
   validates :text, presence: true
+  validates :limit, presence: true
   
   attr_accessible :project_id, :name, :text, :limit
   
@@ -32,7 +33,9 @@ class Vacancy < ActiveRecord::Base
   private
   
   def set_defaults
-    self.offeror_id = project.user_id
-    self.author_id = project.user_id unless self.author_id.present?
+    if project
+      self.offeror_id = project.user_id
+      self.author_id = project.user_id unless self.author_id.present?
+    end
   end
 end
