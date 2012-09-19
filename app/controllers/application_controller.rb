@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery
   
+  before_filter :set_twitter_sidenav_level
+  
   layout Proc.new { |controller| controller.request.xhr? ? 'facebox' : 'application' }
   
   rescue_from CanCan::AccessDenied, with: :access_denied
@@ -24,6 +26,10 @@ class ApplicationController < ActionController::Base
   
   def current_ability
     Ability.new(current_user, controller_namespace: current_namespace, project: current_project)
+  end
+  
+  def set_twitter_sidenav_level
+    @twitter_sidenav_level = 3
   end
   
   def find_parent(types)
@@ -53,7 +59,7 @@ class ApplicationController < ActionController::Base
   end
   
   def access_denied
-    message = I18n.t('base.access_denied')
+    message = I18n.t('general.exceptions.access_denied')
     
     if request.format.try('json?')
       render :status => 403, json: { error: message } and return

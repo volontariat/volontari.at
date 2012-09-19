@@ -63,6 +63,12 @@ class CandidaturesController < ApplicationController
   
   transition_actions Candidature::EVENTS
   
+  protected
+  
+  def set_twitter_sidenav_level
+    @twitter_sidenav_level = 5
+  end
+  
   private
   
   def find_vacancy

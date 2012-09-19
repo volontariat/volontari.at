@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Volontari.at - Creative Open Crowdsource Platform</title>
+  <title><%= t('layout.title') %></title>
   <meta charset='utf-8'>
   <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
   <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
 </head>
 <body>
   <%= render 'layouts/shared/navigation' %>
@@ -20,14 +18,17 @@
     <div class="row-fluid">
       <div class="span9">
         <% breadcrumbs = render_navigation renderer: :breadcrumbs_without_method_links, join_with: ' &gt; ' %>
-        <%= breadcrumbs if breadcrumbs.split('<a').length > 2 %>
+        <%= breadcrumbs if breadcrumbs && breadcrumbs.split('<a').length > 2 %>
 
         <%= yield %>
       </div>      
       <div class="span3">
-        <%= render_navigation(renderer: :twitter_sidenav, level: 3) %>
+        <% sidenav = render_navigation(renderer: :twitter_sidenav, level: @twitter_sidenav_level) %>
+        <%= sidenav if sidenav && sidenav.split('<a').length > 2 %>
       </div>
     </div>
   </div>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
 </body>
 </html>
