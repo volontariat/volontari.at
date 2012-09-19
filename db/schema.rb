@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120907144853) do
+ActiveRecord::Schema.define(:version => 20120911093743) do
 
   create_table "areas", :force => true do |t|
     t.string   "ancestry"
@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(:version => 20120907144853) do
   add_index "areas", ["slug"], :name => "index_areas_on_slug", :unique => true
 
   create_table "areas_projects", :force => true do |t|
-    t.integer  "area_id"
-    t.integer  "project_id"
+    t.integer "area_id"
+    t.integer "project_id"
   end
 
   add_index "areas_projects", ["area_id", "project_id"], :name => "index_areas_projects_on_area_id_and_project_id", :unique => true
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(:version => 20120907144853) do
   add_index "areas_projects", ["project_id"], :name => "index_areas_projects_on_project_id"
 
   create_table "areas_users", :force => true do |t|
-    t.integer  "area_id"
-    t.integer  "user_id"
+    t.integer "area_id"
+    t.integer "user_id"
   end
 
   add_index "areas_users", ["area_id", "user_id"], :name => "index_areas_users_on_area_id_and_user_id", :unique => true
@@ -106,11 +106,11 @@ ActiveRecord::Schema.define(:version => 20120907144853) do
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
   create_table "projects_users", :force => true do |t|
-    t.integer  "project_id"
-    t.integer  "vacancy_id"
-    t.integer  "role_id"
-    t.integer  "user_id"
-    t.string   "state"
+    t.integer "project_id"
+    t.integer "vacancy_id"
+    t.integer "role_id"
+    t.integer "user_id"
+    t.string  "state"
   end
 
   add_index "projects_users", ["project_id", "user_id", "vacancy_id"], :name => "index_projects_users_on_project_id_and_user_id_and_vacancy_id", :unique => true
@@ -172,9 +172,9 @@ ActiveRecord::Schema.define(:version => 20120907144853) do
   add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
 
   create_table "users_roles", :force => true do |t|
-    t.integer  "role_id"
-    t.integer  "user_id"
-    t.string   "state"
+    t.integer "role_id"
+    t.integer "user_id"
+    t.string  "state"
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id", :unique => true
