@@ -51,6 +51,8 @@ VolontariAt::Application.routes.draw do
     end
   end
   
+  resources :comments, only: [:new, :edit, :create, :update, :destroy]
+  
   resources :users do
     resources :projects
     resources :candidatures
@@ -59,8 +61,6 @@ VolontariAt::Application.routes.draw do
       put :update_multiple
     end
   end
-  
-  resources :comments
   
   match 'workflow' => 'workflow#index', as: :workflow
   
