@@ -2,9 +2,9 @@ class Project < ActiveRecord::Base
   belongs_to :user
   
   has_many :project_users
-  has_many :vacancies
+  has_many :vacancies, dependent: :destroy
   has_many :roles, through: :project_users
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
   
   has_and_belongs_to_many :users
   has_and_belongs_to_many :areas
@@ -19,7 +19,7 @@ class Project < ActiveRecord::Base
   
   extend FriendlyId
   
-  friendly_id :name, :use => :slugged
+  friendly_id :name, use: :slugged
   
   PARENT_TYPES = ['area', 'user']
 end
