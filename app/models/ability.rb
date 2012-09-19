@@ -49,7 +49,7 @@ class Ability
       #  can [:manage, :moderate, :administrate, :supervisor], :all
       #end
       
-      if user.id == 1
+      if user.name == 'master'
         can [:manage, :moderate, :administrate, :supervisor], :all
       end
     end
