@@ -34,7 +34,8 @@ SimpleNavigation::Configuration.run do |navigation|
           end
           
           project.item :comments, t('comments.index.title'), "#{project_path(@project)}#comments" do |comments|
-            comments.item(:new, t('general.new'), new_project_comment_path) if @comment
+            comments.item(:new, t('general.new'), new_project_comment_path(@project)) if @comment
+            comments.item(:edit, t('general.edit'), edit_comment_path(@comment)) if @comment.try(:id)
           end
         end
       end  
@@ -62,14 +63,16 @@ SimpleNavigation::Configuration.run do |navigation|
                 candidature.item :edit, t('general.edit'), edit_candidature_path(@candidature)
                 
                 candidature.item :comments, t('comments.index.title'), "#{candidature_path(@candidature)}#comments" do |comments|
-                  comments.item(:new, t('general.new'), new_candidature_comment_path) if @comment
+                  comments.item(:new, t('general.new'), new_candidature_comment_path(@candidature)) if @comment
+                  comments.item(:edit, t('general.edit'), edit_comment_path(@comment)) if @comment.try(:id)
                 end 
               end
             end
           end
            
           vacancy.item :comments, t('comments.index.title'), "#{vacancy_path(@vacancy)}#comments" do |comments|
-            comments.item(:new, t('general.new'), new_vacancy_comment_path) if @comment && !@candidature
+            comments.item(:new, t('general.new'), new_vacancy_comment_path(@vacancy)) if @comment && !@candidature
+            comments.item(:edit, t('general.edit'), edit_comment_path(@comment)) if @comment.try(:id)
           end 
         end
       end  
