@@ -1,6 +1,6 @@
 <% columns = { 'name' => 'user.name', 'user_id' => ''} %>
-<% columns['project_id'] = 'vacancy.project' if params[:controller].match('workflow/') %>
 <% columns['vacancy_id'] = '' unless @vacancy %>
+<% columns['project_id'] = 'vacancy.project' unless @vacancy %>
 
 <%= form_tag update_multiple_candidatures_path, method: :post do %>
   <%= render partial: "shared/collection/#{@vacancy ? 'list' : 'table'}", locals: { 
