@@ -12,6 +12,7 @@
   <% (columns.is_a?(Hash) ? columns.keys : columns).map{|c| c.gsub('_id', '')}.each do |column| %>
       <th><%= t("activerecord.attributes.#{type.singularize}.#{column}") %></th>
   <% end %>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -22,11 +23,9 @@
         <%= table_cell column, resource, columns.is_a?(Hash) ? columns[column] : nil %>
       </td>
     <% end %>
-    <% if resource.respond_to? :state_events %>
       <td>
         <%= render partial: "shared/resource/actions", locals: { type: type, resource: resource } %>
       </td>
-    <% end %>
     </tr>
   <% end %>
   </tbody>
