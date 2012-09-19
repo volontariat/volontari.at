@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
     @project.user_id = current_user.id
     
     if @project.save
-      redirect_to @project, notice: t('projects.show.successfully_created')
+      redirect_to @project, notice: t('general.form.successfully_created')
     else
       render :new
     end
@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     
     if @project.update_attributes(params[:project])
-      redirect_to @project, notice: t('projects.show.successfully_updated')
+      redirect_to @project, notice: t('general.form.successfully_updated')
     else
       render :edit
     end
@@ -45,6 +45,6 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-    redirect_to projects_url, notice: t('projects.show.destroyed')
+    redirect_to projects_url, notice: t('general.form.destroyed')
   end
 end

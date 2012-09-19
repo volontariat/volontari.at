@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     if @user.update_attributes(params[:user])
-      redirect_to @user, notice: t('users.show.successfully_updated')
+      redirect_to @user, notice: t('general.form.successfully_updated')
     else
       render :edit
     end
@@ -27,6 +27,6 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to users_url, notice: t('users.show.destroyed')
+    redirect_to users_url, notice: t('general.form.destroyed')
   end
 end
