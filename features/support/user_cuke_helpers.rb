@@ -36,12 +36,6 @@ module UserCukeHelpers
     $browser.delete_all_visible_cookies if $browser
   end
 
-  # go to user menu, expand it, and click logout
-  def manual_logout
-    find("#user_menu li:first-child a").click
-    find("#user_menu li:last-child a").click
-  end
-
   # fill change password section on the user edit page 
   def fill_change_password_section(cur_pass, new_pass, confirm_pass)
     fill_in 'user_current_password', with: cur_pass
