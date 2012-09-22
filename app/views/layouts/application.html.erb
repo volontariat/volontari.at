@@ -17,14 +17,19 @@
     </div>
     <div class="row-fluid">
       <div class="span9">
-        <% breadcrumbs = render_navigation renderer: :breadcrumbs_without_method_links, join_with: ' &gt; ' %>
-        <%= breadcrumbs if breadcrumbs && breadcrumbs.split('<a').length > 2 %>
-
+        <%= breadcrumbs %>
+        
         <%= yield %>
       </div>      
       <div class="span3">
-        <% sidenav = render_navigation(renderer: :twitter_sidenav, level: @twitter_sidenav_level) %>
-        <%= sidenav if sidenav && sidenav.split('<a').length > 2 %>
+        <%= sidenav %>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+        <%= footer_navigation %>
       </div>
     </div>
   </div>
