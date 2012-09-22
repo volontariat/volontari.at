@@ -8,7 +8,7 @@
 <% else %>
 <table class="table table-striped">
   <thead>
-    <tr class="<%= cycle("odd", "even") %>">
+    <tr class="<%= cycle('odd', 'even') %>">
   <% (columns.is_a?(Hash) ? columns.keys : columns).map{|c| c.gsub('_id', '')}.each do |column| %>
       <th><%= t("activerecord.attributes.#{type.singularize}.#{column}") %></th>
   <% end %>
@@ -17,14 +17,14 @@
   </thead>
   <tbody>
   <% collection.each do |resource| %>
-    <tr class="<%= cycle("odd", "even") %>">
+    <tr class="<%= cycle('odd', 'even') %>">
     <% (columns.is_a?(Hash) ? columns.keys : columns).each do |column| %>
       <td>
         <%= table_cell column, resource, columns.is_a?(Hash) ? columns[column] : nil %>
       </td>
     <% end %>
       <td>
-        <%= render partial: "shared/resource/actions", locals: { type: type, resource: resource } %>
+        <%= render partial: 'shared/resource/actions', locals: { type: type, resource: resource } %>
       </td>
     </tr>
   <% end %>

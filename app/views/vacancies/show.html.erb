@@ -9,7 +9,7 @@
   <%= show_field t('activerecord.attributes.general.state'), @vacancy.state %>
 </dl>
 
-<%= render partial: "shared/resource/actions", locals: { type: 'vacancies', resource: @vacancy } %>
+<%= render partial: 'shared/resource/actions', locals: { type: 'vacancies', resource: @vacancy } %>
 
 <%= markdown @vacancy.text %>
 

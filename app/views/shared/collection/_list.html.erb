@@ -6,7 +6,7 @@
   <% collection.each do |resource| %>
 <table class="table table-striped">
   <thead>
-    <tr class="<%= cycle("odd", "even") %>">
+    <tr class="<%= cycle('odd', 'even') %>">
       <th>
     <% (columns.is_a?(Hash) ? columns.keys : columns).each do |column| %>
         <strong><%= t(
@@ -17,7 +17,7 @@
         <%= table_cell column, resource, columns.is_a?(Hash) ? columns[column] : nil %> 
     <% end %>
     <% if resource.respond_to? :state_events %>
-          <%= render partial: "shared/resource/actions", locals: { type: type, resource: resource } %>
+          <%= render partial: 'shared/resource/actions', locals: { type: type, resource: resource } %>
     <% end %>
       </th>
     </tr>
@@ -26,7 +26,7 @@
 
 <table class="table table-striped">
   <tbody>
-    <tr class="<%= cycle("odd", "even") %>">
+    <tr class="<%= cycle('odd', 'even') %>">
       <td>
         <%= resource.send(content_column) %>
       </td>

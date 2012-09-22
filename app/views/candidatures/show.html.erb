@@ -13,7 +13,7 @@
   <%= show_field t('activerecord.models.user'), link_to(@candidature.user.name, @candidature.user) %>
   <%= show_field t('activerecord.attributes.general.state'), @candidature.state %>
   <dt>&nbsp;</dt>
-  <dd><%= render partial: "shared/resource/actions", locals: { type: 'candidatures', resource: @candidature } %> </dd>
+  <dd><%= render partial: 'shared/resource/actions', locals: { type: 'candidatures', resource: @candidature } %> </dd>
 </dl>
 
 <%= markdown @candidature.text %>
