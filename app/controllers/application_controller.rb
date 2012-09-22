@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
     message = I18n.t('general.exceptions.access_denied')
     
     if request.format.try('json?')
-      render :status => 403, json: { error: message } and return
+      render status: 403, json: { error: message } and return
     else
       flash[:alert] = message
       
