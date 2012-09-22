@@ -43,6 +43,13 @@ en:
         limit: Limit
       comment:
         name: Subject
+
+    errors:
+      models:
+        vacancy:
+          attributes:
+            limit:
+              reached: Limit of candidatures already reached 
   
   layout:
     title: Volontari.at - Creative Open Crowdsource Platform

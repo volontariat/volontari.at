@@ -10,7 +10,11 @@ module StateMachines::Candidature
       
       state_machine :state, initial: :new do
         event :accept do
-          transition [:new, :denied] => :accepted, unless: lambda {|c| c.vacancy.limit == c.vacancy.candidatures.where(state: 'accepted').count }
+          transition [:new, :denied] => :accepted
+        end
+        
+        state :accepted do
+          validate :candidatures_limit_not_reached
         end
         
         event :deny do
@@ -19,6 +23,15 @@ module StateMachines::Candidature
         
         event :quit do
           transition :accepted => :denied
+        end
+      end
+      
+      private
+      
+      # state validations
+      def candidatures_limit_not_reached
+        if vacancy.limit == vacancy.candidatures.where(state: 'accepted').count
+          errors[:state] << I18n.t('activerecord.errors.models.vacancy.attributes.limit.reached')
         end
       end
     end
