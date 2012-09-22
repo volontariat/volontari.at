@@ -2,12 +2,15 @@ module FactoryMethods
   def create_from_table(model_name, table, extra = {})
     factory_name = model_name.gsub(/\W+/, '_').downcase.singularize.to_sym
     is_singular = model_name.to_s.singularize == model_name.to_s
+    
     hashes = if is_singular
        if table.kind_of?(Hash)
          [table]
        else
          [table.rows_hash]
        end
+     elsif table.is_a?(Array)
+       table
      else
        table.hashes
      end
@@ -58,10 +61,10 @@ module FactoryMethods
       if reflection_value.options[:polymorphic]
         polymorphic_type = "#{@klass.name}::#{attribute.to_s.upcase}_TYPES".constantize.first
         resource = polymorphic_type.classify.constantize.find_by_name(value)
-        hash[attribute] = resource || Factory(polymorphic_type.to_sym, name: value)
+        hash[attribute] = resource || create_from_table(polymorphic_type.tableize, [{ 'name' => value }])
       else
         resource = attribute.to_s.classify.constantize.find_by_name(value)
-        hash[attribute] = resource || Factory(attribute, name: value)
+        hash[attribute] = resource || create_from_table(attribute.to_s.tableize, [{ 'name' => value }])
       end
     end
   end
