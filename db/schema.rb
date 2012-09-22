@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911093743) do
+ActiveRecord::Schema.define(:version => 20120919161831) do
 
   create_table "areas", :force => true do |t|
     t.string   "ancestry"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20120911093743) do
   end
 
   add_index "candidatures", ["slug"], :name => "index_candidatures_on_slug", :unique => true
+  add_index "candidatures", ["user_id", "vacancy_id"], :name => "index_candidatures_on_user_id_and_vacancy_id", :unique => true
   add_index "candidatures", ["user_id"], :name => "index_candidatures_on_user_id"
   add_index "candidatures", ["vacancy_id", "name"], :name => "index_candidatures_on_vacancy_id_and_name", :unique => true
   add_index "candidatures", ["vacancy_id"], :name => "index_candidatures_on_vacancy_id"
