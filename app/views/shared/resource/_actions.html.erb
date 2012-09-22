@@ -4,8 +4,10 @@
     <li><%= link_to t('general.destroy'), resource, method: :delete, confirm: t('general.questions.are_you_sure') %></li>
     <li><%= link_to t('general.edit'), eval("edit_#{type.singularize}_path(resource)") %></li>
 <% if resource.respond_to? :state_events %>
-  <% resource.state_events.each do |event| %>
-    <li><%= link_to t("#{type}.show.events.#{event}"), eval("#{event}_#{type.singularize}_path(resource)"), method: :put %></li>
+  <% resource.state_events.select{|event| can? event, resource }.each do |event| %>
+    <li>
+      <%= link_to t("#{type}.show.events.#{event}"), eval("#{event}_#{type.singularize}_path(resource)"), method: :put %> 
+    </li>
   <% end %>
 <% end %>
   </ul>
