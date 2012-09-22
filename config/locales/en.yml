@@ -23,6 +23,14 @@ en:
       access_denied: Access denied
       not_found: Resource not found.
       
+  pages:
+    privacy_policy:
+      title: Privacy Police
+    terms_of_use:
+      title: Terms of Use
+    about_us:
+      title: About Us    
+      
   activerecord:
     models:
       area: Area

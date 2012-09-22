@@ -1,6 +1,14 @@
 VolontariAt::Application.routes.draw do
   devise_for :users
   
+  resources :pages, only: [:index] do
+    collection do
+      get :privacy_policy
+      get :terms_of_use
+      get :about_us
+    end
+  end
+  
   resources :areas do
     resources :users
     resources :projects
