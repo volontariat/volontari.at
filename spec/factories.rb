@@ -31,7 +31,7 @@ FactoryGirl.define do
   factory :project do
     association :user
     sequence(:name) { |n| "project #{n}" }
-    text Faker::Lorem.words(1000)
+    text Faker::Lorem.sentences(20)
     
     after_build do |project|
       resource_has_many(project, :areas) 
@@ -41,7 +41,7 @@ FactoryGirl.define do
   factory :vacancy do
     association :project
     sequence(:name) { |n| "vacancy #{n}" }
-    text Faker::Lorem.words(1000)
+    text Faker::Lorem.sentences(20)
     limit 1
     state 'open'
   end
@@ -50,7 +50,7 @@ FactoryGirl.define do
     association :user
     association :vacancy
     sequence(:name) { |n| "candidature #{n}" }
-    text Faker::Lorem.words(1000)
+    text Faker::Lorem.sentences(20)
   end
   
   factory :comment do
