@@ -28,6 +28,9 @@ module NavigationHelpers
       edit_project_path(@project)
     
     # vacancies
+    when /the vacancy page/
+      vacancy_path(@vacancy)
+      
     when /the edit vacancy page/
       edit_vacancy_path(@vacancy)
     
@@ -35,6 +38,10 @@ module NavigationHelpers
     when /the edit candidature page/
       edit_candidature_path(@candidature)
       
+    # workflow
+    when /the workflow page/
+      workflow_path
+    
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
