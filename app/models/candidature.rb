@@ -11,7 +11,7 @@ class Candidature < ActiveRecord::Base
 
   validates :vacancy_id, presence: true
   validates :offeror_id, presence: true
-  validates :user_id, presence: true
+  validates :user_id, presence: true, uniqueness: { scope: :vacancy_id }
   #validates :name, presence: true, uniqueness: { scope: :vacancy_id }
   validates :text, presence: true
   

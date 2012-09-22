@@ -31,13 +31,13 @@ Feature: Manage candidatures
 
   @javascript
   Scenario: Delete candidature
-    Given the following candidatures:
-      | name | vacancy |
-      | candidature 1 | vacancy 1 |
-      | candidature 2 | vacancy 1 |
+    Given a user named "user 2"
+    And the following candidatures:
+      | name | vacancy | user |
+      | candidature 1 | vacancy 1 | user |
+      | candidature 2 | vacancy 1 | user 2 |
     When I delete the 1st candidature
-    #Then I should see "Resource destroyed successfully"
     When I go to the candidatures page
     Then I should see the following candidatures:
       | Name | User | Vacancy | Project | |
-      | candidature 2 | user | vacancy 1 | project 1 | Actions | 
+      | candidature 2 | user 2 | vacancy 1 | project 1 | Actions | 
