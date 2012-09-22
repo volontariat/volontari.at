@@ -34,7 +34,3 @@ end
 When /^I (?:log|sign) out$/ do
   logout
 end
-
-When /^I (?:log|sign) out manually$/ do
-  manual_logout
-end
