@@ -1,7 +1,7 @@
 VolontariAt::Application.routes.draw do
   devise_for :users
   
-  resources :pages, only: [:index] do
+  resources :pages, only: :index do
     collection do
       get :privacy_policy
       get :terms_of_use
@@ -10,8 +10,16 @@ VolontariAt::Application.routes.draw do
   end
   
   resources :areas do
-    resources :users
-    resources :projects
+    resources :users, only: :index
+    resources :projects, only: :index
+    
+    collection do
+      put :update_multiple
+    end
+  end
+  
+  resources :products do
+    resources :projects, only: [:index, :new]
     
     collection do
       put :update_multiple
@@ -19,9 +27,10 @@ VolontariAt::Application.routes.draw do
   end
   
   resources :projects do
-    resources :users
-    resources :vacancies
-    resources :comments
+    resources :users, only: :index
+    resources :vacancies, only: [:index, :new]
+    resources :stories, only: [:index, :new]
+    resources :comments, only: [:index, :new]
     
     collection do
       put :update_multiple
@@ -29,8 +38,8 @@ VolontariAt::Application.routes.draw do
   end
       
   resources :vacancies do
-    resources :candidatures
-    resources :comments
+    resources :candidatures, only: [:index, :new]
+    resources :comments, only: [:index, :new]
     
     collection do
       put :update_multiple
@@ -46,7 +55,7 @@ VolontariAt::Application.routes.draw do
   end
   
   resources :candidatures do
-    resources :comments
+    resources :comments, only: [:index, :new]
     
     collection do
       put :update_multiple
@@ -59,11 +68,33 @@ VolontariAt::Application.routes.draw do
     end
   end
   
+  resources :stories do
+    resources :tasks, only: [:index, :new]
+    
+    collection do
+      put :update_multiple
+    end
+  end
+  
+  resources :tasks do
+    resources :results, only: [:index, :new]
+    
+    collection do
+      put :update_multiple
+    end
+  end
+  
+  resources :results do
+    collection do
+      put :update_multiple
+    end
+  end
+  
   resources :comments, only: [:new, :edit, :create, :update, :destroy]
   
   resources :users do
-    resources :projects
-    resources :candidatures
+    resources :projects, only: :index
+    resources :candidatures, only: :index
     
     collection do
       put :update_multiple
