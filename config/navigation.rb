@@ -6,7 +6,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :areas, t('areas.index.title'), areas_path do |areas|
       areas.item :new, t('general.new'), new_area_path
       
-      if resource_exists?('area')
+      unless (@area.new_record? rescue true)
         areas.item :show, @area.name, area_path(@area) do |area|
           area.item :destroy, t('general.destroy'), area_path(@area), method: :delete, confirm: t('general.questions.are_you_sure')
           area.item :show, t('general.details'), "#{area_path(@area)}#top"
@@ -18,10 +18,24 @@ SimpleNavigation::Configuration.run do |navigation|
       end
     end
     
+    primary.item :products, t('products.index.title'), products_path do |products|
+      products.item :new, t('general.new'), new_product_path
+      
+      unless (@product.new_record? rescue true)
+        products.item :show, @product.name, product_path(@product) do |product|
+          product.item :destroy, t('general.destroy'), product_path(@product), method: :delete, confirm: t('general.questions.are_you_sure')
+          product.item :show, t('general.details'), "#{product_path(@product)}#top"
+          product.item :edit, t('general.edit'), edit_product_path(@product)
+            
+          product.item :projects, t('projects.index.title'), product_projects_path(@product)  
+        end
+      end
+    end
+    
     primary.item :projects, t('projects.index.title'), projects_path do |projects|
       projects.item :new, t('general.new'), new_project_path
       
-      if @project.try(:id)
+      unless (@project.new_record? rescue true)
         projects.item :show, @project.name, project_path(@project) do |project|
           project.item :destroy, t('general.destroy'), project_path(@project), method: :delete, confirm: t('general.questions.are_you_sure')
           project.item :show, t('general.details'), "#{project_path(@project)}#top"
@@ -31,6 +45,10 @@ SimpleNavigation::Configuration.run do |navigation|
           
           project.item :vacancies, t('vacancies.index.title'), project_vacancies_path(@project) do |vacancy|
             vacancy.item :new, t('general.new'), new_project_vacancy_path(@project)
+          end
+          
+          project.item :stories, t('stories.index.title'), project_stories_path(@project) do |vacancy|
+            vacancy.item :new, t('general.new'), new_project_story_path(@project)
           end
           
           project.item :comments, t('comments.index.title'), "#{project_path(@project)}#comments" do |comments|
@@ -44,7 +62,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :vacancies, t('vacancies.index.title'), vacancies_path do |vacancies|
       vacancies.item :new, t('general.new'), new_vacancy_path
       
-      if @vacancy.try(:id)
+      unless (@vacancy.new_record? rescue true)
         vacancies.item :show, "#{@vacancy.name} @ #{@vacancy.project.name}", vacancy_path(@vacancy) do |vacancy|
           vacancy.item :destroy, t('general.destroy'), vacancy_path(@vacancy), method: :delete, confirm: t('general.questions.are_you_sure')
           vacancy.item :show, t('general.details'), "#{vacancy_path(@vacancy)}#top"
@@ -53,7 +71,7 @@ SimpleNavigation::Configuration.run do |navigation|
           vacancy.item :candidatures, t('candidatures.index.title'), vacancy_candidatures_path(@vacancy) do |candidatures|
             candidatures.item :new, t('general.new'), new_vacancy_candidature_path(@vacancy)
           
-            if resource_exists?('candidature')
+            unless (@candidature.new_record? rescue true)
               candidatures.item(
                 :show, t('activerecord.models.candidature') + " of #{@candidature.user.name} @ #{@candidature.vacancy.project.name}", 
                 candidature_path(@candidature) 
@@ -79,7 +97,7 @@ SimpleNavigation::Configuration.run do |navigation|
     end
     
     primary.item :users, t('users.index.title'), users_path do |users|
-      if resource_exists?('user') && current_user.try(:id) != @user.id
+      unless (@user.new_record? rescue true) || current_user.try(:id) == @user.id
         users.item :show, t('general.details'), "#{user_path(@user)}#top"
         
         users.item :projects, t('projects.index.title'), user_projects_path(@user)
