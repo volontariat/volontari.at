@@ -1,4 +1,4 @@
-class UserArea < ActiveRecord::Base
+class AreaUser < ActiveRecord::Base
   self.table_name = 'areas_users'
   
   belongs_to :area
