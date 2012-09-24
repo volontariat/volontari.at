@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120919161831) do
+ActiveRecord::Schema.define(:version => 20120923140109) do
 
   create_table "areas", :force => true do |t|
     t.string   "ancestry"
@@ -92,6 +92,17 @@ ActiveRecord::Schema.define(:version => 20120919161831) do
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
+  create_table "mongo_db_documents", :force => true do |t|
+    t.integer  "mongo_db_object_id"
+    t.string   "klass_name"
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "mongo_db_documents", ["mongo_db_object_id", "klass_name"], :name => "index_mongo_db_documents_on_mongo_db_object_id_and_klass_name", :unique => true
+
   create_table "projects", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -101,8 +112,10 @@ ActiveRecord::Schema.define(:version => 20120919161831) do
     t.string   "state"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "product_id"
   end
 
+  add_index "projects", ["product_id"], :name => "index_projects_on_product_id"
   add_index "projects", ["slug"], :name => "index_projects_on_slug", :unique => true
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
