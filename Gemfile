@@ -6,6 +6,7 @@ ruby '1.9.3' if ENV['HEROKU']
 gem 'rails', '3.2.8'
 
 gem 'pg'
+gem 'mongoid', '~> 3.0.0'
 
 gem 'foreman', '0.46'
 
@@ -151,7 +152,6 @@ group :test do
   gem 'capybara-webkit'
   gem 'cucumber-rails', '1.3.0', require: false
   gem 'cucumber-rails-training-wheels'
-  gem 'database_cleaner', '0.7.1'
 
   gem 'timecop'
   gem 'factory_girl_rails', '1.7.0'
@@ -169,6 +169,10 @@ group :test do
   gem 'launchy'
 end
 
+group :cucumber, :test do
+  gem 'database_cleaner', '0.7.1'
+end
+
 group :production do # we don't install these on travis to speed up test runs
   # dependency nokogiri is incompatible with cucumber-rails
   #gem 'rails_admin', git: 'git://github.com/halida/rails_admin.git'
@@ -184,7 +188,6 @@ end
 # configuration
 
 group :heroku do
-  gem 'pg'
   gem 'unicorn', '~> 4.3.0', require: false
 end
 
