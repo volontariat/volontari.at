@@ -8,7 +8,7 @@ def resource_has_many(resource, association_name)
   elsif association_name.to_s.classify.constantize.any?
     association_name.to_s.classify.constantize.last
   else
-    Factory.build association_name.to_s.singularize.to_sym
+    Factory.create association_name.to_s.singularize.to_sym
   end
   
   resource.send(association_name).send('<<', association) if association
