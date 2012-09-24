@@ -5,7 +5,7 @@ class Ability
     controller_namespace = options[:controller_namespace] || ""
     project = options[:project] || nil
     
-    alias_action :index, :show, :new, :create, :edit, :update, :destroy, to: :restful_actions
+    alias_action :edit, :update, :destroy, to: :restful_actions
     alias_action [], to: :admin_actions
     alias_action [], to: :moderation_actions
     alias_action :assign, :reject, :hold_on, to: :supervisor_actions
