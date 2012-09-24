@@ -66,20 +66,7 @@ en:
     index:
       last_projects: Last projects
       last_vacancies: Last vacancies
-    
-  areas:
-    index:
-      title: Areas
-      name: Name
-      users_count: Users count
-      list_action: Back to the overview
-      empty_collection: No areas available.
-      
-    new: 
-      title: New Area
-    edit: 
-      title: Edit Area
-        
+   
   users:
     index: 
       title: Users
@@ -87,7 +74,30 @@ en:
     show:
       title: Profile
     edit:
-      title: Settings
+      title: Settings 
+    
+  areas:
+    index:
+      title: Areas
+      name: Name
+      users_count: Users count
+      empty_collection: No areas available.
+      
+    new: 
+      title: New Area
+    edit: 
+      title: Edit Area
+  
+  products:
+    index:
+      title: Products
+      name: Name
+      empty_collection: No products available.
+      
+    new: 
+      title: New Product
+    edit: 
+      title: Edit Product
   
   projects:
     index:
@@ -136,6 +146,28 @@ en:
         accept: Accept
         deny: Deny
         quit: Quit
+   
+  stories:
+    index:
+      title: Stories
+      name: Name
+      empty_collection: No stories available.
+      
+    new: 
+      title: New Story
+    edit: 
+      title: Edit Story 
+   
+  tasks:
+    index:
+      title: Tasks
+      name: Name
+      empty_collection: No tasks available.
+      
+    new: 
+      title: New Task
+    edit: 
+      title: Edit Task  
         
   comments:
     index:
