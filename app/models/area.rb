@@ -12,4 +12,7 @@ class Area < ActiveRecord::Base
   extend FriendlyId
   
   friendly_id :name, :use => :slugged
+  
+  def products
+  end
 end
