@@ -22,7 +22,7 @@ bundle exec rake db:test:clone_structure
 
 http://railscasts.com/episodes/335-deploying-to-a-vps
 
-= Future
+== Future
 
 Something near Amazon's http://MTurk.com
 
@@ -36,6 +36,11 @@ Just follow the screencast of Ryan Bates on railscasts.com:
   http://railscasts.com/episodes/300-contributing-to-open-source
 
 Add a description about your changes to CHANGELOG.md under section volontariat (unreleased).
+
+=== Rules
+
+* https://github.com/bbatsov/ruby-style-guide
+* https://github.com/bbatsov/rails-style-guide
 
 == Development Services
 
