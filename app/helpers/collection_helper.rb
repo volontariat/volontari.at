@@ -11,7 +11,7 @@ module CollectionHelper
         value = '-'
       end
       
-      link_to value, eval("#{resource.class.name.tableize.singularize}_path(resource)")
+      link_to value, eval("#{root_model_class_name(resource).tableize.singularize}_path(resource)")
     elsif column.match('_id')
       association = resource.send(column.gsub('_id', '')) rescue eval("resource.#{alternative_value}")
       link_to association.name, association

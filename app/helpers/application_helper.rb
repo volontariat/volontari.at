@@ -1,6 +1,17 @@
 module ApplicationHelper
   include AutoHtml
   
+  def self.root_model_class_name_helper(resource)
+    if resource.class.superclass.name == 'ActiveRecord::Base'
+      resource.class.name
+    elsif resource.class.superclass.name == 'Object'
+      # classes like mongo db models without a specific superclass
+      resource.class.name
+    else
+      resource.class.superclass.name
+    end
+  end
+  
   def markdown(text)
     #text = Redcarpet::Markdown.new(Redcarpet::Render::XHTML.new(filter_html: true)).render(text)
     
@@ -21,5 +32,9 @@ module ApplicationHelper
     end.gsub(/(>https?:\/\/[^\<\\]+)/) do |match| 
       truncate(match)
     end.html_safe
+  end
+  
+  def root_model_class_name(resource)
+    ::ApplicationHelper.root_model_class_name_helper(resource)
   end
 end
