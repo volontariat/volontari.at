@@ -1,11 +1,5 @@
 require 'spec_helper'
 
-class I18n::Backend::Simple
-  def public_translations
-    translations
-  end
-end
-
 describe Candidature do
   describe 'validations' do
     it 'considers the vacancy limit on accept transition' do
