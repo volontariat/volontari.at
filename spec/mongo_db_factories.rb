@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :product do
-    sequence(:name) { |n| "product#{n}#{r_str}" }
+    name 'Text Creation'
     user_id User.first.try(:id) || Factory(:user).id
     area_ids [Factory(:area).id]
     text Faker::Lorem.sentences(5)
