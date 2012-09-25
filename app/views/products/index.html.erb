@@ -1,0 +1,5 @@
+<%= form_tag update_multiple_products_path, method: :post do %>
+  <%= render partial: 'shared/collection/table', locals: { 
+    type: 'products', collection: @products, columns: ['name'] 
+  } %>
+<% end %>

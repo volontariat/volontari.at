@@ -1,0 +1,24 @@
+<%= simple_form_for(@product, html: {class: 'form-horizontal'}) do |f| %>
+  <%= render partial: 'shared/form/error_messages', locals: { resource: @product } %>
+  
+  <%= f.input :name %>  
+  <%= f.input :text, as: :text, input_html: {style: 'width: 500px; height:300px;'} %>
+  
+  <div class="control-group check_boxes required">
+    <label class="check_boxes required control-label">
+      <abbr title="required">*</abbr> 
+      <%= t('areas.index.title') %>
+    </label>
+    <div class="controls">
+  <% Area.all.each do |area| %>
+      <label class="checkbox">
+        <input class="check_boxes required" id="product_area_ids_<%=area.id%>" name="product[area_ids][]" 
+        type="checkbox" value="<%=area.id%>"<%= @product.area_ids.include?(area.id) ? ' checked="checked"' : '' %>/>
+        <%= link_to area.name, area %>
+      </label>
+  <% end %>
+    </div>
+  </div>
+
+  <%= f.button :submit %>
+<% end %>
