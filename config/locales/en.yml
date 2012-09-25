@@ -54,11 +54,17 @@ en:
 
     errors:
       models:
+        product:
+          attributes:
+            name:
+              missing_english_name: Please switch the locale to English.
+              missing_model_file: Please create and deploy a file for the new product model first.
+              
         vacancy:
           attributes:
             limit:
               reached: Limit of candidatures already reached 
-  
+       
   layout:
     title: Volontari.at - Creative Open Crowdsource Platform
    
