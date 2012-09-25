@@ -19,10 +19,10 @@ class VolontariatSeed < DbSeed
   private
   
   def create_areas
-    Area.import(
-      [:name], 
-      [
-        ['General'], ['Software Engineering'], 
+    Area.create!(
+      [ 
+        { name: 'General' },
+        { name: 'Software Engineering' }
       ]
     )
   end
