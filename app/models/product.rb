@@ -2,8 +2,6 @@ class Product
   include Mongoid::Document
   include Mongoid::Timestamps
   
-  has_many :stories
-  
   field :_id, type: String, default: -> { name.to_s.parameterize }
   field :user_id, type: Integer
   field :name, type: String, localize: true
