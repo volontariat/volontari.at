@@ -24,7 +24,7 @@ class Project < ActiveRecord::Base
   
   before_validation :include_areas_of_product
   
-  PARENT_TYPES = ['area', 'user']
+  PARENT_TYPES = ['area', 'product', 'user']
   
   # belongs_to (Mongo DB)
   def product
