@@ -33,15 +33,10 @@ class ApplicationController < ActionController::Base
   end
   
   def find_parent(types)
-    parent = nil
-    
-    types.select{|p| params.keys.include?("#{p}_id") }.each do |parent_type|
-      parent = parent_type.classify.constantize.find(params["#{parent_type}_id"])
-      
-      break
-    end
-    
-    eval("@#{parent.class.name.tableize.singularize} = parent") 
+    parent_type = types.select{|p| params.keys.include?("#{p}_id") }.first
+    parent = parent_type.classify.constantize.find(params["#{parent_type}_id"])
+    root_model_class_name = ApplicationHelper.root_model_class_name_helper(parent)
+    eval("@#{root_model_class_name.tableize.singularize} = parent") 
     
     parent
   end
