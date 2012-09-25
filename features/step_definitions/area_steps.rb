@@ -1,5 +1,6 @@
 Given /^an area named "([^\"]*)"$/ do |name|
-  @area = Factory(:area, name: name)
+  # WORKAROUND: get rid of area query. Don't know why it doesn't work without (e.g. /roles/2_users/projects.feature)
+  @area = Area.where(name: name).first || Factory(:area, name: name)
   @area.reload
 end
 
