@@ -19,7 +19,13 @@ module FactoryMethods
     @they = hashes.map do |hash|
       hash = hash.merge(extra).inject({}) do |h,(k,v)|
         k = k.gsub(/\W+/,'_')
-        v = v.split(/\s*,\s*/) if @klass.serialized_attributes[k] == Array
+        
+        # mongo db model classes are not responding to serialized attributes
+        # TODO: take care of serialized attributes in future mongo db model implementations here
+        if @klass.respond_to?(:serialized_attributes) && @klass.serialized_attributes[k] == Array
+          v = v.split(/\s*,\s*/)
+        end
+        
         h.update(k.to_sym => v)
       end
       
@@ -55,7 +61,7 @@ module FactoryMethods
       else
         hash.delete attribute
       end
-    elsif @klass.reflections.values.map(&:name).include? attribute
+    elsif @klass.reflections.values.select{|v| v.macro == :belongs_to }.map(&:name).include? attribute
       reflection_value = @klass.reflections.values.select{|v| v.name == attribute }.first
       
       if reflection_value.options[:polymorphic]
