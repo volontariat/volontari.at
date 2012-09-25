@@ -35,7 +35,10 @@ module FactoryMethods
       
       eval("set_#{factory_name}_defaults(hash)") if "#{factory_name.to_s.classify}FactoryMethods".constantize rescue nil
       
-      object = Factory.build(factory_name, hash)
+      object = nil
+      
+      object = @klass.where(name: hash[:name]).first if hash.has_key? :name
+      object = object ? object : Factory.build(factory_name, hash)
       
       yield object if block_given?
       
