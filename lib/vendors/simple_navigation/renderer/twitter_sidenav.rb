@@ -3,6 +3,8 @@ class Vendors::SimpleNavigation::Renderer::TwitterSidenav < SimpleNavigation::Re
     content, first_item_selected = '', false
       
     item_container.items.each do |item|
+      next if [I18n.t('general.edit'), I18n.t('general.destroy')].include?(item.name)
+      
       selected = item.selected? && item.method.blank?
       klass = selected && !first_item_selected ? 'active' : ''
       options = {}
