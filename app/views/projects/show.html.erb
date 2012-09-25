@@ -5,6 +5,9 @@
 
 <dl class="dl-horizontal">
   <%= show_field(
+    t('products.index.title'), link_to(@project.product.name, @project.product)
+  ) if @project.product %>
+  <%= show_field(
     t('areas.index.title'), raw(@project.areas.map{|a| link_to a.name, area_path(a)}.join(', '))
   ) %>
 </dl>
