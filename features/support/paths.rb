@@ -20,6 +20,13 @@ module NavigationHelpers
     when /the edit area page/
       edit_area_path(@area)
 
+    # product
+    when /the product page/
+      product_path(@product)
+      
+    when /the edit product page/
+      edit_product_path(@product)
+
     # projects
     when /the project page/
       project_path(@project)
