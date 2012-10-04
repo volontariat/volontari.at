@@ -1,0 +1,16 @@
+<div class="accordions">
+<% wizard_steps.each do |wizard_step| %>
+  <h3>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= section_header(wizard_step) %>
+  </h3>
+  <div style="max-height:350px; overflow: auto">
+    <%= step_pane(wizard_step) %>
+  </div>
+<% end %>
+</div>
+<% content_for :document_ready do %>
+  $( '.accordions' ).each(function(k, v) {
+    $(v).accordion({ active: <%= wizard_steps.index(step) %> })
+  })
+<% end %>
