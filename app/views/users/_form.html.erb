@@ -1,12 +1,44 @@
-<%= form_for(@area) do |f| %>
-  <%= render partial: 'shared/form/error_messages', locals: { resource: @area } %>
-  
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
+<%= simple_form_for(
+  resource, url: resource.new_record? ? registration_path(resource_name) : user_path(resource), 
+  method: resource.new_record? ? :post : :put,
+  html: { 
+    class: 'form-horizontal block-form', autocomplete: 'off'
+  }
+ ) do |f| %>
+  <%= devise_error_messages! %>
+    
+<div class="form-inputs">
+  <% [
+    :name, :first_name, :last_name, :email, :password, :password_confirmation, :country, 
+    :language, :interface_language, :profession, :employment_relationship,
+    :area_tokens
+  ].each do |attribute| %>
+    <%= case attribute
+    when :name
+      f.input attribute if resource.new_record?
+    when :language
+      f.input attribute, collection: available_language_options
+    when :interface_language
+      f.input attribute, collection: all_language_options
+    when :profession
+      autocomplete_input(f, attribute)
+    when :employment_relationship
+      f.input attribute, collection: ['selbständig', 'angestellt', 'arbeitslos', 'Schüler', 'Student', 'Rentner']
+    when :area_tokens
+      f.input attribute, input_html: { data: { load: resource.areas } }
+    else
+      f.input attribute
+    end %>
+  <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <% 
+  #TODO: language selection
+  %>
+  
+  <%= recaptcha_tags if resource.new_record? && Rails.env == 'production' %>
+</div>
+
+<div class="form-actions">
+  <%= f.button :submit %>
+</div>
 <% end %>
