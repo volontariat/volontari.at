@@ -1,12 +1,16 @@
 <%= simple_form_for(@project, html: {class: 'form-horizontal'}) do |f| %>
   <%= render partial: 'shared/form/error_messages', locals: { resource: @project } %>
   
-  <%= f.input :product_id, collection: Product.all %>
-  <%= f.input :name %>  
-  <%= f.input :text, input_html: {style: 'width: 500px; height:300px;'} %>
-  <%= f.input :url %>
+  <div class="form-inputs">
+    <%= f.input :product_id, collection: Product.all %>
+    <%= f.input :name %>  
+    <%= f.input :text, input_html: {style: 'width: 500px; height:300px;'} %>
+    <%= f.input :url %>
+    
+    <%= f.association :areas, as: :check_boxes %>
+  </div>
   
-  <%= f.association :areas, as: :check_boxes %>
-
-  <%= f.button :submit %>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
 <% end %>

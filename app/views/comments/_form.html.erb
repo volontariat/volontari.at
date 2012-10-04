@@ -5,8 +5,12 @@
   <%= f.hidden_field :commentable_type %>
   <%= f.hidden_field :commentable_id %>
   
-  <%= f.input :name %>  
-  <%= f.input :text, input_html: {style: 'width: 500px; height:300px;'} %>
-
-  <%= f.button :submit %>
+  <div class="form-inputs">
+    <%= f.input :name %>  
+    <%= f.input :text, input_html: {style: 'width: 500px; height:300px;'} %>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
 <% end %>
