@@ -1,11 +1,14 @@
 VolontariAt::Application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'devise_extensions/registrations',
+  }
   
   resources :pages, only: :index do
     collection do
       get :privacy_policy
       get :terms_of_use
       get :about_us
+      get :autocomplete
     end
   end
   
@@ -15,6 +18,14 @@ VolontariAt::Application.routes.draw do
     
     collection do
       put :update_multiple
+      get :autocomplete
+    end
+  end
+  
+  resources :professions do
+    collection do
+      put :update_multiple
+      get :autocomplete
     end
   end
   
@@ -23,6 +34,7 @@ VolontariAt::Application.routes.draw do
     
     collection do
       put :update_multiple
+      get :autocomplete
     end
   end
   
@@ -34,6 +46,7 @@ VolontariAt::Application.routes.draw do
     
     collection do
       put :update_multiple
+      get :autocomplete
     end
   end
       
@@ -43,6 +56,7 @@ VolontariAt::Application.routes.draw do
     
     collection do
       put :update_multiple
+      get :autocomplete
     end
     
     member do
@@ -59,6 +73,7 @@ VolontariAt::Application.routes.draw do
     
     collection do
       put :update_multiple
+      get :autocomplete
     end
     
     member do
@@ -68,11 +83,17 @@ VolontariAt::Application.routes.draw do
     end
   end
   
-  resources :stories do
+  resources :stories, only: [:create, :show, :edit, :update, :destroy] do
     resources :tasks, only: [:index, :new]
     
     collection do
       put :update_multiple
+      get :autocomplete
+    end
+    
+    member do
+      match 'setup_tasks' => 'stories#setup_tasks', via: [:get, :put]
+      match 'activate' => 'stories#activate', via: [:get, :put]
     end
   end
   
@@ -81,12 +102,14 @@ VolontariAt::Application.routes.draw do
     
     collection do
       put :update_multiple
+      get :autocomplete
     end
   end
   
   resources :results do
     collection do
       put :update_multiple
+      get :autocomplete
     end
   end
   
@@ -98,6 +121,7 @@ VolontariAt::Application.routes.draw do
     
     collection do
       put :update_multiple
+      get :autocomplete
     end
   end
   
@@ -107,6 +131,8 @@ VolontariAt::Application.routes.draw do
     resources :vacancies, controller: 'vacancies', only: :index do
       collection do
         match '/' => 'vacancies#open', as: :open
+        
+        get :autocomplete
         
         get :open
         get :recommended
@@ -119,12 +145,16 @@ VolontariAt::Application.routes.draw do
       collection do
         match '/' => 'candidatures#new', as: :new
          
+        get :autocomplete 
+         
         get :new
         get :accepted
         get :denied
       end
     end
   end
+  
+  require 'sidekiq/web'; mount Sidekiq::Web, at: '/sidekiq'
   
   root to: 'home#index'
 end
