@@ -8,6 +8,9 @@ en:
     new: New
     edit: Edit
     destroy: Destroy
+    remove: Remove
+    not_available: n/a
+    steps: Steps
     error: Error
     list_action: Back to the overview
     details: Details
@@ -19,10 +22,13 @@ en:
     questions:
       are_you_sure: Are you sure?
     actions: Actions
+    events:
+      activate: Activate
     exceptions:
+      wrong_recaptcha: The captcha code which you typed in is wrong.
       access_denied: Access denied
       not_found: Resource not found.
-      
+         
   pages:
     privacy_policy:
       title: Privacy Police
@@ -34,10 +40,15 @@ en:
   activerecord:
     models:
       area: Area
-      project: Project
-      vacancy: Vacancy
       candidature: Candidature
       comment: Comment
+      product: Product
+      project: Project
+      result: Result
+      story: Story
+      task: Task
+      user: User
+      vacancy: Vacancy
       
     attributes:
       general:
@@ -46,12 +57,19 @@ en:
         project_id: Project
         vacancy_id: Vacancy
         user_id: User
+      comment:
+        name: Subject
       vacancy:
         name: Name 
         limit: Limit
-      comment:
-        name: Subject
-
+      user:
+        area_tokens: Areas
+        employment_relationship: Employment relationship
+        foreign_language: Fremdsprachen
+        interface_language: Interface language
+        language: Muttersprache
+        profession: Beruf
+     
     errors:
       models:
         product:
@@ -163,7 +181,15 @@ en:
       title: New Story
     edit: 
       title: Edit Story 
-   
+    steps:
+      initialization:
+        title: Criteria
+      setup_tasks:
+        title: Setup Tasks
+        add_task: Add Task
+      activate:
+        title: Activate
+        
   tasks:
     index:
       title: Tasks
