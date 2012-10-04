@@ -1,4 +1,6 @@
 class VacanciesController < ApplicationController
+  include Applicat::Mvc::Controller::Resource
+  
   load_and_authorize_resource
   
   before_filter :find_project, only: [:index, :new, :edit]

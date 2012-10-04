@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  include Applicat::Mvc::Controller::Resource
+  
+  helper_method :resource
+  
   respond_to :html, :js, :json
   
   def index
@@ -28,5 +32,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     redirect_to users_url, notice: t('general.form.destroyed')
+  end
+  
+  def resource
+    @user
   end
 end

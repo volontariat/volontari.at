@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  include Applicat::Mvc::Controller::Resource
+  
   load_and_authorize_resource
   
   rescue_from ActiveRecord::RecordNotFound, with: :not_found

@@ -1,7 +1,13 @@
 class CandidaturesController < ApplicationController
+  include Applicat::Mvc::Controller::Resource
+  
   load_and_authorize_resource
   
   before_filter :find_vacancy, only: [:index, :new, :edit]
+  
+  transition_actions Candidature::EVENTS
+  
+  helper_method :parent
   
   respond_to :html, :js, :json
   
@@ -58,10 +64,6 @@ class CandidaturesController < ApplicationController
   def parent
     @vacancy
   end
-  
-  helper_method :parent
-  
-  transition_actions Candidature::EVENTS
   
   protected
   

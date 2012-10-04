@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  include Applicat::Mvc::Controller::Resource
+  
   load_and_authorize_resource
   
   before_filter :find_commentable, only: [:new, :edit]
