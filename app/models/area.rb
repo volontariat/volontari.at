@@ -15,4 +15,19 @@ class Area < ActiveRecord::Base
   
   def products
   end
+  
+  def self.tokens(query)
+    collection = where("name like ?", "%#{query}%")
+    
+    if collection.empty?
+      [{id: "<<<#{query}>>>", name: "#{I18n.t('general.new')}: \"#{query}\""}]
+    else
+      collection
+    end
+  end
+
+  def self.ids_from_tokens(tokens)
+    tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1).id }
+    tokens.split(',')
+  end
 end

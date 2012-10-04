@@ -1,4 +1,6 @@
 class AreasController < ApplicationController
+  include Applicat::Mvc::Controller::Resource
+  
   load_and_authorize_resource
   
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
@@ -6,7 +8,12 @@ class AreasController < ApplicationController
   respond_to :html, :js, :json
   
   def index
-    @areas = Area.all
+    @areas = Area.order(:name)
+      
+    respond_to do |format|
+      format.html
+      format.json { render json: @areas.tokens(params[:q]) }
+    end
   end
   
   def show
