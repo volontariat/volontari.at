@@ -58,13 +58,16 @@ gem 'faker' # needed not just for testing but for rake db:seed, too
 # controller
 gem 'has_scope'
 gem 'friendly_id', '~> 4.0.0'
+gem 'wicked'
 
 # view
 gem 'simple-navigation'  
 gem 'acts_as_markup', git: 'git://github.com/vigetlabs/acts_as_markup.git'
 gem 'facebox-rails'
 gem 'simple_form'
+gem 'country_select'
 gem 'auto_html', git: 'git://github.com/Applicat/auto_html'
+gem 'recaptcha', require: 'recaptcha/rails'
 
 # Could not find a valid gem 'mobile_fu' (>= 0) in any repository
 #gem 'mobile-fu'
@@ -91,8 +94,11 @@ gem 'rails-i18n'
 
 # queue
 
-gem 'resque', '1.20.0'
-gem 'resque-timeout', '1.0.0'
+#gem 'resque', '1.20.0'
+#gem 'resque-timeout', '1.0.0'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 
 # ERROR:  Error installing SystemTimer:
 # ERROR: Failed to build gem native extension.
@@ -135,7 +141,8 @@ group :development do
   gem 'capistrano-ext', require: false
   gem 'linecache', '0.46', platforms: :mri_18
   gem 'yard', require: false
-
+  gem 'letter_opener'
+  
   # for tracing AR object instantiation and memory usage per request
   gem 'oink'
 end
@@ -167,6 +174,7 @@ group :test do
   gem 'guard-spork'
   gem 'guard-cucumber'
   gem 'launchy'
+  gem 'simplecov', require: false
 end
 
 group :cucumber, :test do
