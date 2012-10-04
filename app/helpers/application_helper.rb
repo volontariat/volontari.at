@@ -37,4 +37,12 @@ module ApplicationHelper
   def root_model_class_name(resource)
     ::ApplicationHelper.root_model_class_name_helper(resource)
   end
+  
+  def directory_for_resource(resource)
+    resource.class.name.split('::').last.underscore
+  end
+  
+  def link_list(collection)
+    raw collection.map{|a| link_to a.name, a}.join(', ')
+  end
 end
