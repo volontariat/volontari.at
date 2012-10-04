@@ -47,8 +47,60 @@ SimpleNavigation::Configuration.run do |navigation|
             vacancy.item :new, t('general.new'), new_project_vacancy_path(@project)
           end
           
-          project.item :stories, t('stories.index.title'), project_stories_path(@project) do |vacancy|
-            vacancy.item :new, t('general.new'), new_project_story_path(@project)
+          project.item :stories, t('stories.index.title'), project_stories_path(@project) do |stories|
+            stories.item :new, t('general.new'), new_project_story_path(@project)
+
+            unless (@story.new_record? rescue true)
+              stories.item(:show, @story.name, story_path(@story)) do |story|
+                story.item :destroy, t('general.destroy'), story_path(@story), method: :delete, confirm: t('general.questions.are_you_sure')
+                story.item :show, t('general.details'), "#{story_path(@story)}#top"
+                story.item :edit, t('general.edit'), edit_story_path(@story)
+
+                story.item :steps, t('general.steps'), setup_tasks_story_path(@story) do |steps|
+                  steps.item :setup_tasks, t('stories.steps.setup_tasks.title'), setup_tasks_story_path(@story)
+                  steps.item :activate, t('general.events.activate'), activate_story_path(@story)
+                end
+                                
+                story.item :tasks, t('tasks.index.title'), story_tasks_path(@story) do |tasks|
+                  tasks.item :new, t('general.new'), new_story_task_path(@story)
+      
+                  unless (@task.new_record? rescue true)
+                    tasks.item(:show, @task.name, task_path(@task)) do |task|
+                      task.item :destroy, t('general.destroy'), task_path(@task), method: :delete, confirm: t('general.questions.are_you_sure')
+                      task.item :show, t('general.details'), "#{task_path(@task)}#top"
+                      task.item :edit, t('general.edit'), edit_task_path(@task)
+                      
+                      task.item :results, t('results.index.title'), task_results_path(@task) do |results|
+                        results.item :new, t('general.new'), new_task_result_path(@task)
+            
+                        unless (@result.new_record? rescue true)
+                          results.item(:show, @result.name, result_path(@result)) do |result|
+                            result.item :destroy, t('general.destroy'), result_path(@result), method: :delete, confirm: t('general.questions.are_you_sure')
+                            result.item :show, t('general.details'), "#{result_path(@result)}#top"
+                            result.item :edit, t('general.edit'), edit_result_path(@result)
+                            
+                            result.item :comments, t('comments.index.title'), "#{story_path(@story)}#comments" do |comments|
+                              comments.item(:new, t('general.new'), new_story_comment_path(@story)) if @comment
+                              comments.item(:edit, t('general.edit'), edit_comment_path(@comment)) if @comment.try(:id)
+                            end 
+                          end
+                        end
+                      end
+                      
+                      task.item :comments, t('comments.index.title'), "#{story_path(@story)}#comments" do |comments|
+                        comments.item(:new, t('general.new'), new_story_comment_path(@story)) if @comment
+                        comments.item(:edit, t('general.edit'), edit_comment_path(@comment)) if @comment.try(:id)
+                      end 
+                    end
+                  end
+                end
+                
+                story.item :comments, t('comments.index.title'), "#{story_path(@story)}#comments" do |comments|
+                  comments.item(:new, t('general.new'), new_story_comment_path(@story)) if @comment
+                  comments.item(:edit, t('general.edit'), edit_comment_path(@comment)) if @comment.try(:id)
+                end 
+              end
+            end
           end
           
           project.item :comments, t('comments.index.title'), "#{project_path(@project)}#comments" do |comments|
