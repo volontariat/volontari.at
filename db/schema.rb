@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924192423) do
+ActiveRecord::Schema.define(:version => 20121004132105) do
 
   create_table "areas", :force => true do |t|
     t.string   "ancestry"
@@ -103,6 +103,13 @@ ActiveRecord::Schema.define(:version => 20120924192423) do
 
   add_index "mongo_db_documents", ["mongo_db_object_id", "klass_name"], :name => "index_mongo_db_documents_on_mongo_db_object_id_and_klass_name", :unique => true
 
+  create_table "professions", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "projects", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -156,12 +163,12 @@ ActiveRecord::Schema.define(:version => 20120924192423) do
     t.date     "date_of_birth"
     t.string   "place_of_birth"
     t.string   "citizenship"
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                   :default => "", :null => false
+    t.string   "encrypted_password",      :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",           :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -170,18 +177,24 @@ ActiveRecord::Schema.define(:version => 20120924192423) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        :default => 0
+    t.integer  "failed_attempts",         :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "authentication_token"
     t.string   "password_salt"
     t.string   "state"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.string   "country"
+    t.string   "foreign_language"
+    t.string   "interface_language"
+    t.string   "employment_relationship"
+    t.integer  "profession_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["name"], :name => "index_users_on_name", :unique => true
+  add_index "users", ["profession_id"], :name => "index_users_on_profession_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["slug"], :name => "index_users_on_slug", :unique => true
 
