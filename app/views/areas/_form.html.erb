@@ -1,12 +1,11 @@
-<%= form_for(@area) do |f| %>
+<%= simple_form_for(@area, html: {class: 'form-horizontal'}) do |f| %>
   <%= render partial: 'shared/form/error_messages', locals: { resource: @area } %>
   
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="form-inputs">
+    <%= f.input :name %>
   </div>
-
+  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit %>
   </div>
 <% end %>
