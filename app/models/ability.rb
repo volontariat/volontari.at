@@ -5,6 +5,8 @@ class Ability
     controller_namespace = options[:controller_namespace] || ""
     project = options[:project] || nil
     
+    alias_action :index, :show, :autocomplete, :parents, :childs, :tree, to: :read
+    
     alias_action :edit, :update, :destroy, to: :restful_actions
     alias_action [], to: :admin_actions
     alias_action [], to: :moderation_actions
@@ -15,14 +17,14 @@ class Ability
     alias_action :read, :assign_actions, to: :supervisor
     
     can :read, [
-      Area, Product, Project, Vacancy, Candidature, Story, Task, Result, Comment
+      Area, Profession, Product, Project, Vacancy, Candidature, Story, Task, Result, Comment
     ]
     can [:read, :check_name, :check_url, :check_email, :check_email_unblocked], User
     
     if user.present?
       can :destroy, User, id: user.id
       
-      can [:new, :create], [Area, Project, Vacancy, Candidature, Comment]
+      can [:new, :create], [Area, Profession, Project, Vacancy, Candidature, Comment]
       
       { 
         user_id: [Product, Project, Candidature, Comment, ProjectUser, Result], 
