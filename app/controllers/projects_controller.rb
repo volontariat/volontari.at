@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  include Applicat::Mvc::Controller::Resource
+  
   load_and_authorize_resource
   
   respond_to :html, :js, :json

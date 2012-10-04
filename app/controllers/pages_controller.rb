@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  include Applicat::Mvc::Controller::Resource
+  
   def index
     render 'about_us'  
   end
