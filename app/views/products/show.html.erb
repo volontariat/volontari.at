@@ -7,6 +7,7 @@
   <%= show_field(
     t('areas.index.title'), raw(@product.areas.map{|a| link_to a.name, area_path(a)}.join(', '))
   ) %>
+  <%= show_actions %>
 </dl>
 
 <%= markdown @product.text %>
