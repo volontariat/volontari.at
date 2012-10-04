@@ -13,7 +13,13 @@ module CollectionHelper
       
       link_to value, eval("#{root_model_class_name(resource).tableize.singularize}_path(resource)")
     elsif column.match('_id')
-      association = resource.send(column.gsub('_id', '')) rescue eval("resource.#{alternative_value}")
+      association = nil
+      
+      begin
+        association = resource.send(column.gsub('_id', '')) 
+      rescue 
+        association = eval("resource.#{alternative_value}") if alternative_value.present?
+      end
       
       association ? link_to(association.name, association) : value
     else
