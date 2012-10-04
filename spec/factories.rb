@@ -20,6 +20,9 @@ FactoryGirl.define do
     sequence(:email) { |n| "user#{n}#{r_str}@volontari.at" }
     first_name 'Mister'
     last_name { |u| u.name.humanize }
+    country 'Germany'
+    language 'en'
+    interface_language 'en'
     password 'password'
     password_confirmation { |u| u.password }
   end
