@@ -28,3 +28,13 @@ html, body, div, span {
 .nested_comments .nested_comments .nested_comments .nested_comments {
   margin-left: 0;
 }
+
+.footer {
+  margin-top: 20px;
+}
+
+.floating_form fieldset .control-group {
+  float: left; 
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
