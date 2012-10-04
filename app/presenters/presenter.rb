@@ -7,11 +7,13 @@ class Presenter
     @subject = value
   end 
 
-  private
+  protected
   
   def subject
     @subject
   end
+  
+  private
   
   def method_missing(*args, &block)
     @subject.send(*args, &block)
