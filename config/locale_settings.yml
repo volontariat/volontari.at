@@ -1,0 +1,121 @@
+default: "en"
+
+available:
+  en: "English"
+  
+other:
+  ar: "العربية"
+  art-nvi: "Na'vi"
+  bg: "български език"
+  br: "Brezhoneg"
+  ca: "Català"
+  cs: "Čeština"
+  cy: "Cymraeg"
+  da: "Dansk"
+  de: "Deutsch"
+  de_formal: "Deutsch (Sie)"
+  el: "Ελληνικά"
+  en_1337: "3n6l15h (English 1337)"
+  en_pirate: "English (Pirate)"
+  en_shaw: "𐑦𐑙𐑤𐑦𐑖"
+  eo: "Esperanto"
+  es: "Castellano"
+  es-AR: "Castellano - Argentina"
+  es-CL: "Castellano - Chile"
+  es-VE: "Castellano - Venezuela"
+  es-MX: "Español, México"
+  et: "Eesti"
+  eu: "Euskara"
+  fi: "Suomi"
+  fil: "Filipino"
+  fr: "Français"
+  ga: "Gaeilge"
+  gl: "Galego"
+  he: "עברית"
+  hu: "magyar nyelv"
+  ia: "Interlingua"
+  id: "Bahasa Indonesia"
+  is: "íslenska"
+  it: "Italiano"
+  ja: "日本語"
+  ka: "ქართული"
+  ko: "한국어"
+  lt: "Lietuviškai"
+  mk: "македонски"
+  ml: "മലയാളം"
+  ms: "بهاس ملايو‎"
+  nb: "Norske"
+  nl: "Nederlands"
+  nn: "Nynorsk"
+  pa: "ਪੰਜਾਬੀ"
+  pl: "polski"
+  pt-PT: "Português (Portugal)"
+  pt-BR: "Português (Brasil)"
+  ro: "Română"
+  ru: "Русский"
+  si: "සිංහල"
+  sk: "Slovenčina"
+  sl: "Slovenščina"
+  sq: "gjuha shqipe"
+  sr: "српски језик"
+  sv: "Svenska"
+  te: "తెలుగు"
+  tr: "Türk"
+  uk: "украї́нська мо́ва"
+  ur-PK: "اُردو (پاکستان)"
+  vi: "Tiếng Việt"
+  zh-CN: "中文"
+  zh-TW: "台灣中文"
+
+
+fallbacks:
+  en-GB:
+    - "en"
+  en-US:
+    - "en"
+  en_shaw:
+    - "en"
+    - "en-GB"
+    - "en-US"
+  en_pirate:
+    - "en"
+    - "en-GB"
+    - "en-US"
+  en_1337:
+    - "en"
+    - "en-GB"
+    - "en-US"
+  sv:
+    - "sv-SE"
+  he:
+    - "he-IL"
+  es-AR:
+    - "es"
+  es-CL:
+    - "es"
+  es-MX:
+    - "es"
+  es-VE:
+    - "es"
+  gl:
+    - "gl-ES"
+  zh:
+    - "zh-CN"
+    - "zh-TW"
+  ur-PK:
+    - "ur"
+  de_formal:
+    - "de"
+  art_nvi:
+    - "art-nvi"
+  pt-BR:
+    - "pt"
+  pt-PT:
+    - "pt"
+    
+rtl:
+  - "ar"
+  - "he"
+  - "ur"
+  - "ur-PK"
+  - "ms"
