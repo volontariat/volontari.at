@@ -20,9 +20,9 @@ class Project < ActiveRecord::Base
   
   extend FriendlyId
   
-  friendly_id :name, use: :slugged
-  
   before_validation :include_areas_of_product
+  
+  friendly_id :name, use: :slugged
   
   PARENT_TYPES = ['area', 'product', 'user']
   
@@ -32,9 +32,15 @@ class Project < ActiveRecord::Base
   end
     
   # has_many (Mongo DB)
-  def stories
-    Story.where(project_id: id)
+  def story_class
+    if product_id.present?
+      "#{product.class.name}::Story".constantize rescue Story
+    else
+      Story
+    end
   end
+   
+  def stories; story_class.where(project_id: id); end
   
   private
   
