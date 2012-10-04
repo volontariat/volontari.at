@@ -9,32 +9,38 @@ class ApplicationController < ActionController::Base
   
   rescue_from CanCan::AccessDenied, with: :access_denied
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from Mongoid::Errors::DocumentNotFound, with: :not_found
   
   respond_to :html, :js, :json
-  
-  def current_project
-    @current_project ||= Project.find(params[:project_id]) if params[:project_id].present?
-  end
   
   def parent
     nil
   end
   
-  helper_method :current_project, :parent
+  helper_method :parent
   
   protected
   
   def current_ability
-    Ability.new(current_user, controller_namespace: current_namespace, project: current_project)
+    Ability.new(current_user, controller_namespace: current_namespace)
   end
   
   def set_twitter_sidenav_level
     @twitter_sidenav_level = 3
   end
   
-  def find_parent(types)
-    parent_type = types.select{|p| params.keys.include?("#{p}_id") }.first
-    parent = parent_type.classify.constantize.find(params["#{parent_type}_id"])
+  def find_parent(types, parent_key = nil)
+    parent_type, id = nil, nil
+    
+    if parent_type = types.select{|p| params.keys.include?("#{p}_id") }.first
+      id = params["#{parent_type}_id"]
+    elsif parent_type = types.select{|p| params[parent_key] && params[parent_key].keys.include?("#{p}_id") }.first
+      id = params[parent_key]["#{parent_type}_id"]
+    end
+    
+    return if parent_type.blank?
+    
+    parent = parent_type.classify.constantize.find(id)
     root_model_class_name = ApplicationHelper.root_model_class_name_helper(parent)
     eval("@#{root_model_class_name.tableize.singularize} = parent") 
     
