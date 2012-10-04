@@ -10,11 +10,13 @@
   <%= render 'layouts/shared/navigation' %>
   
   <div class="container-fluid">
+<% unless flash.empty? %>
     <div class="row-fluid">
       <div class="span12">
         <%= render 'layouts/shared/flash_messages' %>
       </div>
     </div>
+<% end %>    
     <div class="row-fluid">
       <div class="span9">
         <%= breadcrumbs %>
@@ -27,7 +29,7 @@
     </div>
   </div>
   <div class="container-fluid">
-    <div class="row-fluid">
+    <div class="row-fluid footer">
       <div class="span12">
         <%= footer_navigation %>
       </div>
@@ -35,5 +37,12 @@
   </div>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <%= javascript_tag do %>
+    <%= yield :top_javascript %>
+    
+    $(function() {
+      <%= yield(:document_ready) %>
+    });
+  <% end %>
 </body>
 </html>
