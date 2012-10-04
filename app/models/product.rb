@@ -13,7 +13,6 @@ class Product
   
   validates :user_id, presence: true
   validates :name, presence: true, uniqueness: true
-  validates :text, presence: true
   validates :area_ids, presence: true
   
   validate :english_name_available?
