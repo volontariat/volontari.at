@@ -10,7 +10,7 @@ module ShowHelper
         type: root_model_class_name(resource).tableize, resource: resource 
       }
     )
-    
-    result
+     
+    raw result
   end
 end
