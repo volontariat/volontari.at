@@ -51,6 +51,10 @@ class CommentsController < ApplicationController
     redirect_to comments_url, notice: t('general.form.destroyed')
   end
   
+  def resource
+    @comment
+  end
+  
   private
   
   def find_commentable

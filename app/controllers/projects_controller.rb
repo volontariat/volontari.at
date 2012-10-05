@@ -49,4 +49,8 @@ class ProjectsController < ApplicationController
     @project.destroy
     redirect_to projects_url, notice: t('general.form.destroyed')
   end
+  
+  def resource
+    @project
+  end
 end
