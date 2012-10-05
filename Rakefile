@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-VolontariAt::Application.load_tasks
+Volontariat::Application.load_tasks

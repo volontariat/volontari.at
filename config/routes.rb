@@ -1,4 +1,4 @@
-VolontariAt::Application.routes.draw do
+Volontariat::Application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'devise_extensions/registrations',
   }
