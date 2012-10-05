@@ -18,6 +18,5 @@ Feature: Manage areas
   Scenario: Edit area
     Then I can't edit areas
 
-  @javascript
   Scenario: Delete area
     Then I can't delete areas

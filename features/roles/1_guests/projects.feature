@@ -14,10 +14,6 @@ Feature: Read projects
 
   @javascript
   Scenario: Delete projects
-    When I delete a project
-    Then I should see "Access denied"
-    When I go to the projects page
-    Then I should see the following projects:
-      |Name | |
-      |project 1| Actions | 
-      |project 2| Actions | 
+    Given a project named "project 1"
+    When I am on the project page
+    Then I should not see "Actions"

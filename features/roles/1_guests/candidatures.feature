@@ -13,14 +13,7 @@ Feature: Read candidatures
     Then I should see "Access denied"
 
   @javascript
-  Scenario: Delete candidatures
-    Given the following candidatures:
-      |name | vacancy |
-      |candidature 1 | vacancy 1 |
-    And I am on the candidatures page
-    When I delete the 1st candidature
-    Then I should see "Access denied"
-    When I go to the candidatures page
-    Then I should see the following candidatures:
-      |Name | Vacancy | |
-      | candidature 1 | vacancy 1 | Actions | 
+  Scenario: Delete candidature
+    Given a candidature named "candidature 1"
+    When I am on the candidature page
+    Then I should not see "Actions"

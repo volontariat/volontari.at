@@ -38,15 +38,14 @@ Feature: Manage vacancies
     And I should see "Dummy 2"
 
   @javascript
-  Scenario: Delete vacancies
+  Scenario: Delete vacancy
     Given the following vacancies:
       |name | project |
       |vacancy 1 | project 1 |
       |vacancy 2 | project 1 |
     And I am on the vacancies page
-    When I delete the 1st vacancy
+    When I delete the 1st "vacancy"
     Then I should see "Resource destroyed successfully"
-    When I go to the vacancies page
     Then I should see the following vacancies:
       |Name | Project | |
       | vacancy 2 | project 1 | Actions | 

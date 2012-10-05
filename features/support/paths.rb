@@ -17,6 +17,12 @@ module NavigationHelpers
       '/'
       
     # areas  
+    when /the areas page/
+      areas_path
+    
+    when /the area page/
+      area_path(@area)
+      
     when /the edit area page/
       edit_area_path(@area)
 
@@ -42,6 +48,9 @@ module NavigationHelpers
       edit_vacancy_path(@vacancy)
     
     # candidatures
+    when /the candidature page/
+      candidature_path(@candidature)
+      
     when /the edit candidature page/
       edit_candidature_path(@candidature)
       

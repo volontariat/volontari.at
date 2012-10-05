@@ -34,9 +34,8 @@ Feature: Manage products
       |name| user |
       |Text Creation| @me |
       |Translation| @me |
-    When I delete the 1st product
+    When I delete the 1st "product"
     Then I should see "Resource destroyed successfully"
-    When I go to the products page
     Then I should see the following products:
       |Name | |
       |Translation| Actions | 

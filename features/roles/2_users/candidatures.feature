@@ -36,8 +36,7 @@ Feature: Manage candidatures
       | name | vacancy | user |
       | candidature 1 | vacancy 1 | user |
       | candidature 2 | vacancy 1 | user 2 |
-    When I delete the 1st candidature
-    When I go to the candidatures page
+    When I delete the 1st "candidature"
     Then I should see the following candidatures:
       | Name | User | Vacancy | Project | |
       | candidature 2 | user 2 | vacancy 1 | project 1 | Actions | 

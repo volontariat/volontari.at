@@ -29,10 +29,13 @@ Feature: Manage projects
     And I should see "Dummy 2"
 
   @javascript
-  Scenario: Delete projects
-    When I delete a project
+  Scenario: Delete project
+    Given the following projects:
+      |name| user |
+      |project 1| @me |
+      |project 2| @me |
+    When I delete the 1st "project"
     Then I should see "Resource destroyed successfully"
-    When I go to the projects page
     Then I should see the following projects:
       |Name | |
       |project 2| Actions | 

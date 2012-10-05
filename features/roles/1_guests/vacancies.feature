@@ -13,14 +13,7 @@ Feature: Read vacancies
     Then I should see "Access denied"
 
   @javascript
-  Scenario: Delete vacancies
-    Given the following vacancies:
-      |name | project |
-      |vacancy 1 | project 1 |
-    And I am on the vacancies page
-    When I delete the 1st vacancy
-    Then I should see "Access denied"
-    When I go to the vacancies page
-    Then I should see the following vacancies:
-      |Name | Project | |
-      | vacancy 1 | project 1 | Actions | 
+  Scenario: Delete vacancy
+    Given a vacancy named "project 1"
+    When I am on the vacancy page
+    Then I should not see "Actions"

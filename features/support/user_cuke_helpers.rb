@@ -19,10 +19,19 @@ module UserCukeHelpers
     click_button :submit
   end
 
+  # create a new @me user, if not present, and log in using the
+  # integration_sessions controller (automatic)
+  def automatic_login
+    @me ||= Factory(:user)
+    page.driver.visit(new_integration_sessions_path(user_id: @me.slug))
+    click_button "Login"
+  end
+
   # use the @me user to perform a manual login via the sign_in page
   def manual_login
     visit login_page
     login_as @me.name
+    visit user_confirmation_path(confirmation_token: @me.confirmation_token)  
   end
 
   # checks the page content to see, if the login was successful
