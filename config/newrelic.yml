@@ -4,8 +4,6 @@
 # For more information, visit www.newrelic.com.
 #
 # Generated January 05, 2012
-#
-# This configuration file is custom generated for Diaspora, Inc.
 
 # Here are the settings that are common to all environments:
 common: &default_settings
