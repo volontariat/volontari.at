@@ -64,10 +64,11 @@ en:
         limit: Limit
       user:
         area_tokens: Areas
+        country: Country 
         employment_relationship: Employment relationship
-        foreign_language: Fremdsprachen
+        foreign_language: Foreign language
         interface_language: Interface language
-        language: Muttersprache
+        language: Mother tongue
         profession: Beruf
      
     errors:
