@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   include Applicat::Mvc::Controller::Resource
   
-  helper_method :resource
-  
   respond_to :html, :js, :json
   
   def index
