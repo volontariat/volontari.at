@@ -1,6 +1,8 @@
 module Applicat::Mvc::Controller::Resource
   def self.included(base)
     base.class_eval do
+      helper_method :parent, :resource
+      
       include InstanceMethods
     end
   end
