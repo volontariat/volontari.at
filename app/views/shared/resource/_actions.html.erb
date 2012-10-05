@@ -1,14 +1,29 @@
+<% if can?(:destroy, resource) || can?(:edit, resource) || (
+  resource.respond_to?(:state_events) && resource.state_events.select{|event| can? event, resource }.any?
+) %>
 <div class="dropdown">
   <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t('general.actions') %></a>
   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-    <li><%= link_to t('general.destroy'), resource, method: :delete, confirm: t('general.questions.are_you_sure') %></li>
+  <% if can? :destroy, resource %>    
+    <li>
+      <%= link_to(
+        t('general.destroy'), resource, id: "area_#{resource.id}", method: :delete, 
+        confirm: t('general.questions.are_you_sure'),
+        onclick: "delete_link('#area_#{resource.id}'); return false;"
+      )
+      %>
+    </li>
+  <% end %>
+  <% if can? :edit, resource %>    
     <li><%= link_to t('general.edit'), eval("edit_#{type.singularize}_path(resource)") %></li>
-<% if resource.respond_to? :state_events %>
-  <% resource.state_events.select{|event| can? event, resource }.each do |event| %>
+  <% end %>
+  <% if resource.respond_to? :state_events %>
+    <% resource.state_events.select{|event| can? event, resource }.each do |event| %>
     <li>
       <%= link_to t("#{type}.show.events.#{event}"), eval("#{event}_#{type.singularize}_path(resource)"), method: :put %> 
     </li>
+    <% end %>
   <% end %>
-<% end %>
   </ul>
 </div>
+<% end %>
