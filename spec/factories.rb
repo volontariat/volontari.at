@@ -25,6 +25,10 @@ FactoryGirl.define do
     interface_language 'en'
     password 'password'
     password_confirmation { |u| u.password }
+    
+    after_create do |user|
+      User.confirm_by_token(user.confirmation_token)
+    end
   end
   
   factory :area do
