@@ -79,7 +79,7 @@ defaults: &defaults
   smtp_password: 'secret'
 
   # Sender address in Diaspora's outgoing mail.
-  smtp_sender_address: 'no-reply@joindiaspora.com'
+  smtp_sender_address: 'no-reply@volontari.at'
 
   ######################################################
   # Social Service Configuration
