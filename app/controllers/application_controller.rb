@@ -75,7 +75,8 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def not_found
+  def not_found(e)
+    logger.info "not found (#{e.inspect})"
     redirect_to root_path, notice: t('general.exceptions.not_found')
   end
 end
