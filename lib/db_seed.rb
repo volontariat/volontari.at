@@ -64,10 +64,10 @@ class DbSeed
     self.class::USER_ROLES.each do |role, settings|
       attributes = {
         name: role.to_s.humanize, first_name: 'Mister', last_name: role.to_s.humanize, email: "#{role}@volontari.at",
-        password: "#{role}2012"
+        password: "#{role}2012", language: 'en', country: 'Germany', interface_language: 'en'
       }
       attributes[:password_confirmation] = attributes[:password]
-      create_record(User, attributes) # events: ['skip_confirmation!']
+      create_record(User, attributes, events: ['skip_confirmation!'])
     end
   end
   
