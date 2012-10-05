@@ -8,10 +8,12 @@ SimpleNavigation::Configuration.run do |navigation|
       
       unless (@area.new_record? rescue true)
         areas.item :show, @area.name, area_path(@area) do |area|
-          area.item :destroy, t('general.destroy'), area_path(@area), method: :delete, confirm: t('general.questions.are_you_sure')
+          if can? :destroy, @area
+            area.item :destroy, t('general.destroy'), area_path(@area), method: :delete, confirm: t('general.questions.are_you_sure')
+          end
+          
           area.item :show, t('general.details'), "#{area_path(@area)}#top"
-          area.item :edit, t('general.edit'), edit_area_path(@area)
-            
+          area.item :edit, t('general.edit'), edit_area_path(@area) if can? :edit, @area
           area.item :users, t('users.index.title'), area_users_path(@area)
           area.item :projects, t('projects.index.title'), area_projects_path(@area)  
         end
@@ -23,9 +25,12 @@ SimpleNavigation::Configuration.run do |navigation|
       
       unless (@product.new_record? rescue true)
         products.item :show, @product.name, product_path(@product) do |product|
-          product.item :destroy, t('general.destroy'), product_path(@product), method: :delete, confirm: t('general.questions.are_you_sure')
+          if can? :edit, @product
+            product.item :destroy, t('general.destroy'), product_path(@product), method: :delete, confirm: t('general.questions.are_you_sure')
+          end
+          
           product.item :show, t('general.details'), "#{product_path(@product)}#top"
-          product.item :edit, t('general.edit'), edit_product_path(@product)
+          product.item :edit, t('general.edit'), edit_product_path(@product)  if can? :edit, @product
             
           product.item :projects, t('projects.index.title'), product_projects_path(@product)  
         end
@@ -37,9 +42,12 @@ SimpleNavigation::Configuration.run do |navigation|
       
       unless (@project.new_record? rescue true)
         projects.item :show, @project.name, project_path(@project) do |project|
-          project.item :destroy, t('general.destroy'), project_path(@project), method: :delete, confirm: t('general.questions.are_you_sure')
+          if can? :destroy, @project
+            project.item :destroy, t('general.destroy'), project_path(@project), method: :delete, confirm: t('general.questions.are_you_sure')
+          end
+          
           project.item :show, t('general.details'), "#{project_path(@project)}#top"
-          project.item :edit, t('general.edit'), edit_project_path(@project)
+          project.item :edit, t('general.edit'), edit_project_path(@project) if can? :edit, @project
           
           project.item :users, t('users.index.title'), project_users_path(@project)  
           
@@ -52,9 +60,12 @@ SimpleNavigation::Configuration.run do |navigation|
 
             unless (@story.new_record? rescue true)
               stories.item(:show, @story.name, story_path(@story)) do |story|
-                story.item :destroy, t('general.destroy'), story_path(@story), method: :delete, confirm: t('general.questions.are_you_sure')
+                if can? :destroy, @story
+                  story.item :destroy, t('general.destroy'), story_path(@story), method: :delete, confirm: t('general.questions.are_you_sure')
+                end
+                
                 story.item :show, t('general.details'), "#{story_path(@story)}#top"
-                story.item :edit, t('general.edit'), edit_story_path(@story)
+                story.item :edit, t('general.edit'), edit_story_path(@story) if can? :edit, @story
 
                 story.item :steps, t('general.steps'), setup_tasks_story_path(@story) do |steps|
                   steps.item :setup_tasks, t('stories.steps.setup_tasks.title'), setup_tasks_story_path(@story)
@@ -66,22 +77,31 @@ SimpleNavigation::Configuration.run do |navigation|
       
                   unless (@task.new_record? rescue true)
                     tasks.item(:show, @task.name, task_path(@task)) do |task|
-                      task.item :destroy, t('general.destroy'), task_path(@task), method: :delete, confirm: t('general.questions.are_you_sure')
+                      if can? :destroy, @task
+                        task.item :destroy, t('general.destroy'), task_path(@task), method: :delete, confirm: t('general.questions.are_you_sure')
+                      end
+                      
                       task.item :show, t('general.details'), "#{task_path(@task)}#top"
-                      task.item :edit, t('general.edit'), edit_task_path(@task)
+                      task.item :edit, t('general.edit'), edit_task_path(@task) if can? :edit, @task
                       
                       task.item :results, t('results.index.title'), task_results_path(@task) do |results|
                         results.item :new, t('general.new'), new_task_result_path(@task)
             
                         unless (@result.new_record? rescue true)
                           results.item(:show, @result.name, result_path(@result)) do |result|
-                            result.item :destroy, t('general.destroy'), result_path(@result), method: :delete, confirm: t('general.questions.are_you_sure')
+                            if can? :destroy, @result
+                              result.item :destroy, t('general.destroy'), result_path(@result), method: :delete, confirm: t('general.questions.are_you_sure')
+                            end
+                            
                             result.item :show, t('general.details'), "#{result_path(@result)}#top"
-                            result.item :edit, t('general.edit'), edit_result_path(@result)
+                            result.item :edit, t('general.edit'), edit_result_path(@result) if can? :edit, @result
                             
                             result.item :comments, t('comments.index.title'), "#{story_path(@story)}#comments" do |comments|
                               comments.item(:new, t('general.new'), new_story_comment_path(@story)) if @comment
-                              comments.item(:edit, t('general.edit'), edit_comment_path(@comment)) if @comment.try(:id)
+                              
+                              if can? :edit, @comment
+                                comments.item(:edit, t('general.edit'), edit_comment_path(@comment)) if @comment.try(:id)
+                              end
                             end 
                           end
                         end
@@ -89,7 +109,10 @@ SimpleNavigation::Configuration.run do |navigation|
                       
                       task.item :comments, t('comments.index.title'), "#{story_path(@story)}#comments" do |comments|
                         comments.item(:new, t('general.new'), new_story_comment_path(@story)) if @comment
-                        comments.item(:edit, t('general.edit'), edit_comment_path(@comment)) if @comment.try(:id)
+                        
+                        if @comment.try(:id) && can?(:edit, @comment)
+                          comments.item(:edit, t('general.edit'), edit_comment_path(@comment))
+                        end
                       end 
                     end
                   end
@@ -97,7 +120,10 @@ SimpleNavigation::Configuration.run do |navigation|
                 
                 story.item :comments, t('comments.index.title'), "#{story_path(@story)}#comments" do |comments|
                   comments.item(:new, t('general.new'), new_story_comment_path(@story)) if @comment
-                  comments.item(:edit, t('general.edit'), edit_comment_path(@comment)) if @comment.try(:id)
+                  
+                  if @comment.try(:id) && can?(:edit, @comment)
+                    comments.item(:edit, t('general.edit'), edit_comment_path(@comment))
+                  end
                 end 
               end
             end
@@ -105,7 +131,10 @@ SimpleNavigation::Configuration.run do |navigation|
           
           project.item :comments, t('comments.index.title'), "#{project_path(@project)}#comments" do |comments|
             comments.item(:new, t('general.new'), new_project_comment_path(@project)) if @comment
-            comments.item(:edit, t('general.edit'), edit_comment_path(@comment)) if @comment.try(:id)
+            
+            if @comment.try(:id) && can?(:edit, @comment)
+              comments.item(:edit, t('general.edit'), edit_comment_path(@comment))
+            end
           end
         end
       end  
@@ -116,9 +145,13 @@ SimpleNavigation::Configuration.run do |navigation|
       
       unless (@vacancy.new_record? rescue true)
         vacancies.item :show, "#{@vacancy.name} @ #{@vacancy.project.name}", vacancy_path(@vacancy) do |vacancy|
-          vacancy.item :destroy, t('general.destroy'), vacancy_path(@vacancy), method: :delete, confirm: t('general.questions.are_you_sure')
+          
+          if can? :destroy, @vacancy
+            vacancy.item :destroy, t('general.destroy'), vacancy_path(@vacancy), method: :delete, confirm: t('general.questions.are_you_sure')
+          end
+          
           vacancy.item :show, t('general.details'), "#{vacancy_path(@vacancy)}#top"
-          vacancy.item :edit, t('general.edit'), edit_vacancy_path(@vacancy)
+          vacancy.item :edit, t('general.edit'), edit_vacancy_path(@vacancy) if can? :edit, @vacancy
           
           vacancy.item :candidatures, t('candidatures.index.title'), vacancy_candidatures_path(@vacancy) do |candidatures|
             candidatures.item :new, t('general.new'), new_vacancy_candidature_path(@vacancy)
@@ -128,13 +161,19 @@ SimpleNavigation::Configuration.run do |navigation|
                 :show, t('activerecord.models.candidature') + " of #{@candidature.user.name} @ #{@candidature.vacancy.project.name}", 
                 candidature_path(@candidature) 
               ) do |candidature|
-                candidature.item :destroy, t('general.destroy'), candidature_path(@candidature), method: :delete, confirm: t('general.questions.are_you_sure')
+                if can? :destroy, @candidature
+                  candidature.item :destroy, t('general.destroy'), candidature_path(@candidature), method: :delete, confirm: t('general.questions.are_you_sure')
+                end
+                
                 candidature.item :show, t('general.details'), "#{candidature_path(@candidature)}#top"
-                candidature.item :edit, t('general.edit'), edit_candidature_path(@candidature)
+                candidature.item :edit, t('general.edit'), edit_candidature_path(@candidature) if can? :edit, @candidature
                 
                 candidature.item :comments, t('comments.index.title'), "#{candidature_path(@candidature)}#comments" do |comments|
                   comments.item(:new, t('general.new'), new_candidature_comment_path(@candidature)) if @comment
-                  comments.item(:edit, t('general.edit'), edit_comment_path(@comment)) if @comment.try(:id)
+                  
+                  if @comment.try(:id) && can?(:edit, @comment)
+                    comments.item(:edit, t('general.edit'), edit_comment_path(@comment))
+                  end
                 end 
               end
             end
@@ -142,7 +181,10 @@ SimpleNavigation::Configuration.run do |navigation|
            
           vacancy.item :comments, t('comments.index.title'), "#{vacancy_path(@vacancy)}#comments" do |comments|
             comments.item(:new, t('general.new'), new_vacancy_comment_path(@vacancy)) if @comment && !@candidature
-            comments.item(:edit, t('general.edit'), edit_comment_path(@comment)) if @comment.try(:id)
+            
+            if @comment.try(:id) && can?(:edit, @comment)
+              comments.item(:edit, t('general.edit'), edit_comment_path(@comment)) 
+            end
           end 
         end
       end  
