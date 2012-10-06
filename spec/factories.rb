@@ -57,7 +57,7 @@ FactoryGirl.define do
   end
   
   factory :text_creation_project, parent: :project do
-    product_id (Product.first || Factory(:product)).id
+    product_id Factory(:product).id
   end
   
   factory :vacancy do
