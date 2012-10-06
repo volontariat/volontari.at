@@ -5,7 +5,7 @@ module FormHelper
     }
     
     new_object = if f.object.respond_to? "#{association.to_s.singularize}_class"
-      f.object.task_class.new(attributes)
+      f.object.tasks.new(attributes)
     else
       f.object.send(association).new(attributes)
     end
@@ -20,7 +20,7 @@ module FormHelper
     end
     
     data = {id: id, fields: fields.gsub("\n", '')}
-    data[:number_of_parents] = options[:number_of_parents] if options.has_key?(:number_of_parents)
+    data[:target] = options[:target] if options.has_key?(:target)
         
     link_to(name, '#', class: 'add_fields', data: data)
   end
