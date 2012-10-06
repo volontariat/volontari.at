@@ -17,9 +17,10 @@ Given /^a project named "([^\"]*)"$/ do |name|
 end
 
 Given /^a text creation project named "([^\"]*)"$/ do |name|
-  attributes = {name: name}
+  product = Product.first || Factory(:product)
+  attributes = {name: name, product_id: product.id}
   set_project_defaults(attributes)
-  @project = Factory(:text_creation_project, attributes)
+  @project = Factory(:project, attributes)
   
   @project.reload
 end
