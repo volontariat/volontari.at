@@ -57,7 +57,7 @@ FactoryGirl.define do
   end
   
   factory :text_creation_project, parent: :project do
-    product_id Factory(:product).id
+    product_id (Product.where(name: 'Text Creation').first || Factory(:product)).id
   end
   
   factory :vacancy do
