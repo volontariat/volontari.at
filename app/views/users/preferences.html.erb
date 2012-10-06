@@ -1,0 +1,11 @@
+<h3><%= t('users.preferences.title') %></h3>
+
+<%= simple_form_for(current_user, url: preferences_user_path(current_user), html: { class: 'form-horizontal block-form' }) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :main_role_id, collection: Role.public %>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

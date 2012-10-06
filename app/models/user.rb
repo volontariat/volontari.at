@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   include ::Applicat::Mvc::Model::Resource::Base
   
+  belongs_to :main_role, class_name: 'Role'
   belongs_to :profession
   
-  has_and_belongs_to_many :roles
+  has_and_belongs_to_many :roles, join_table: 'users_roles'
   has_and_belongs_to_many :areas
   has_and_belongs_to_many :projects
   
@@ -16,17 +17,16 @@ class User < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :email, presence: true
   validates :language, presence: true
-  validates :password, presence: true
-  validates :password_confirmation, presence: true
   validates :country, presence: true
   validates :interface_language, presence: true
         
   attr_accessible :name, :password, :password_confirmation, :text, :language, :first_name, :last_name, 
                   :salutation, :marital_status, :family_status, :date_of_birth, :place_of_birth, :citizenship, :email,
                   :country, :language, :interface_language, :profession_id, :employment_relationship, 
-                  :area_tokens
+                  :area_tokens,
+                  # preferences
+                  :main_role_id
        
   # :timeoutable, :token_authenticatable, :lockable,
   # :lock_strategy => :none, :unlock_strategy => :nones
@@ -36,6 +36,8 @@ class User < ActiveRecord::Base
   extend FriendlyId
   
   friendly_id :name, use: :slugged     
+  
+  after_create :set_main_role
                   
   PARENT_TYPES = ['area', 'project']
   
@@ -45,5 +47,11 @@ class User < ActiveRecord::Base
   
   def area_tokens
     areas
+  end
+  
+  private
+  
+  def set_main_role
+    self.update_attribute :main_role_id, Role.find_or_create_by_name('User').id
   end
 end

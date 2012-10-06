@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   include Applicat::Mvc::Controller::Resource
   
+  before_filter :find_resource, only: [:show, :edit, :preferences, :update, :destroy]
+  
   respond_to :html, :js, :json
   
   def index
@@ -9,30 +11,37 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = User.find(params[:id])
   end
   
   def edit
-    @user = User.find(params[:id])
+  end
+  
+  def preferences
+    if params[:user] && current_user.update_attributes(params[:user])
+      redirect_to preferences_user_path(current_user), notice: t('general.form.successfully_updated') and return
+    end
   end
   
   def update
-    @user = User.find(params[:id])
-    
-    if @user.update_attributes(params[:user])
-      redirect_to @user, notice: t('general.form.successfully_updated')
+    if current_user.update_attributes(params[:user])
+      redirect_to current_user, notice: t('general.form.successfully_updated')
     else
       render :edit
     end
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
+    current_user.destroy
     redirect_to users_url, notice: t('general.form.destroyed')
   end
   
   def resource
     @user
+  end
+  
+  private
+  
+  def find_resource
+    @user = User.find(params[:id])
   end
 end

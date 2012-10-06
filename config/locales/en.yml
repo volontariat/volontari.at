@@ -106,7 +106,9 @@ en:
       title: Profile
     edit:
       title: Settings 
-    
+    preferences:
+      title: Preferences
+      
   areas:
     index:
       title: Areas

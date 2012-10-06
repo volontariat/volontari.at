@@ -123,6 +123,10 @@ Volontariat::Application.routes.draw do
       put :update_multiple
       get :autocomplete
     end
+    
+    member do
+      match 'preferences', via: [:get, :put]
+    end
   end
   
   match 'workflow' => 'workflow#index', as: :workflow

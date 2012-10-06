@@ -218,6 +218,7 @@ SimpleNavigation::Configuration.run do |navigation|
         profile.item :show, t('users.show.title'), user_path(current_user) do |user|
           user.item :show, t('users.show.title'), "#{user_path(current_user)}#top"
           user.item :settings, t('users.edit.title'), edit_user_path(current_user)
+          user.item :preferences, t('users.preferences.title'), preferences_user_path(current_user)
           user.item :projects, t('projects.index.title'), user_projects_path(current_user)
           user.item :candidatures, t('candidatures.index.title'), user_candidatures_path(current_user)
         end
