@@ -55,8 +55,9 @@ en:
         name: Name 
         parent: Parent
         project_id: Project
-        vacancy_id: Vacancy
+        state: State
         user_id: User
+        vacancy_id: Vacancy
       comment:
         name: Subject
       vacancy:
@@ -83,6 +84,11 @@ en:
           attributes:
             limit:
               reached: Limit of candidatures already reached 
+            
+        story:
+          attributes:
+            base:
+              missing_tasks: 'Please define at least 1 task.'
        
   layout:
     title: Volontari.at - Creative Open Crowdsource Platform
@@ -188,6 +194,7 @@ en:
       setup_tasks:
         title: Setup Tasks
         add_task: Add Task
+        update: Update Tasks
       activate:
         title: Activate
         
