@@ -1,6 +1,6 @@
 <h3><%= @user.name %></h3>
 
 <dl class="dl-horizontal">
-  <%= show_field t('areas.index.title'), link_list(@user.areas) %>
+  <%= show_associations :areas %>
   <%= show_actions %>
 </dl>
