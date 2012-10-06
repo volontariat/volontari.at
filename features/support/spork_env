@@ -1,0 +1,73 @@
+require 'rubygems'
+require 'spork'
+#uncomment the following line to use spork with the debugger
+#require 'spork/ext/ruby-debug'
+
+Spork.prefork do
+  require 'cucumber/rails'
+  require File.expand_path(File.dirname(__FILE__) + '/../../spec/mongo_db_factories.rb')
+  require File.expand_path(File.dirname(__FILE__) + '/../../spec/support/mongo_database_cleaner')
+  require File.join(File.dirname(__FILE__), "database_cleaner_patches")
+  require File.join(File.dirname(__FILE__), "integration_sessions_controller")
+  
+  # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
+  # order to ease the transition to Capybara we set the default here. If you'd
+  # prefer to use XPath just remove this line and adjust any selectors in your
+  # steps to use the XPath syntax.
+  Capybara.default_selector = :css
+  
+  Capybara.javascript_driver = ENV['JAVASCRIPT_DRIVER'] ? ENV['JAVASCRIPT_DRIVER'].to_sym : :webkit
+  
+  Capybara.add_selector(:row) do
+    xpath { |num| ".//tbody/tr[#{num}]" }
+  end
+  
+  ActionController::Base.allow_rescue = false
+  
+  DatabaseCleaner.strategy = :truncation
+  DatabaseCleaner.orm = "active_record"
+  Cucumber::Rails::World.use_transactional_fixtures = false
+  
+  Cucumber::Rails::Database.javascript_strategy = :truncation
+end
+
+Spork.each_run do
+  Before do
+    DatabaseCleaner.clean
+    
+    # TODO: find a better solution
+    begin
+      MongoDatabaseCleaner.clean
+    rescue
+      DatabaseCleaner.logger.error "Exception encountered by DatabaseCleaner in Cucumber After block: #{e}"
+    end
+    
+    Devise.mailer.deliveries = []
+  end
+
+  After do
+    if Capybara.current_session.driver.respond_to?(:browser)
+      Capybara.reset_sessions!
+      # Capybara.current_session.driver.browser.manage.delete_all_cookies
+    end
+  end
+
+  Before('@localserver') do
+    CapybaraSettings.instance.save
+    Capybara.current_driver = :selenium
+    Capybara.run_server = false
+  end
+
+  After('@localserver') do
+    CapybaraSettings.instance.restore
+  end
+end
+
+# give firefox more time to complete requests
+# http://ihswebdesign.com/knowledge-base/fixing-selenium-timeouterror/
+After do |scenario|
+  if scenario.exception.is_a? Timeout::Error
+    # restart Selenium driver
+    Capybara.send(:session_pool).delete_if { |key, value| key =~ /selenium/i }
+  end
+end

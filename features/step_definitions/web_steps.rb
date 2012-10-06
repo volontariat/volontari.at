@@ -65,6 +65,15 @@ When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
   fill_in(field, :with => value)
 end
 
+# TODO: get more than the 1st fieldset working
+When /^(?:|I )fill in the (\d+)(?:st|nd|rd|th) field of "([^"]*)" with "([^"]*)"$/ do |pos, field, value|
+  raise NotImplementedError unless pos.to_i == 1
+  
+  within(find(:xpath, "//fieldset[#{pos.to_i}]")) do
+    fill_in(field, :with => value)
+  end
+end
+
 # Use this to fill in an entire form with data from a table. Example:
 #
 #   When I fill in the following:

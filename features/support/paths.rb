@@ -54,6 +54,10 @@ module NavigationHelpers
     when /the edit candidature page/
       edit_candidature_path(@candidature)
       
+    # stories
+    when /the new project story page/
+      new_project_story_path(@project)
+      
     # workflow
     when /the workflow page/
       workflow_path

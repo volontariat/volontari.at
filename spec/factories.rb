@@ -5,7 +5,7 @@ end
 def resource_has_many(resource, association_name)
   association = if resource.send(association_name).length > 0
     nil
-  elsif association_name.to_s.classify.constantize.any?
+  elsif association_name.to_s.classify.constantize.count > 0
     association_name.to_s.classify.constantize.last
   else
     Factory.create association_name.to_s.singularize.to_sym
@@ -35,14 +35,29 @@ FactoryGirl.define do
     sequence(:name) { |n| "area #{n}" }
   end
   
+  factory :product do
+    name 'Text Creation'
+    user_id User.first.try(:id) || Factory(:user).id
+    area_ids [Area.first.try(:id) || Factory(:area).id]
+    text Faker::Lorem.sentences(5)
+    
+    after_build do |product|
+      product.id = product.name.to_s.parameterize
+    end
+  end
+  
   factory :project do
     association :user
-    sequence(:name) { |n| "project #{n}" }
+    sequence(:name) { |n| "project #{n}#{r_str}" }
     text Faker::Lorem.sentences(20)
     
     after_build do |project|
       resource_has_many(project, :areas) 
     end
+  end
+  
+  factory :text_creation_project, parent: :project do
+    product_id (Product.first || Factory(:product)).id
   end
   
   factory :vacancy do
@@ -65,5 +80,49 @@ FactoryGirl.define do
     association :commentable, factory: :project
     sequence(:name) { |n| "comment #{n}" }
     text Faker::Lorem.sentences(5)
+  end
+  
+  factory :story, class: Product::TextCreation::Story do
+    project_id Factory(:text_creation_project).id
+    sequence(:name) { |n| "story#{n}#{r_str}" }
+    text Faker::Lorem.sentences(10)
+    language 'en'
+    min_length 10
+    max_length 50
+    with_keywords true
+    min_number_of_keywords 1
+    max_number_of_keywords 3
+    event 'setup_tasks'
+    state_before 'initialized'
+    state 'tasks_defined'
+    
+    after_build do |story|
+      story.tasks << Factory.build(:text_creation_task)
+    end
+  end
+  
+  factory :story_without_tasks, class: Product::TextCreation::Story do
+    project_id Project.first.try(:id) || Factory(:text_creation_project).id
+    sequence(:name) { |n| "story#{n}#{r_str}" }
+    text Faker::Lorem.sentences(10)
+    language 'en'
+    min_length 10
+    max_length 50
+    with_keywords true
+    min_number_of_keywords 1
+    max_number_of_keywords 3
+    event 'initialization'
+    state_before 'new'
+    state 'initialized'
+  end
+  
+  factory :task do
+    sequence(:name) { |n| "task#{n}#{r_str}" }
+    text Faker::Lorem.sentences(10)
+  end
+  
+  factory :text_creation_task, class: Product::TextCreation::Task do
+    sequence(:name) { |n| "task#{n}#{r_str}" }
+    keywords 'Keyword 1'
   end
 end
