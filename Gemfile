@@ -55,6 +55,9 @@ gem 'ransack'
 gem 'settingslogic', git: 'https://github.com/binarylogic/settingslogic.git'
 gem 'faker' # needed not just for testing but for rake db:seed, too
 
+# mongo model
+gem 'mongoid_slug'
+
 # controller
 gem 'has_scope'
 gem 'friendly_id', '~> 4.0.0'
