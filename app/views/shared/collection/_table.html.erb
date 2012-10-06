@@ -5,7 +5,7 @@
 <% if options[:show_title] %>
 <h3><%= t("#{type}.index.title") %></h3>
 <% end %>
-<% if collection.none? %>
+<% if collection.none? || collection.select{|e| e.id.present? }.none? %>
 <p><%= I18n.t("#{type}.index.empty_collection")%></p>
 <% else %>
 <table class="table table-striped">
@@ -18,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-  <% collection.each do |resource| %>
+  <% collection.select{|e| e.id.present? }.each do |resource| %>
     <tr class="<%= cycle('odd', 'even') %>">
     <% (columns.is_a?(Hash) ? columns.keys : columns).each do |column| %>
       <td>
@@ -36,7 +36,7 @@
 
 <% if options[:append_new_link] %>
   <% if parent %>
-    <%= link_to t("#{type}.new.title"), eval("new_#{options[:current_parent].class.name.tableize.singularize}_#{type.singularize}_path(options[:current_parent])") %>
+    <%= link_to t("#{type}.new.title"), eval("new_#{root_model_class_name(options[:current_parent]).tableize.singularize}_#{type.singularize}_path(options[:current_parent])") %>
   <% else %>
     <%= link_to t("#{type}.new.title"), eval("new_#{type.singularize}_path") %>
   <% end %>
