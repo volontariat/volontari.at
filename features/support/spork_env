@@ -5,7 +5,6 @@ require 'spork'
 
 Spork.prefork do
   require 'cucumber/rails'
-  require File.expand_path(File.dirname(__FILE__) + '/../../spec/mongo_db_factories.rb')
   require File.expand_path(File.dirname(__FILE__) + '/../../spec/support/mongo_database_cleaner')
   require File.join(File.dirname(__FILE__), "database_cleaner_patches")
   require File.join(File.dirname(__FILE__), "integration_sessions_controller")
