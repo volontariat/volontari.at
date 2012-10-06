@@ -17,7 +17,7 @@ Given /^a project named "([^\"]*)"$/ do |name|
 end
 
 Given /^a text creation project named "([^\"]*)"$/ do |name|
-  product = Product.first || Factory(:product)
+  product = Product.where(name: 'Text Creation').first || Factory(:product)
   attributes = {name: name, product_id: product.id}
   set_project_defaults(attributes)
   @project = Factory(:project, attributes)
