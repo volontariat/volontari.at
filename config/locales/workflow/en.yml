@@ -1,0 +1,17 @@
+en:
+  
+  workflow:
+    index:
+      title: Workflow
+    
+    project_owners:
+      index:
+        title: Project Owners
+     
+    users:
+      index:
+        title: Users 
+    
+    controllers:
+      vacancies:
+      candidatures: 

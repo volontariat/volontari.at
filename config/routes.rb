@@ -132,6 +132,12 @@ Volontariat::Application.routes.draw do
   match 'workflow' => 'workflow#index', as: :workflow
   
   namespace 'workflow' do
+    resources :project_owners, only: :index do
+    end
+
+    resources :users, only: :index do
+    end
+    
     resources :vacancies, controller: 'vacancies', only: :index do
       collection do
         match '/' => 'vacancies#open', as: :open

@@ -201,16 +201,21 @@ SimpleNavigation::Configuration.run do |navigation|
  
     if user_signed_in?
       primary.item :workflow, t('workflow.index.title'), workflow_path do |workflow|
-        workflow.item :vacancies, t('vacancies.index.title'), open_workflow_vacancies_path do |vacancies|
-          Vacancy::STATES.each do |state|
-            vacancies.item state, t("vacancies.show.states.#{state}"), eval("#{state}_workflow_vacancies_path")
+        workflow.item :project_owners, t('workflow.project_owners.index.title'), workflow_project_owners_path do |project_owners|
+          project_owners.item :vacancies, t('vacancies.index.title'), open_workflow_vacancies_path do |vacancies|
+            Vacancy::STATES.each do |state|
+              vacancies.item state, t("vacancies.show.states.#{state}"), eval("#{state}_workflow_vacancies_path")
+            end
+          end
+            
+          project_owners.item :candidatures, t('candidatures.index.title'), new_workflow_candidatures_path do |candidatures|
+            Candidature::STATES.each do |state|
+              candidatures.item state, t("candidatures.show.states.#{state}"), eval("#{state}_workflow_candidatures_path")
+            end
           end
         end
-          
-        workflow.item :candidatures, t('candidatures.index.title'), new_workflow_candidatures_path do |candidatures|
-          Candidature::STATES.each do |state|
-            candidatures.item state, t("candidatures.show.states.#{state}"), eval("#{state}_workflow_candidatures_path")
-          end
+        
+        workflow.item :users, t('workflow.users.index.title'), workflow_users_path do |users|
         end
       end
             

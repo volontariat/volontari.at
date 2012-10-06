@@ -1,0 +1,31 @@
+        <div class="tabs">
+          <ul>
+<% Candidature::STATES.each do |state| %>          
+            <li>
+              <a href="#<%= state %>_candidatures">
+                <%= I18n.t("candidatures.show.states.#{state}") %>
+  <% if @candidatures[state].length == 5 %>
+                (<%= @candidatures[state].length %>+) 
+  <% elsif @candidatures[state].length > 0 %>
+                (<%= @candidatures[state].length %>) 
+  <% end %> 
+              </a>
+            </li>
+<% end %>
+          </ul>
+<% Candidature::STATES.each do |state| %>        
+          <div id="<%= state %>_candidatures">
+            <%= render partial: 'shared/collection/table', locals: { 
+              type: 'candidatures', collection: @candidatures[state], 
+              columns: { 
+                'project_id' => 'vacancy.project', 'vacancy_id' => '', 'name' => 'user.name', 'user_id' => ''
+              },
+              options: {show_title: false, append_new_link: false }
+            } %>
+            
+  <% if @candidatures[state].length == 5 %>            
+            <p><%= link_to t('general.more'), eval("#{state}_workflow_candidatures_path") %></p>
+  <% end %>
+          </div> 
+<% end %>
+        </div>

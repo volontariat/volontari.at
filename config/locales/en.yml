@@ -220,14 +220,7 @@ en:
     show:
       reply: Reply
     edit:
-      title: Edit Comment
-    
-  workflow:
-    index:
-      title: Workflow
-    controllers:
-      vacancies:
-      candidatures:    
+      title: Edit Comment   
       
   authentication:
     title: Authentication
