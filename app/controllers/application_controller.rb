@@ -25,6 +25,16 @@ class ApplicationController < ActionController::Base
     Ability.new(current_user, controller_namespace: current_namespace)
   end
   
+  def after_sign_in_path_for(resource_or_scope)
+    if resource_or_scope.main_role.is_a? Role::ProjectOwner
+      workflow_project_owners_path
+    elsif resource_or_scope.main_role.is_a? Role::User
+      workflow_users_path
+    else
+      workflow_path
+    end
+  end
+  
   def set_twitter_sidenav_level
     @twitter_sidenav_level = 3
   end
