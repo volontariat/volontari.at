@@ -17,9 +17,9 @@
     when :name
       f.input attribute if resource.new_record?
     when :language
-      f.input attribute, collection: available_language_options
-    when :interface_language
       f.input attribute, collection: all_language_options
+    when :interface_language
+      f.input attribute, collection: available_language_options
     when :profession
       autocomplete_input(f, attribute)
     when :employment_relationship
