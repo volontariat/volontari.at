@@ -7,7 +7,7 @@ class Ability
     
     alias_action :index, :show, :autocomplete, :parents, :childs, :tree, to: :read
     
-    alias_action :edit, :update, :destroy, to: :restful_actions
+    alias_action :new, :create, :edit, :update, :destroy, to: :restful_actions
     alias_action [], to: :admin_actions
     alias_action [], to: :moderation_actions
     alias_action :assign, :reject, :hold_on, to: :supervisor_actions
