@@ -4,9 +4,9 @@
 </h3>
 
 <dl class="dl-horizontal">
-  <%= show_field t('activerecord.models.project'), link_to(@vacancy.project.name, @vacancy.project) %>
-  <%= show_field t('activerecord.attributes.vacancy.limit'), "#{@vacancy.candidatures_left} / #{@vacancy.limit}" %>
-  <%= show_field t('activerecord.attributes.general.state'), @vacancy.state %>
+  <%= show_associations :project %>
+  <%= show_attribute :limit, value: "#{@vacancy.candidatures_left} / #{@vacancy.limit}" %>
+  <%= show_attribute :state %>
   <%= show_actions %>
 </dl>
 

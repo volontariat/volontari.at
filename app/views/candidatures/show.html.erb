@@ -8,10 +8,8 @@
 </h3>
 
 <dl class="dl-horizontal">
-  <%= show_field t('activerecord.models.project'), link_to(@candidature.vacancy.project.name, @candidature.vacancy.project) %>
-  <%= show_field t('activerecord.models.vacancy'), link_to(@candidature.vacancy.name, @candidature.vacancy) %>
-  <%= show_field t('activerecord.models.user'), link_to(@candidature.user.name, @candidature.user) %>
-  <%= show_field t('activerecord.attributes.general.state'), @candidature.state %>
+  <%= show_associations :project, :vacancy, :user %>
+  <%= show_attribute :state %>
   <%= show_actions %>
 </dl>
 
