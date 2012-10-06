@@ -1,0 +1,11 @@
+<fieldset>
+  <%= f.input :name %>  
+  <%= f.input :text, as: :text, input_html: {style: 'width: 500px; height:50px;'} %>
+
+  <%= f.check_box :_destroy %>
+  <%= f.label :_destroy, t('general.destroy') %>
+  
+  <%= link_to t('general.remove'), '#', class: 'remove_fields' %>
+</fieldset>
+
+<hr/>

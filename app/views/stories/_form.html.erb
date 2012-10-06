@@ -1,0 +1,19 @@
+<%= simple_form_for(@story, html: {class: 'form-vertical'}) do |f| %>
+  <%= render partial: 'shared/form/error_messages', locals: { resource: @story } %>
+  
+  <% unless @story.new_record? %>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+  <% end %>
+  
+  <div class="form-inputs">
+    <%= @story.project ? f.hidden_field(:project_id) : f.input(:project_id, collection: Project.all) %> 
+    <%= f.input :name %>  
+    <%= f.input :text, as: :text, input_html: {style: 'width:500px; height:100px;'} %>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

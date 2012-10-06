@@ -1,0 +1,8 @@
+<% options ||= {} %>
+<% options = {show_title: true, append_new_link: true}.merge(options) %>
+<%= form_tag update_multiple_stories_path, method: :post do %>
+  <%= render partial: 'shared/collection/table', locals: { 
+    type: 'stories', collection: collection, columns: ['name', 'project_id'], append_new_link: options[:append_new_link],
+    show_title: options[:show_title]
+  } %>
+<% end %>

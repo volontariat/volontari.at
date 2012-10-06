@@ -1,0 +1,13 @@
+<h3>
+  <a name="top">&nbsp;</a>
+  <%= @story.name %>
+</h3>
+
+<dl class="dl-horizontal">
+  <%= show_associations :project %>
+  <%= show_actions %>
+</dl>
+
+<%= markdown @story.text %>
+
+<%= render 'shared/comments', comment: Comment.new(commentable_type: 'Story', commentable_id: @story.id) %>
