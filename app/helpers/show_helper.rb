@@ -25,6 +25,7 @@ module ShowHelper
   def show_association(association)
     if association.to_s == association.to_s.pluralize
       return show_attribute(
+        association,
         title: t("#{association}.index.title"), 
         value: raw(resource.send(association).map{|a| link_to a.name, a}.join(', '))
       )
@@ -42,6 +43,7 @@ module ShowHelper
     
     if resource.send(association)
       show_attribute(
+        association,
         title: title, 
         value: link_to(resource.send(association).try(:name), resource.send(association))
       )  
