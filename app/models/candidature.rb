@@ -22,6 +22,11 @@ class Candidature < ActiveRecord::Base
   
   before_validation :set_offeror
   
+  # association shortcuts
+  def project
+    vacancy.project
+  end
+  
   private
   
   def set_offeror
