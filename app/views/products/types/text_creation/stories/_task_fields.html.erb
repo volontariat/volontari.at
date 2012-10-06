@@ -1,0 +1,7 @@
+<fieldset>
+  <%= f.input :name %>  
+  <%= f.input :keywords if f.object.story.with_keywords %>
+  <%= remove_fields(f) %>
+</fieldset>
+
+<hr/>
