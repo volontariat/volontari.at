@@ -17,6 +17,13 @@ class AppConfig < Settingslogic
     end
     config_file
   end
+  
+  def self.load!
+  end
+  
+  def self.setup!
+  end
+  
   source source_file_name
   namespace Rails.env
   
