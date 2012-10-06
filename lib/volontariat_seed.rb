@@ -2,8 +2,7 @@ class VolontariatSeed < DbSeed
   USER_ROLES = {
     master: {},
     admin: {},
-    moderator: {},
-    supervisor: {},
+    project_owner: {},
     user: {}
   }
   

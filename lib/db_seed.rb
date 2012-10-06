@@ -58,6 +58,12 @@ class DbSeed
   
   def create_roles
     Role.import([:name], self.class::USER_ROLES.keys.map{|role| [role.to_s.humanize]})
+    
+    self.class::USER_ROLES.keys.each do |role|
+      attributes = { name: role.to_s.humanize, public: [:project_owner, :user].include?(role) }
+      
+      "Role::#{role.to_s.classify}".constantize.create(attributes)
+    end
   end
   
   def create_users
