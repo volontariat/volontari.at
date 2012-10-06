@@ -1,0 +1,14 @@
+<% options ||= {} %>
+<% options = {
+  current_parent: parent, show_title: true, append_new_link: true,
+  columns: ['name', 'story_id']
+}.merge(options) %>
+<%= form_tag update_multiple_tasks_path, method: :post do %>
+  <%= render partial: 'shared/collection/table', locals: { 
+    type: 'tasks', collection: collection, columns: options[:columns], 
+    options: {
+      append_new_link: options[:append_new_link], show_title: options[:show_title],
+      current_parent: options[:current_parent]
+    }
+  } %>
+<% end %>
