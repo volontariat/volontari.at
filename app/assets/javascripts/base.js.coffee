@@ -15,10 +15,10 @@ $(document).ready ->
     regexp = new RegExp($(this).data('id'), 'g')
     target = $(this)
     
-    if $(this).data('number-of-parents') == 3
-      target = target.parent().parent().parent()
-   
-    target.after($(this).data('fields').replace(regexp, time))
+    if $(this).data('target')
+      target = $('#' + $(this).data('target'))
+      
+    target.before($(this).data('fields').replace(regexp, time))
     event.preventDefault()
   
   $('input[data-autocomplete]').each (k, v) ->
