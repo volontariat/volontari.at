@@ -1,3 +1,8 @@
+if ENV['COVERAGE_REPORT']
+  require 'simplecov'
+  SimpleCov.start 'rails'
+end
+
 require 'rubygems'
 require 'spork'
 

@@ -4,6 +4,11 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
+if ENV['COVERAGE_REPORT']
+  require 'simplecov'
+  SimpleCov.start 'rails'
+end
+
 require 'cucumber/rails'
 require File.expand_path(File.dirname(__FILE__) + '/../../spec/support/mongo_database_cleaner')
 require File.join(File.dirname(__FILE__), "integration_sessions_controller")
