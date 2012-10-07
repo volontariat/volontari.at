@@ -5,3 +5,8 @@ jQuery ->
   $('#user_area_tokens').tokenInput '/areas.json'
     theme: 'facebook'
     prePopulate: $('#user_area_tokens').data('load')
+
+jQuery ->
+  $('#user_foreign_language_tokens').tokenInput '/users/languages.json'
+    theme: 'facebook'
+    prePopulate: $('#user_foreign_language_tokens').data('load')

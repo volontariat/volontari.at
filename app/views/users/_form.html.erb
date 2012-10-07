@@ -8,11 +8,7 @@
   <%= devise_error_messages! %>
     
 <div class="form-inputs">
-  <% [
-    :name, :first_name, :last_name, :email, :password, :password_confirmation, :country, 
-    :language, :interface_language, :profession, :employment_relationship,
-    :area_tokens
-  ].each do |attribute| %>
+  <% @presenter.attributes.each do |attribute| %>
     <%= case attribute
     when :name
       f.input attribute if resource.new_record?
@@ -20,6 +16,8 @@
       f.input attribute, collection: all_language_options
     when :interface_language
       f.input attribute, collection: available_language_options
+    when :foreign_language_tokens
+      f.input attribute, as: :string, input_html: { data: { load: resource.foreign_language_tokens } } unless Rails.env == 'test'
     when :profession
       autocomplete_input(f, attribute)
     when :employment_relationship

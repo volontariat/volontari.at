@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   
   accepts_nested_attributes_for :areas, allow_destroy: true
   
+  serialize :foreign_languages
+  
   validates :name, presence: true, uniqueness: true
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -22,9 +24,9 @@ class User < ActiveRecord::Base
   validates :interface_language, presence: true
         
   attr_accessible :name, :password, :password_confirmation, :text, :language, :first_name, :last_name, 
-                  :salutation, :marital_status, :family_status, :date_of_birth, :place_of_birth, :citizenship, :email,
-                  :country, :language, :interface_language, :profession_id, :employment_relationship, 
-                  :area_tokens,
+                  :salutation, :marital_status, :family_status, :date_of_birth, :place_of_birth, :citizenship, 
+                  :email, :country, :language, :interface_language, :foreign_language_tokens, :profession_id, 
+                  :employment_relationship, :area_tokens,
                   # preferences
                   :main_role_id
        
@@ -40,6 +42,38 @@ class User < ActiveRecord::Base
   after_create :set_main_role
                   
   PARENT_TYPES = ['area', 'project']
+  
+  def self.languages(query = nil)
+    options = []
+    
+    AVAILABLE_LANGUAGES.merge(OTHER_LANGUAGES).each do |locale, language|
+      next if query && !language.downcase.match(query.downcase)
+      
+      if query
+        options << { id: locale, name: language }
+      else
+        options << [language, locale]
+      end
+    end
+    
+    options
+  end
+  
+  def foreign_language_tokens=(tokens)
+    self.foreign_languages = tokens.split(',')
+  end
+  
+  def foreign_language_tokens
+    options = []
+    
+    User.languages.each do |language|
+      next unless foreign_languages.include?(language.second)
+        
+      options << { id: language.second, name: language.first } 
+    end
+    
+    options
+  end
   
   def area_tokens=(tokens)
     self.area_ids = Area.ids_from_tokens(tokens)

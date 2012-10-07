@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121006170407) do
+ActiveRecord::Schema.define(:version => 20121007071543) do
 
   create_table "areas", :force => true do |t|
     t.string   "ancestry"
@@ -188,11 +188,11 @@ ActiveRecord::Schema.define(:version => 20121006170407) do
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
     t.string   "country"
-    t.string   "foreign_language"
     t.string   "interface_language"
     t.string   "employment_relationship"
     t.integer  "profession_id"
     t.integer  "main_role_id"
+    t.text     "foreign_languages"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

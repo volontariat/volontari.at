@@ -10,10 +10,15 @@ class UsersController < ApplicationController
     @users = parent ? parent.users : User.all
   end
   
+  def languages
+    render json: User.languages(params[:q]).to_json and return
+  end
+  
   def show
   end
   
   def edit
+    @presenter = Resources::User::FormPresenter.new(self.view_context, resource: resource)
   end
   
   def preferences
@@ -24,7 +29,7 @@ class UsersController < ApplicationController
   
   def update
     if current_user.update_attributes(params[:user])
-      redirect_to current_user, notice: t('general.form.successfully_updated')
+      redirect_to edit_user_path(current_user), notice: t('general.form.successfully_updated')
     else
       render :edit
     end
