@@ -1,4 +1,13 @@
 class DeviseExtensions::RegistrationsController < Devise::RegistrationsController
+  # GET /resource/sign_up
+  def new
+    resource = build_resource({})
+    
+    @presenter = Resources::User::FormPresenter.new(self.view_context, resource: resource)  
+    
+    respond_with resource
+  end
+  
   # POST /resource
   def create
     build_resource
