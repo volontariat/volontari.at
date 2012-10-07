@@ -7,6 +7,10 @@ class ResourcePresenter < Presenter
   
   protected
   
+  def resource
+    @resource
+  end
+  
   def product
     if @resource && @resource.respond_to?(:product)
       @resource.product
