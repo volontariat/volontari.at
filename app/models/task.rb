@@ -7,7 +7,7 @@ class Task
   include Model::MongoDb::Commentable
   
   #embedded_in :story
-  belongs_to :story#, inverse_of: nil
+  belongs_to :story
   
   #embeds_one :result
   has_one :result, dependent: :destroy
@@ -28,6 +28,7 @@ class Task
   validates :offeror_id, presence: true
   validates :name, presence: true, uniqueness: { scope: :story_id }
   validates :text, presence: true
+  validate :reserved_words_exclusion
   
   after_initialize :cache_associations
   before_validation :cache_associations  
@@ -42,6 +43,17 @@ class Task
   def user=(value); self.user_id = value.id; end
   
   private
+  
+  def reserved_words_exclusion
+    current_slug = to_param
+    
+    if ['new', 'edit', 'next'].include?(current_slug)
+      message = I18n.t(
+        'activerecord.errors.models.general.attributes.name.reserved_word_included'
+      )
+      errors[:name] << message unless errors[:name].include? message
+    end
+  end
   
   def cache_associations
     self.offeror_id = story.offeror_id if story.present?
