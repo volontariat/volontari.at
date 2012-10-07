@@ -201,21 +201,23 @@ SimpleNavigation::Configuration.run do |navigation|
  
     if user_signed_in?
       primary.item :workflow, t('workflow.index.title'), workflow_path do |workflow|
-        workflow.item :project_owners, t('workflow.project_owners.index.title'), workflow_project_owners_path do |project_owners|
-          project_owners.item :vacancies, t('vacancies.index.title'), open_workflow_vacancies_path do |vacancies|
+        workflow.item :project_owner, t('workflow.project_owner.index.title'), workflow_project_owner_index_path do |project_owner|
+          project_owner.item :vacancies, t('vacancies.index.title'), open_workflow_vacancies_path do |vacancies|
             Vacancy::STATES.each do |state|
               vacancies.item state, t("vacancies.show.states.#{state}"), eval("#{state}_workflow_vacancies_path")
             end
           end
             
-          project_owners.item :candidatures, t('candidatures.index.title'), new_workflow_candidatures_path do |candidatures|
+          project_owner.item :candidatures, t('candidatures.index.title'), new_workflow_candidatures_path do |candidatures|
             Candidature::STATES.each do |state|
               candidatures.item state, t("candidatures.show.states.#{state}"), eval("#{state}_workflow_candidatures_path")
             end
           end
         end
         
-        workflow.item :users, t('workflow.users.index.title'), workflow_users_path do |users|
+        workflow.item :user, t('workflow.user.index.title'), workflow_user_index_path do |user|
+          user.item :no_name, t('workflow.user.products.no_name.title'), product_workflow_user_index_path('no-name')
+          user.item :text_creation, 'Text Creation', product_workflow_user_index_path('text-creation')
         end
       end
             

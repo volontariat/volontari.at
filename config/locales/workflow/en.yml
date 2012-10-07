@@ -4,14 +4,18 @@ en:
     index:
       title: Workflow
     
-    project_owners:
+    project_owner:
       index:
         title: Project Owners
      
-    users:
+    user:
       index:
         title: Users 
-    
+      
+      products:
+        no_name:
+          title: 'No Name'
+            
     controllers:
-      vacancies:
-      candidatures: 
+      vacancies: 
+      candidatures:

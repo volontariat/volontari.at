@@ -122,6 +122,7 @@ Volontariat::Application.routes.draw do
     collection do
       put :update_multiple
       get :autocomplete
+      get :languages
     end
     
     member do
@@ -132,10 +133,13 @@ Volontariat::Application.routes.draw do
   match 'workflow' => 'workflow#index', as: :workflow
   
   namespace 'workflow' do
-    resources :project_owners, only: :index do
+    resources :project_owner, only: :index do
     end
 
-    resources :users, only: :index do
+    resources :user, only: :index do
+      collection do
+        match 'products/:id' => 'users/products#show', as: :product
+      end
     end
     
     resources :vacancies, controller: 'vacancies', only: :index do
