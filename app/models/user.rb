@@ -59,6 +59,10 @@ class User < ActiveRecord::Base
     options
   end
   
+  def languages
+    foreign_languages + [language]
+  end
+  
   def foreign_language_tokens=(tokens)
     self.foreign_languages = tokens.split(',')
   end

@@ -1,4 +1,5 @@
 <%= simple_form_for(@story, html: {class: 'floating_form form-vertical'}) do |f| %>
+  <%= render partial: 'shared/form/error_messages', locals: { resource: @story } %>
   <% if step == :activate %>
   <input type="hidden" name="next_step" value="1"/>
   <% end %>

@@ -1,4 +1,6 @@
 class Product::TextCreation::Task < ::Task
+  include StateMachines::Task
+  
   field :keywords, type: Array 
    
   attr_accessible :keywords

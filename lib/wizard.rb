@@ -21,7 +21,7 @@ module Wizard
       end
       
       @previous_step = previous_step(@step)
-      @next_step = next_step(@step)
+      @next_step = action_name.try(:to_sym) == @step ? @step : next_step(@step)
     end
   end
 end

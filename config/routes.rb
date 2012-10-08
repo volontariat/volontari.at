@@ -94,6 +94,7 @@ Volontariat::Application.routes.draw do
     member do
       match 'setup_tasks' => 'stories#setup_tasks', via: [:get, :put]
       match 'activate' => 'stories#activate', via: [:get, :put]
+      match 'complete' => 'stories#complete', via: [:get, :put]
     end
   end
   
@@ -103,6 +104,13 @@ Volontariat::Application.routes.draw do
     collection do
       put :update_multiple
       get :autocomplete
+    end
+    
+    member do
+      match 'assign' => 'tasks#assign', via: [:get, :put]
+      match 'review' => 'tasks#review', via: [:get, :put]
+      match 'unassign' => 'tasks#unassign', via: [:get, :put]
+      match 'complete' => 'tasks#complete', via: [:get, :put]
     end
   end
   
@@ -138,7 +146,16 @@ Volontariat::Application.routes.draw do
 
     resources :user, only: :index do
       collection do
-        match 'products/:id' => 'users/products#show', as: :product
+        match 'products/:id' => 'user/products#show', as: :product
+        match 'stories/:story_id/tasks' => 'user/tasks#index', as: :tasks
+        match 'stories/:story_id/tasks/next' => 'user/tasks#next', as: :next_task
+        #match 'tasks/:id' => 'user/tasks#show', as: :task
+        match 'tasks/:id/edit' => 'user/tasks#edit', as: :edit_task
+        
+        match 'tasks/:id/assign' => 'user/tasks#assign', as: :assign_task
+        match 'tasks/:id/review' => 'user/tasks#review', as: :review_task
+        match 'tasks/:id/unassign' => 'user/tasks#unassign', as: :unassign_task
+        match 'tasks/:id/complete' => 'user/tasks#complete', as: :complete_task
       end
     end
     

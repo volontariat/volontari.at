@@ -2,6 +2,8 @@ class Product
   include Mongoid::Document
   include Mongoid::Timestamps
   
+  has_many :stories, dependent: :nullify
+  
   field :_id, type: String, default: -> { name.to_s.parameterize }
   field :user_id, type: Integer
   field :name, type: String, localize: true
@@ -49,6 +51,8 @@ class Product
   def areas; Area.where(id: area_ids); end
   
   def projects; Project.where(product_id: id); end
+  
+  def story_class; "#{self.class.name}::Story".constantize rescue Story; end
   
   private
   

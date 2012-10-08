@@ -37,7 +37,7 @@ FactoryGirl.define do
   
   factory :product do
     name 'Text Creation'
-    user_id User.first.try(:id) || Factory(:user).id
+    user_id Factory(:user, password: 'password', password_confirmation: 'password').id
     area_ids [Area.first.try(:id) || Factory(:area).id]
     text Faker::Lorem.sentences(5)
     

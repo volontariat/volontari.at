@@ -5,6 +5,7 @@ class Task
   
   include Model::MongoDb::Customizable
   include Model::MongoDb::Commentable
+  include StateMachines::Task
   
   #embedded_in :story
   belongs_to :story
@@ -23,6 +24,11 @@ class Task
   slug :name
   
   attr_accessible :story_id, :name, :text, :result_attributes
+  
+  scope :current, where(state: 'new')
+  scope :unassigned, exists(user_id: false)
+  scope :assigned, exists(user_id: true)
+  scope :complete, where(state: 'complete')
   
   validates :story_id, presence: true
   validates :offeror_id, presence: true

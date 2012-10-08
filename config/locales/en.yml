@@ -74,6 +74,11 @@ en:
      
     errors:
       models:
+        general:
+          attributes:
+            name:
+              reserved_word_included: is a reserved word
+               
         product:
           attributes:
             name:
@@ -208,6 +213,11 @@ en:
       
     new: 
       title: New Task
+    
+    show:
+      story_text: Story
+      text: Task Text
+    
     edit: 
       title: Edit Task  
         

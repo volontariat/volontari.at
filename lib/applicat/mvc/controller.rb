@@ -4,6 +4,8 @@ module Applicat
     module Controller
       def self.included(base)
         base.class_eval do
+          include RailsInfo::Controller::ExceptionDiagnostics
+          
           include ErrorHandling
           include TransitionActions
           

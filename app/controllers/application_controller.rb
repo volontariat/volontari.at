@@ -27,9 +27,9 @@ class ApplicationController < ActionController::Base
   
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.main_role.is_a? Role::ProjectOwner
-      workflow_project_owners_path
+      workflow_project_owner_index_path
     elsif resource_or_scope.main_role.is_a? Role::User
-      workflow_users_path
+      workflow_user_index_path
     else
       workflow_path
     end

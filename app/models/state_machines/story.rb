@@ -8,7 +8,7 @@ module StateMachines::Story
       attr_accessor :current_user
       
       const_set 'STATES', [:new, :active]
-      const_set 'EVENTS', [:activate]
+      const_set 'EVENTS', [:initialization, :setup_tasks, :activate, :complete]
       
       state_machine :state, initial: :new do
         event :initialization do

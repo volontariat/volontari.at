@@ -18,12 +18,9 @@
     <li><%= link_to t('general.edit'), eval("edit_#{type.singularize}_path(resource)") %></li>
   <% end %>
   <% if resource.respond_to? :state_events %>
-    <% resource.state_events.select{|event| can? event, resource }.each do |event| %>
-    <li>
-      <%= link_to t("#{type}.show.events.#{event}"), eval("#{event}_#{type.singularize}_path(resource)"), method: :put %> 
-    </li>
-    <% end %>
+  <li class="divider"></li>
   <% end %>
+  <%= render 'shared/resource/event_elements', resource: resource, type: type %>
   </ul>
 </div>
 <% end %>

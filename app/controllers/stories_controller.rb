@@ -2,7 +2,7 @@ class StoriesController < ApplicationController
   include Applicat::Mvc::Controller::Resource
   include Wizard::Controller
   
-  wizard_steps :setup_tasks, :activate
+  wizard_steps :initialization, :setup_tasks, :activate
   
   before_filter :build_resource, only: [:new, :create]
   before_filter :resource, only: [:show, :edit, :update, :setup_tasks, :activate]
@@ -76,6 +76,11 @@ class StoriesController < ApplicationController
   def parent
     @project
   end
+  
+  protected
+  
+  def after_setup_tasks; render_wizard; end
+  def after_activate; render_wizard; end
   
   private
   

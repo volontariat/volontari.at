@@ -3,18 +3,24 @@ en:
   workflow:
     index:
       title: Workflow
+      assigned_tasks: Assigned Tasks
+      completed_tasks: Completed Tasks
     
     project_owner:
       index:
-        title: Project Owners
+        title: Project Owner
      
     user:
       index:
-        title: Users 
+        title: User
       
       products:
         no_name:
-          title: 'No Name'
+          title: No Name
+          
+      tasks:
+        next:
+          title: Next Task
             
     controllers:
       vacancies: 

@@ -1,0 +1,34 @@
+<% if collection.none? || collection.select{|e| e.id.present? }.none? %>
+<p><%= I18n.t("tasks.index.empty_collection")%></p>
+<% else %>
+<table class="table table-striped">
+  <thead>
+    <tr class="<%= cycle('odd', 'even') %>">
+  <% columns.map{|c| c.gsub('_id', '')}.each do |column| %>
+      <th><%= t("activerecord.attributes.task.#{column}") %></th>
+  <% end %>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% collection.select{|e| e.id.present? }.each do |resource| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+    <% columns.each do |column| %>
+      <% if column == 'name'%>
+      <td>
+        <%= link_to resource.send(column), edit_task_workflow_user_index_path(resource) %>
+      </td>
+      <% else %>
+      <td>
+        <%= table_cell column, resource, columns.is_a?(Hash) ? columns[column] : nil %>
+      </td>
+      <% end %>
+    <% end %>
+      <td>
+        <%= render 'shared/resource/actions', resource: resource, type: 'tasks' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>

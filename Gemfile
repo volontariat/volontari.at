@@ -145,6 +145,7 @@ group :development do
   gem 'linecache', '0.46', platforms: :mri_18
   gem 'yard', require: false
   gem 'letter_opener'
+  gem 'rails_info', path: '../../gems/engines/rails_info'
   
   # for tracing AR object instantiation and memory usage per request
   gem 'oink'

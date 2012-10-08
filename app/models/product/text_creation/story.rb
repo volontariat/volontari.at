@@ -15,4 +15,8 @@ class Product::TextCreation::Story < Story
   validates :language, presence: true
   validates :min_length, presence: true
   validates :max_length, presence: true
+  
+  def self.for_user(user)
+    active.where(:language.in => user.languages)
+  end
 end

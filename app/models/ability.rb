@@ -25,6 +25,8 @@ class Ability
       can :destroy, User, id: user.id
       
       can [:new, :create], [Area, Profession, Project, Vacancy, Candidature, Comment]
+      can :assign, Task
+      can :review, Task, user_id: user.id
       
       { 
         user_id: [Product, Project, Candidature, Comment, ProjectUser, Result], 
@@ -35,6 +37,8 @@ class Ability
       
       can Candidature::EVENTS, Candidature, offeror_id: user.id
       can Vacancy::EVENTS, Vacancy, offeror_id: user.id
+      can Story::EVENTS, Story, offeror_id: user.id
+      can [:unassign, :complete], Task, offeror_id: user.id
       
       if user.name == 'Master'
         can [:manage, :moderate, :administrate, :supervisor], :all

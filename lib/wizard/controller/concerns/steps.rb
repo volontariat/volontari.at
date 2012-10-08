@@ -5,20 +5,24 @@ module Wizard::Controller::Concerns::Steps
     # Give our Views helper methods!
     helper_method :step,   :next_step,          :wizard_steps,     :current_step?,
                   :past_step?,      :future_step?,     :previous_step?,
-                  :next_step?
+                  :next_step?, :last_step?
   end
   
   module ClassMethods
     private
     
     def wizard_steps(*wizard_steps)
-      const_set 'WIZARD_STEPS', [:initialization] + wizard_steps
+      const_set 'WIZARD_STEPS', wizard_steps
       
       # TODO: clarify if we still need to generate actions when we have an update action and next_step trigger
-      "#{controller_name.camelize}Controller::WIZARD_STEPS".constantize.each do |wizard_step|  
+      "::#{self.to_s}::WIZARD_STEPS".constantize.each do |wizard_step|  
         next if wizard_step == :initialization
         
         define_method wizard_step do
+          setup_wizard
+          
+          send("before_#{wizard_step}") if self.respond_to?("before_#{wizard_step}")
+          
           wizard_resource = wizard_resource_class_name.constantize.find(params[:id])
           resource_name = wizard_resource_class_name.underscore
           resource.attributes = params[resource_name.to_sym] if params[resource_name.to_sym]
@@ -26,7 +30,7 @@ module Wizard::Controller::Concerns::Steps
           if @story.send(next_step)
             redirect_to eval("#{next_step}_#{resource_name}_path(resource)")
           else
-            render "wizard"
+            send("after_#{wizard_step}") if self.respond_to?("after_#{wizard_step}")
           end
         end
       end
@@ -34,7 +38,11 @@ module Wizard::Controller::Concerns::Steps
   end
 
   def wizard_steps
-    "#{controller_name.camelize}Controller::WIZARD_STEPS".constantize
+    name = self.to_s.gsub(/#|<|>|#/, '').split(':').select{|e| !e.blank? }
+    name.pop
+    name = name.join('::')
+    
+    "#{name}::WIZARD_STEPS".constantize
   end
   
   def wizard_resource_class_name
@@ -106,5 +114,11 @@ module Wizard::Controller::Concerns::Steps
     step  ||= :finish
     
     step
+  end
+  
+  def last_step?(current_step = nil)
+    current_step = current_step || step
+    
+    current_step == wizard_steps.last
   end
 end

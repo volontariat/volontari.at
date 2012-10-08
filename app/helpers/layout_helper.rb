@@ -1,11 +1,11 @@
 module LayoutHelper
   def breadcrumbs
-    result = render_navigation renderer: :breadcrumbs_without_method_links, join_with: ' &gt; '
+    result = render_navigation context: :main, renderer: :breadcrumbs_without_method_links, join_with: ' &gt; '
     result && result.split('<a').length > 2 ? result : ''
   end
   
   def sidenav
-    result = render_navigation(renderer: :twitter_sidenav, level: @twitter_sidenav_level)
+    result = render_navigation context: :main, renderer: :twitter_sidenav, level: @twitter_sidenav_level
     result && result.split('<a').length > 2 ? result : ''
   end
   

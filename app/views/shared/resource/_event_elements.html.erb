@@ -1,0 +1,7 @@
+<% if resource.respond_to? :state_events %>
+  <% resource.state_events.select{|event| can? event, resource }.each do |event| %>
+<li>
+  <%= link_to t("#{type}.show.events.#{event}"), eval("#{event}_#{type.singularize}_path(resource)"), method: :put %> 
+</li>
+  <% end %>
+<% end %>

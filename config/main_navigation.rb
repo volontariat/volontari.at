@@ -216,8 +216,24 @@ SimpleNavigation::Configuration.run do |navigation|
         end
         
         workflow.item :user, t('workflow.user.index.title'), workflow_user_index_path do |user|
-          user.item :no_name, t('workflow.user.products.no_name.title'), product_workflow_user_index_path('no-name')
-          user.item :text_creation, 'Text Creation', product_workflow_user_index_path('text-creation')
+          user.item :no_name, t('workflow.user.products.no_name.title'), product_workflow_user_index_path('no-name') do |product|
+          end
+          
+          user.item :text_creation, 'Text Creation', product_workflow_user_index_path('text-creation') do |product|
+            unless (@story.new_record? rescue true)
+              product.item(:show, @story.name, story_path(@story)) do |story|
+                story.item :show, t('general.details'), "#{story_path(@story)}#top"
+              
+                story.item :tasks, t('tasks.index.title'), tasks_workflow_user_index_path(@story) do |tasks|
+                  unless (@task.new_record? rescue true)
+                    tasks.item(:edit, @task.name, edit_task_workflow_user_index_path(@task))
+                  end
+                end
+              end
+            end
+            
+            product.item :next_task, t('workflow.user.tasks.next.title'), next_task_workflow_user_index_path('text-creation')
+          end
         end
       end
             

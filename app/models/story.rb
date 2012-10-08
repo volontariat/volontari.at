@@ -7,7 +7,7 @@ class Story
   include StateMachines::Story
   include Model::MongoDb::Commentable
   
-  has_many :tasks, dependent: :destroy#, inverse_of: :story
+  has_many :tasks, dependent: :destroy
   
   # cached associations
   has_many :results
@@ -24,6 +24,8 @@ class Story
   
   attr_accessible :project_id, :name, :text, :tasks_attributes
   
+  scope :active, where(state: 'active')
+  
   validates :project_id, presence: true
   validates :offeror_id, presence: true
   validates :name, presence: true, uniqueness: { scope: :project_id }
@@ -34,12 +36,29 @@ class Story
 
   PARENT_TYPES = ['project']
   
+  def self.for_user(user)
+    raise NotImplementedError
+  end
+  
   # belongs_to (SQL)
   def offeror; offeror_id ? User.find(offeror_id) : nil; end
   def offeror=(value); self.offeror_id = value.id; end
   
   def project; project_id ? Project.find(project_id) : nil; end
   def project=(value); self.project_id = value.id; end
+  
+  def next_task_for_user(user)
+    task = tasks.assigned.where(user_id: user.id).first
+    
+    unless task
+      task = story.tasks.current.unassigned.first
+      task.user_id = current_user.id
+      
+      return task.errors.full_messages.join('<br/>') unless @task.assign
+    end
+    
+    task
+  end
   
   private
   
