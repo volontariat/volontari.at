@@ -26,7 +26,7 @@ class Ability
       
       can [:new, :create], [Area, Profession, Project, Vacancy, Candidature, Comment]
       can :assign, Task
-      can :review, Task, user_id: user.id
+      can [:update, :cancel, :review], Task, user_id: user.id
       
       { 
         user_id: [Product, Project, Candidature, Comment, ProjectUser, Result], 
