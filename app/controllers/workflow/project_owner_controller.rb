@@ -1,5 +1,7 @@
 class Workflow::ProjectOwnerController < ApplicationController
   def index
+    @stories = {}
+    @tasks = {}
     @vacancies = {}
     @candidatures = {}
     
@@ -10,10 +12,19 @@ class Workflow::ProjectOwnerController < ApplicationController
       
       states.each do |state|
         # eval("@#{controller}[state] = current_user.offeror_#{controller}.where(state: state).limit(5)")
-        vacancies = controller.to_s.classify.constantize.where(
+        collection = controller.to_s.classify.constantize.where(
           query, user_id: current_user.id, state: state
         ).order('created_at DESC').limit(5)
-        eval("@#{controller}[state] = vacancies")
+        eval("@#{controller}[state] = collection")
+      end
+    end
+    
+    { stories: [:completed], tasks: [:under_supervision] }.each do |controller, states|
+      states.each do |state|
+        collection = controller.to_s.classify.constantize.where(
+          offeror_id: current_user.id, state: state
+        ).limit(5)
+        eval("@#{controller}[state] = collection")
       end
     end
     

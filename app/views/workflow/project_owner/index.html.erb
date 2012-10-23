@@ -2,9 +2,17 @@
   <div class="row-fluid">
     <div class="tabs">
       <ul>
+        <li><a href="#stories"><%= I18n.t('stories.index.title') %></a></li>
+        <li><a href="#tasks"><%= I18n.t('workflow.project_owner.index.tasks') %></a></li>
         <li><a href="#candidatures"><%= I18n.t('candidatures.index.title') %></a></li>
         <li><a href="#vacancies"><%= I18n.t('vacancies.index.title') %></a></li>
       </ul>
+      <div id="stories">
+        <%= render 'stories' %>
+      </div>
+      <div id="tasks">
+        <%= render 'tasks' %>
+      </div>
       <div id="candidatures">
         <%= render 'candidatures' %>
       </div>
