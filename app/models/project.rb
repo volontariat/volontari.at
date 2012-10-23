@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   belongs_to :user
+  belongs_to :organization
   
   has_many :project_users
   has_many :vacancies, dependent: :destroy
@@ -16,11 +17,12 @@ class Project < ActiveRecord::Base
   validates :text, presence: true
   validates :area_ids, presence: true
   
-  attr_accessible :product_id, :name, :text, :url, :area_ids
+  attr_accessible :organization_id, :product_id, :name, :text, :url, :area_ids
   
   extend FriendlyId
   
   before_validation :include_areas_of_product
+  after_create :create_project_user
   
   friendly_id :name, use: :slugged
   
@@ -51,5 +53,9 @@ class Project < ActiveRecord::Base
       self.area_ids += product.areas.map(&:id)
       self.area_ids.uniq!
     end
+  end
+  
+  def create_project_user
+    ProjectUser.create(project_id: id, user_id: user_id)
   end
 end
