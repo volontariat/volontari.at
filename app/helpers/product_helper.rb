@@ -1,4 +1,14 @@
 module ProductHelper
+  def render_product_specific_presenter_if_available(resource, partial_path, method, options = {})
+    if @presenter.respond_to?(method)
+      @step_presenter = @presenter.send(method) 
+    else
+      @step_presenter = nil
+    end
+    
+    render_product_specific_partial_if_available(resource, "#{partial_path}/#{method}", options)
+  end
+  
   def render_product_specific_partial_if_available(resource, partial_path, options = {})
     path = nil
     partial_path = partial_path.split('/')
