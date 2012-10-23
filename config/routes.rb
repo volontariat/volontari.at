@@ -142,20 +142,23 @@ Volontariat::Application.routes.draw do
   
   namespace 'workflow' do
     resources :project_owner, only: :index do
+      collection do
+        match 'tasks/:id/edit' => 'tasks#edit', as: :edit_task
+      end
     end
-
+    
     resources :user, only: :index do
       collection do
-        match 'products/:id' => 'user/products#show', as: :product
-        match 'stories/:story_id/tasks' => 'user/tasks#index', as: :tasks
-        match 'stories/:story_id/tasks/next' => 'user/tasks#next', as: :next_task
-        #match 'tasks/:id' => 'user/tasks#show', as: :task
-        match 'tasks/:id/edit' => 'user/tasks#edit', as: :edit_task
+        match 'products/:id' => 'products#show', as: :product
+        match 'stories/:story_id/tasks' => 'tasks#index', as: :tasks
+        match 'stories/:story_id/tasks/next' => 'tasks#next', as: :next_task
+        put 'tasks/:id' => 'tasks#update', as: :update_task
+        match 'tasks/:id/edit' => 'tasks#edit', as: :edit_task
         
-        match 'tasks/:id/assign' => 'user/tasks#assign', as: :assign_task
-        match 'tasks/:id/review' => 'user/tasks#review', as: :review_task
-        match 'tasks/:id/unassign' => 'user/tasks#unassign', as: :unassign_task
-        match 'tasks/:id/complete' => 'user/tasks#complete', as: :complete_task
+        match 'tasks/:id/assign' => 'tasks#assign', as: :assign_task
+        match 'tasks/:id/review' => 'tasks#review', as: :review_task
+        match 'tasks/:id/unassign' => 'tasks#unassign', as: :unassign_task
+        match 'tasks/:id/complete' => 'tasks#complete', as: :complete_task
       end
     end
     
