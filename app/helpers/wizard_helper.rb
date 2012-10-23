@@ -14,7 +14,11 @@ module WizardHelper
     
     partial_path = wizard_step == :initialization ? 'form' : "steps/#{wizard_step}"
     
-    @step_presenter = @presenter.send("#{wizard_step}_step") if @presenter.respond_to?("#{wizard_step}_step")
+    if @presenter.respond_to?(wizard_step)
+      @step_presenter = @presenter.send(wizard_step) 
+    else
+      @step_presenter = nil
+    end
     
     render_product_specific_partial_if_available(
       resource, "#{controller_name}/#{partial_path}"
