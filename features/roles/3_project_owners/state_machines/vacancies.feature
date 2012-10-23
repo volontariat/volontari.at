@@ -11,7 +11,7 @@ Feature: Manage a vacancy transitions
     And a project named "project 1"
     And a user named "user 2"
     And a vacancy named "vacancy 1" with state "recommended"
-    And I am on the workflow page
+    And I am on the project owner's workflow page
     When I click on the tab "recommended_vacancies"
     And I click on the 1st actions dropdown of a tab "recommended_vacancies"
     And I follow "Accept recommendation"
