@@ -1,0 +1,5 @@
+<%= form_tag update_multiple_organizations_path, method: :post do %>
+  <%= render 'shared/collection/table', 
+    type: 'organizations', collection: @organizations, columns: ['name'] 
+  %>
+<% end %>
