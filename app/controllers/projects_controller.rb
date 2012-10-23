@@ -6,8 +6,8 @@ class ProjectsController < ApplicationController
   respond_to :html, :js, :json
   
   def index
-    parent = find_parent Project::PARENT_TYPES
-    @projects = parent ? parent.projects : Project.all
+    @parent = find_parent Project::PARENT_TYPES
+    @projects = @parent ? @parent.projects.order(:name) : Project.order(:name)
   end
   
   def show

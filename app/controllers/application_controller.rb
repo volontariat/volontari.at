@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   respond_to :html, :js, :json
   
   def parent
-    nil
+    @parent
   end
   
   helper_method :parent
