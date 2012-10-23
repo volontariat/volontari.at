@@ -51,10 +51,10 @@ class Story
     task = tasks.assigned.where(user_id: user.id).first
     
     unless task
-      task = story.tasks.current.unassigned.first
-      task.user_id = current_user.id
+      task = tasks.current.unassigned.first
+      task.user_id = user.id
       
-      return task.errors.full_messages.join('<br/>') unless @task.assign
+      return task.errors.full_messages.join('<br/>') unless task.assign
     end
     
     task
