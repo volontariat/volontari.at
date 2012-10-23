@@ -5,7 +5,9 @@ module CollectionHelper
     if column == 'name'
       value = resource.send(column)
       
-      if value.blank? && alternative_value.present? 
+      if alternative_value.is_a?(Proc)
+        return alternative_value.call(resource)
+      elsif value.blank? && alternative_value.present? 
         value = eval("resource.#{alternative_value}")
       elsif value.blank?
         value = '-'
