@@ -35,14 +35,18 @@ module Wizard::Controller::Concerns::Steps
         end
       end
     end
+    
+    def wizard_step_per_state(hash)
+      const_set 'WIZARD_STEP_PER_STATE', hash
+    end
   end
 
   def wizard_steps
-    name = self.to_s.gsub(/#|<|>|#/, '').split(':').select{|e| !e.blank? }
-    name.pop
-    name = name.join('::')
-    
-    "#{name}::WIZARD_STEPS".constantize
+    "#{controller_class_name}::WIZARD_STEPS".constantize
+  end
+  
+  def wizard_step_per_state
+    "#{controller_class_name}::WIZARD_STEP_PER_STATE".constantize rescue {}
   end
   
   def wizard_resource_class_name
@@ -120,5 +124,13 @@ module Wizard::Controller::Concerns::Steps
     current_step = current_step || step
     
     current_step == wizard_steps.last
+  end
+  
+  private
+  
+  def controller_class_name
+    name = self.to_s.gsub(/#|<|>|#/, '').split(':').select{|e| !e.blank? }
+    name.pop
+    name.join('::')
   end
 end
