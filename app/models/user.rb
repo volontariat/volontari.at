@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
   
   def languages
-    foreign_languages + [language]
+    (foreign_languages || []) + [language]
   end
   
   def foreign_language_tokens=(tokens)
@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
     options = []
     
     User.languages.each do |language|
-      next unless foreign_languages.include?(language.second)
+      next unless (foreign_languages  || []).include?(language.second)
         
       options << { id: language.second, name: language.first } 
     end
