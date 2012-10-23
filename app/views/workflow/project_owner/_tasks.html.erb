@@ -1,0 +1,34 @@
+        <div class="tabs">
+          <ul>
+<% @tasks.keys.each do |state| %>          
+            <li>
+              <a href="#<%= state %>_tasks">
+                <%= I18n.t("tasks.show.states.#{state}") %>
+  <% if @tasks[state].length == 5 %>
+                (<%= @tasks[state].length %>+) 
+  <% elsif @tasks[state].length > 0 %>
+                (<%= @tasks[state].length %>) 
+  <% end %> 
+              </a>
+            </li>
+<% end %>
+          </ul>
+<% @tasks.keys.each do |state| %>        
+          <div id="<%= state %>_tasks">
+            <%= render 'shared/collection/table', {
+              type: 'tasks', collection: @tasks[state], 
+              columns: {
+                'name' => Proc.new{|resource| link_to(resource.name, edit_task_workflow_project_owner_index_path(resource)) }, 
+                'story_id' => nil, 'user_id' => nil
+              },
+              options: {
+                show_title: false, append_new_link: false, show_actions: false
+              }
+            } %>
+            
+  <% if @tasks[state].length == 5 %>            
+            <p><%= link_to t('general.more'), eval("#{state}_workflow_tasks_path") %></p>
+  <% end %>
+          </div> 
+<% end %>
+        </div>

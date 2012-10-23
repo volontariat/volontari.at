@@ -1,0 +1,29 @@
+        <div class="tabs">
+          <ul>
+<% @stories.keys.each do |state| %>          
+            <li>
+              <a href="#<%= state %>_stories">
+                <%= I18n.t("stories.show.states.#{state}") %>
+  <% if @stories[state].length == 5 %>
+                (<%= @stories[state].length %>+) 
+  <% elsif @stories[state].length > 0 %>
+                (<%= @stories[state].length %>) 
+  <% end %> 
+              </a>
+            </li>
+<% end %>
+          </ul>
+<% @stories.keys.each do |state| %>        
+          <div id="<%= state %>_stories">
+            <%= render partial: 'shared/collection/table', locals: { 
+              type: 'stories', collection: @stories[state], 
+              columns: ['project_id', 'name'],
+              options: {show_title: false, append_new_link: false }
+            } %>
+            
+  <% if @stories[state].length == 5 %>            
+            <p><%= link_to t('general.more'), eval("#{state}_workflow_stories_path") %></p>
+  <% end %>
+          </div> 
+<% end %>
+        </div>
