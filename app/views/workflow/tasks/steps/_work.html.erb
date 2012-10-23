@@ -1,0 +1,17 @@
+<%= render 'workflow/tasks/work_head', resource: resource %>
+
+<%= simple_form_for(resource, url: update_task_workflow_user_index_path(resource), html: {class: 'form-horizontal'}) do |f| %>
+  <%= render 'workflow/tasks/work_form', f: f, resource: resource %>
+  
+  <div class="form-actions">
+    <%= f.button :submit %>
+   
+    <%= f.button :submit, t('workflow.user.general.steps.general.cancel'), name: 'event[cancel]' %>
+   
+    <%= f.button :submit, t('workflow.user.general.steps.general.skip'), name: 'event[skip]' %>
+    
+    <%= f.button :submit, t('users.general.events.review'), name: 'event[review]' %>
+    
+    <%= f.button :submit, t('workflow.user.general.steps.general.next'), name: 'event[next]' %>
+  </div>
+<% end %>

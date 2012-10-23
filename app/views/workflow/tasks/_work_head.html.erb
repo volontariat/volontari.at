@@ -1,0 +1,13 @@
+<h3><%= resource.name %></h3>
+
+<strong><%= t('activerecord.attributes.general.state') %>:</strong> <%= resource.state %>
+
+<h4><%= t('tasks.show.story_text') %></h4>
+
+<%= resource.story.text %>
+
+<h4><%= t('tasks.show.text') %></h4>
+
+<%= resource.text %>
+
+<h4><%= t('activerecord.models.result') %></h4>

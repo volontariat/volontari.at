@@ -1,0 +1,8 @@
+<%= render 'shared/form/error_messages', resource: resource %>
+  
+<div class="form-inputs">
+  <%= render partial: 'shared/form/error_messages', locals: { resource: resource.result } %>
+  <%= f.simple_fields_for :result do |result_form| %>
+    <%= result_form.input :text, as: :text, input_html: {style: 'width: 500px; height:200px;'} %>  
+  <% end %>
+</div>

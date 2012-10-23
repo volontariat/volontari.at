@@ -1,0 +1,11 @@
+<%= render 'workflow/tasks/work_head', resource: resource %>
+
+<%= simple_form_for(resource, url: update_task_workflow_user_index_path(resource), html: {class: 'form-horizontal'}) do |f| %>
+  <%= render 'workflow/tasks/work_form', f: f, resource: resource %>
+  
+  <div class="form-actions">
+    <%= f.button :submit %>
+    
+    <%= f.button :submit, t('tasks.general.events.follow_up'), name: 'event[follow_up]' %>
+  </div>
+<% end %>
