@@ -13,9 +13,9 @@ gem 'foreman', '0.46'
 gem 'thin', '~> 1.3.1', require: false
 gem 'rails_autolink'
 
-# cross-origin resource sharing
-
+# core
 gem 'rack-cors', '~> 0.2.4', require: 'rack/cors'
+gem 'rails_info'
 
 # authentication
 
@@ -54,6 +54,8 @@ gem 'koala'
 gem 'ransack' 
 gem 'settingslogic', git: 'https://github.com/binarylogic/settingslogic.git'
 gem 'faker' # needed not just for testing but for rake db:seed, too
+gem 'paper_trail'
+gem 'mongoid-history'
 
 # mongo model
 gem 'mongoid_slug'
@@ -71,6 +73,7 @@ gem 'simple_form'
 gem 'country_select'
 gem 'auto_html', git: 'git://github.com/Applicat/auto_html'
 gem 'recaptcha', require: 'recaptcha/rails'
+gem 'diffy'
 
 # Could not find a valid gem 'mobile_fu' (>= 0) in any repository
 #gem 'mobile-fu'
@@ -145,7 +148,6 @@ group :development do
   gem 'linecache', '0.46', platforms: :mri_18
   gem 'yard', require: false
   gem 'letter_opener'
-  gem 'rails_info', path: '../../gems/engines/rails_info'
   
   # for tracing AR object instantiation and memory usage per request
   gem 'oink'
