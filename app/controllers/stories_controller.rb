@@ -42,11 +42,9 @@ class StoriesController < ApplicationController
   end
   
   def update
-    @story.attributes = params[:story]
+    @story.attributes.merge!(params[:story])
     
-    #@story.tasks.shift if params[:next_step] == '1' && !@story.tasks.first.valid?
-    
-    success = params[:next_step] == '1' ? @story.send(step) : @story.save!
+    success = params[:next_step] == '1' ? @story.send(step) : @story.save
     
     if success
       redirect_to(
