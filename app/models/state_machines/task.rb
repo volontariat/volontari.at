@@ -7,26 +7,32 @@ module StateMachines::Task
       
       attr_accessor :current_user
       
-      const_set 'STATES', [:new]
-      const_set 'EVENTS', [:assign, :review, :unassign, :complete]
+      const_set 'STATES', [:new, :assigned, :under_supervision, :completed]
+      const_set 'EVENTS', [:assign, :cancel, :review, :follow_up, :complete]
       
       state_machine :state, initial: :new do
         event :assign do
-          transition [:new, :under_supervision] => :assigned
+          transition :new => :assigned
         end
         
         state :assigned do
           validates :user_id, presence: true
         end
         
+        event :cancel do 
+          transition :assigned => :new
+        end
+       
         event :review do
           transition :assigned => :under_supervision
         end
         
-        event :unassign do
-          # TODO: save history of task and initialize task with default values through observer
-          # TODO: add user to task's blacklist through observer
-          transition [:assigned, :under_supervision] => :new
+        state :under_supervision do
+          validates_associated :result
+        end
+       
+        event :follow_up do 
+          transition [:under_supervision, :completed] => :assigned
         end
         
         event :complete do
