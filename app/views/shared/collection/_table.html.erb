@@ -1,8 +1,8 @@
 <% options ||= {} %>
-<% options = {
-  current_parent: parent, show_title: true, append_new_link: true
-}.merge(options) %>
-<% if options[:show_title] %>
+<% table_presenter = layout_presenter.table_presenter(self) %>
+<% table_presenter.set_options(options.merge(type: type)) %>
+
+<% if table_presenter.show_title %>
 <h3><%= t("#{type}.index.title") %></h3>
 <% end %>
 <% if collection.none? || collection.select{|e| e.id.present? }.none? %>
@@ -19,25 +19,18 @@
   </thead>
   <tbody>
   <% collection.select{|e| e.id.present? }.each do |resource| %>
+    <% table_presenter.set_option(:resource, resource) %>
     <tr class="<%= cycle('odd', 'even') %>">
     <% (columns.is_a?(Hash) ? columns.keys : columns).each do |column| %>
       <td>
         <%= table_cell column, resource, columns.is_a?(Hash) ? columns[column] : nil %>
       </td>
     <% end %>
-      <td>
-        <%= render partial: 'shared/resource/actions', locals: { type: type, resource: resource } %>
-      </td>
+      <%= table_presenter.actions %>
     </tr>
   <% end %>
   </tbody>
 </table>
 <% end %>
 
-<% if options[:append_new_link] %>
-  <% if parent %>
-    <%= link_to t("#{type}.new.title"), eval("new_#{root_model_class_name(options[:current_parent]).tableize.singularize}_#{type.singularize}_path(options[:current_parent])") %>
-  <% else %>
-    <%= link_to t("#{type}.new.title"), eval("new_#{type.singularize}_path") %>
-  <% end %>
-<% end %>
+<%= table_presenter.new_link %>
