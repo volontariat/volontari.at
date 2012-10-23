@@ -9,8 +9,17 @@ en:
     project_owner:
       index:
         title: Project Owner
-     
+        tasks: Tasks
+        
     user:
+      general:
+        steps:
+          general:
+            cancel: Cancel
+            cancel_successful: Task successfully cancelled.
+            next: Next
+            skip: Skip
+            
       index:
         title: User
       
@@ -21,7 +30,7 @@ en:
       tasks:
         next:
           title: Next Task
-            
+             
     controllers:
       vacancies: 
       candidatures:

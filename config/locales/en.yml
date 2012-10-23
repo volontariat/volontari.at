@@ -1,34 +1,7 @@
 # Sample localization file for English: Add more files in this directory for other locales:
 # See https://github:com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points:
 
-en:  
-  general:
-    index:
-      title: Home
-    new: New
-    edit: Edit
-    destroy: Destroy
-    remove: Remove
-    not_available: n/a
-    steps: Steps
-    error: Error
-    list_action: Back to the overview
-    details: Details
-    form:
-      errors_count: '%{count} prohibited this product from being saved:'
-      successfully_created: Creation successful
-      successfully_updated: Update successful
-      destroyed: Resource destroyed successfully.
-    questions:
-      are_you_sure: Are you sure?
-    actions: Actions
-    events:
-      activate: Activate
-    exceptions:
-      wrong_recaptcha: The captcha code which you typed in is wrong.
-      access_denied: Access denied
-      not_found: Resource not found.
-         
+en:     
   pages:
     privacy_policy:
       title: Privacy Police
@@ -36,64 +9,6 @@ en:
       title: Terms of Use
     about_us:
       title: About Us    
-      
-  activerecord:
-    models:
-      area: Area
-      candidature: Candidature
-      comment: Comment
-      product: Product
-      project: Project
-      result: Result
-      story: Story
-      task: Task
-      user: User
-      vacancy: Vacancy
-      
-    attributes:
-      general:
-        name: Name 
-        parent: Parent
-        project_id: Project
-        state: State
-        user_id: User
-        vacancy_id: Vacancy
-      comment:
-        name: Subject
-      vacancy:
-        name: Name 
-        limit: Limit
-      user:
-        area_tokens: Areas
-        country: Country 
-        employment_relationship: Employment relationship
-        foreign_language: Foreign language
-        interface_language: Interface language
-        language: Mother tongue
-        profession: Beruf
-     
-    errors:
-      models:
-        general:
-          attributes:
-            name:
-              reserved_word_included: is a reserved word
-               
-        product:
-          attributes:
-            name:
-              missing_english_name: Please switch the locale to English.
-              missing_model_file: Please create and deploy a file for the new product model first.
-              
-        vacancy:
-          attributes:
-            limit:
-              reached: Limit of candidatures already reached 
-            
-        story:
-          attributes:
-            base:
-              missing_tasks: 'Please define at least 1 task.'
        
   layout:
     title: Volontari.at - Creative Open Crowdsource Platform
@@ -104,6 +19,9 @@ en:
       last_vacancies: Last vacancies
    
   users:
+    general:
+      events:
+        review: Pull request
     index: 
       title: Users
       empty_collection: No users available.
@@ -136,6 +54,17 @@ en:
       title: New Product
     edit: 
       title: Edit Product
+  
+  organizations:
+    index:
+      title: Organizations
+      name: Name
+      empty_collection: No organizations available.
+      
+    new: 
+      title: New Organization
+    edit: 
+      title: Edit Organization
   
   projects:
     index:
@@ -193,8 +122,14 @@ en:
       
     new: 
       title: New Story
+      
+    show:
+      states:
+        completed: Completed
+        
     edit: 
       title: Edit Story 
+      
     steps:
       initialization:
         title: Criteria
@@ -206,6 +141,12 @@ en:
         title: Activate
         
   tasks:
+    general:
+      events:
+        cancel: Cancel
+        complete: Complete
+        follow_up: Follow up
+        
     index:
       title: Tasks
       name: Name
@@ -217,6 +158,8 @@ en:
     show:
       story_text: Story
       text: Task Text
+      states:
+        under_supervision: Under supervision
     
     edit: 
       title: Edit Task  
