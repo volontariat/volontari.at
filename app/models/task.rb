@@ -2,6 +2,7 @@ class Task
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
+  #include Mongoid::History::Trackable
   
   include Model::MongoDb::Customizable
   include Model::MongoDb::Commentable
@@ -17,27 +18,32 @@ class Task
   
   field :offeror_id, type: Integer
   field :user_id, type: Integer
+  field :author_id, type: Integer
   field :name, type: String
   field :text, type: String
   field :state, type: String
+  field :unassigned_user_ids, type: Array
   
   slug :name
-  
+   
   attr_accessible :story_id, :name, :text, :result_attributes
   
   scope :current, where(state: 'new')
-  scope :unassigned, exists(user_id: false)
-  scope :assigned, exists(user_id: true)
-  scope :complete, where(state: 'complete')
+  scope :unassigned, where(user_id: nil)
+  scope :assigned, ne(user_id: nil)
+  scope :complete, where(state: 'completed')
+  scope :incomplete, ne(state: 'completed')
   
   validates :story_id, presence: true
   validates :offeror_id, presence: true
   validates :name, presence: true, uniqueness: { scope: :story_id }
-  validates :text, presence: true
+  validates :text, presence: true, if: ->(t) { t.class.name == 'Task' }
   validate :reserved_words_exclusion
   
   after_initialize :cache_associations
   before_validation :cache_associations  
+    
+  #track_history on: [:user_id, :name, :text, :state]
     
   PARENT_TYPES = ['story']
 
@@ -47,6 +53,9 @@ class Task
   
   def user; user_id ? User.find(user_id) : nil; end
   def user=(value); self.user_id = value.id; end
+  
+  def author; author_id ? User.find(author_id) : nil; end
+  def author=(value); self.author_id = value.id; end
   
   private
   
