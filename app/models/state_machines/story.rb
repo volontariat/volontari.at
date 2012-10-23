@@ -7,7 +7,7 @@ module StateMachines::Story
       
       attr_accessor :current_user
       
-      const_set 'STATES', [:new, :active]
+      const_set 'STATES', [:new, :tasks_defined, :active, :completed, :closed]
       const_set 'EVENTS', [:initialization, :setup_tasks, :activate, :complete]
       
       state_machine :state, initial: :new do
@@ -20,25 +20,19 @@ module StateMachines::Story
         end
         
         state :tasks_defined do
-          validate :valid_tasks, presence: true
+          validates_associated :tasks
         end
         
         event :activate do
-          transition :tasks_defined => :active
+          transition [:tasks_defined, :completed] => :active
         end
         
         event :complete do
           transition :active => :completed
         end
-      end
-      
-      private
-      
-      def valid_tasks
-        if tasks.select{|t| t.valid? }.none?
-          errors[:base] << I18n.t(
-            'activerecord.errors.models.story.attributes.base.missing_tasks'
-          )
+        
+        event :close do
+          transition :completed => :closed
         end
       end
     end
