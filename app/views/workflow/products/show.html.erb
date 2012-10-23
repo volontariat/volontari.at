@@ -1,0 +1,34 @@
+<h3><%= params[:id] == 'no-name' ? 'No Name' : @product.name %></h3>
+
+<% columns = ['name'] %>
+
+<% if @stories.none? || @stories.select{|e| e.id.present? }.none? %>
+<p><%= I18n.t("stories.index.empty_collection")%></p>
+<% else %>
+<table class="table table-striped">
+  <thead>
+    <tr class="<%= cycle('odd', 'even') %>">
+  <% columns.map{|c| c.gsub('_id', '')}.each do |column| %>
+      <th><%= t("activerecord.attributes.story.#{column}") %></th>
+  <% end %>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @stories.select{|e| e.id.present? }.each do |resource| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+    <% columns.each do |column| %>
+      <td>
+        <%= table_cell column, resource, columns.is_a?(Hash) ? columns[column] : nil %>
+      </td>
+    <% end %>
+      <td>
+        <%= link_to t('workflow.user.next_task'), next_task_workflow_user_index_path(resource) %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>
+
+<%= paginate @stories if self.respond_to? :paginate %>
