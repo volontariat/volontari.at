@@ -14,35 +14,8 @@ module Applicat
           layout proc { |controller| controller.request.xhr? || !controller.params[:is_ajax_request].nil? ? false : 'application' }
            
           helper :all
-          helper_method :controller_action?, :resource_exists? 
+          helper_method :controller_action?, :resource_exists?, :layout_presenter 
 
-          # obsolete ?
-=begin                  
-          before_filter :init
-          before_filter :init_presenter
-=end
-          
-          # activate when we need a location switch
-          #before_filter :set_i18n_locale_from_params
-          
-          def index      
-            if params[:set_locale]
-              redirect_to root_path(:locale => params[:set_locale])
-            end
-          end
-          
-          def create
-            create!{ collection_url }
-          end
- 
-=begin         
-          def collection
-            current_collection_name = model_name.pluralize.downcase
-            
-            # TODO: only readable records
-            eval("@#{current_collection_name} ||= end_of_association_chain.paginate(:page => params[:page]) rescue []")
-          end       
-=end          
           def controller_action?(input_controller, input_action)
             if "#{input_controller}/#{input_action}" == "#{controller_name}/#{action_name}"
               return true
@@ -63,6 +36,12 @@ module Applicat
             helper = Helper.instance
             helper.controller = self 
             return helper
+          end
+          
+          def layout_presenter
+            @layout_presenter ||= "Layout::#{_layout.classify}Presenter".constantize.new(
+              self.view_context, resource: self.respond_to?(:resource) ? resource : nil
+            )
           end
           
           protected         
@@ -110,20 +89,6 @@ module Applicat
             
             return list
           end         
-# obsolete? 
-=begin         
-          def init            
-            @model_instance = resource rescue nil
-          end
-  
-          # init presenter for database resources, for other models no presenter needed yet
-          def init_presenter    
-            begin 
-              eval("@#{model_name.tableize.singularize}_presenter = #{model_name}Presenter.new(self, @model_instance)")
-            rescue NameError => e
-            end      
-          end 
-=end
           
           def model_name
             self.class.name.gsub('Controller', '').classify
@@ -139,12 +104,6 @@ module Applicat
               end
             end
           end
-          
-=begin          
-          def default_url_options
-            { :locale => I18n.locale }
-          end
-=end
          
           def js_help
             js_helper = JavaScriptHelper.instance
