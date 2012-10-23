@@ -1,6 +1,7 @@
 class Result
   include Mongoid::Document
   include Mongoid::Timestamps
+  #include Mongoid::History::Trackable
   
   include Model::MongoDb::Customizable
   include Model::MongoDb::Commentable
@@ -22,11 +23,12 @@ class Result
   validates :task_id, presence: true
   validates :story_id, presence: true
   validates :offeror_id, presence: true
-  validates :name, presence: true
   validates :text, presence: true
   
   after_initialize :cache_associations
   before_validation :cache_associations
+
+  #track_history on: [:name, :text, :state], scope: :task
   
   # belongs_to (SQL)
   def offeror; offeror_id ? User.find(offeror_id) : nil; end
