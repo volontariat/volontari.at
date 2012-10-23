@@ -7,7 +7,6 @@
   <% columns.map{|c| c.gsub('_id', '')}.each do |column| %>
       <th><%= t("activerecord.attributes.task.#{column}") %></th>
   <% end %>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -24,9 +23,6 @@
       </td>
       <% end %>
     <% end %>
-      <td>
-        <%= render 'shared/resource/actions', resource: resource, type: 'tasks' %>
-      </td>
     </tr>
   <% end %>
   </tbody>
