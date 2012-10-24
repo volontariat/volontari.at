@@ -1,6 +1,9 @@
 <h3><%= I18n.t('tasks.index.title') %></h3>
 
-<% columns = ['name', 'state'] %>
+<% columns = { 
+  'name' => Proc.new{|resource| link_to(resource.name, edit_task_workflow_user_index_path(resource)) }, 
+  'state' => nil 
+} %>
 
 <% if @tasks.none? || @tasks.select{|e| e.id.present? }.none? %>
 <p><%= I18n.t("tasks.index.empty_collection")%></p>
@@ -8,7 +11,7 @@
 <table class="table table-striped">
   <thead>
     <tr class="<%= cycle('odd', 'even') %>">
-  <% columns.map{|c| c.gsub('_id', '')}.each do |column| %>
+  <% columns.keys.map{|c| c.gsub('_id', '')}.each do |column| %>
       <th><%= t("activerecord.attributes.task.#{column}") %></th>
   <% end %>
       <th></th>
@@ -17,14 +20,11 @@
   <tbody>
   <% @tasks.select{|e| e.id.present? }.each do |resource| %>
     <tr class="<%= cycle('odd', 'even') %>">
-    <% columns.each do |column| %>
+    <% columns.keys.each do |column| %>
       <td>
-        <%= table_cell column, resource, columns.is_a?(Hash) ? columns[column] : nil %>
+        <%= table_cell column, resource, columns[column] %>
       </td>
     <% end %>
-      <td>
-        <%= render 'actions', resource: resource %>  
-      </td>
     </tr>
   <% end %>
   </tbody>
