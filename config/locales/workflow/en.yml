@@ -30,6 +30,7 @@ en:
       tasks:
         next:
           title: Next Task
+          unavailable: No further task available.
              
     controllers:
       vacancies: 
