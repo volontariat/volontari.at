@@ -220,8 +220,8 @@ SimpleNavigation::Configuration.run do |navigation|
             'no-name' => t('workflow.user.products.no_name.title'),
             'text-creation' => 'Text Creation'
           }.each do |slug, text|
-            user.item slug.gsub('-', '_').to_sym, t('workflow.user.products.no_name.title'), product_workflow_user_index_path(slug) do |product|
-              product_slug = @story.product.try(:slug) || 'no-name'
+            user.item slug.gsub('-', '_').to_sym, text, product_workflow_user_index_path(slug) do |product|
+              product_slug = @story ? (@story.product.try(:slug) || 'no-name') : 'no-name'
               
               unless (@story.new_record? rescue true) || product_slug != slug
                 product.item(:show, @story.name, story_path(@story)) do |story|
