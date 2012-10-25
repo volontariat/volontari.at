@@ -19,6 +19,7 @@ class Story
   field :name, type: String
   field :text, type: String
   field :state, type: String
+  field :users_without_tasks_ids, type: Array
   
   slug :name
   
@@ -48,13 +49,22 @@ class Story
   def project=(value); self.project_id = value.id; end
   
   def next_task_for_user(user)
+    return nil if (users_without_tasks_ids || []).include?(user.id)
+    
     task = tasks.assigned.where(user_id: user.id).first
     
     unless task
-      task = tasks.current.unassigned.first
-      task.user_id = user.id
+      task = tasks.current.unassigned.where(:unassigned_user_ids.ne => user.id).first
       
-      return task.errors.full_messages.join('<br/>') unless task.assign
+      if task
+        task.user_id = user.id
+      
+        return task.errors.full_messages.join('<br/>') unless task.assign
+      else
+        self.users_without_tasks_ids ||= []
+        self.users_without_tasks_ids << user.id
+        save
+      end
     end
     
     task
