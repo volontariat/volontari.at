@@ -43,6 +43,22 @@ class Product
     struct
   end
   
+  def self.stories(id, user, page)
+    collection = if id == 'no-name'
+      Story.exists(_type: false)
+    else
+      product = Product.find(id)
+      
+      begin
+        product.story_class.for_user(user)
+      rescue NotImplementedError
+        product.story_class
+      end
+    end
+    
+    collection.where(:users_without_tasks_ids.ne => user.id)#.page(page).per(1)
+  end
+  
   # belongs_to (SQL)
   def user; User.find(offeror_id); end
   def user=(value); self.user_id = value.id; end
