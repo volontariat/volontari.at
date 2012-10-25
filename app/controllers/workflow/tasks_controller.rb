@@ -12,16 +12,30 @@ class Workflow::TasksController < ApplicationController
     false
   end
   
+  def index
+    @story = Story.find(params[:story_id])
+    @tasks = @story.tasks
+    
+    # increase level when there are more sub items for tasks_workflow_user_index_path(@task))
+    @twitter_sidenav_level = 4
+  end
+  
   def next
     story = Story.find(params[:story_id])
     task = story.next_task_for_user(current_user)
+    product_id = story.product_id.blank? ? 'no-name' : story.product_id
     
     if task.is_a?(String) 
       redirect_to(
-        product_workflow_user_index_path(story.product_id), notice: task
+        product_workflow_user_index_path(product_id), notice: task
       ) and return
-    else
+    elsif task
       redirect_to edit_task_workflow_user_index_path(task) and return  
+    else
+      redirect_to(
+        product_workflow_user_index_path(product_id), 
+        notice: I18n.t('workflow.user.tasks.next.unavailable')
+      ) and return
     end
   end
   
@@ -32,9 +46,13 @@ class Workflow::TasksController < ApplicationController
   end
   
   def update
+    if (params[:task][:result_attributes][:text] rescue '').blank?
+      params[:task].delete(:result_attributes)
+    end
+    
     @task.attributes = params[:task]
     
-    if params[:event] && params[:event].keys.select{|k| [:cancel, :skip].include?(k)}.any?
+    if params[:event] && params[:event].keys.select{|k| ['cancel', 'skip'].include?(k)}.any?
       unless @task.cancel
         render 'edit' and return
       end
@@ -77,14 +95,6 @@ class Workflow::TasksController < ApplicationController
         tasks_workflow_user_index_path(@task.story), notice: t('general.form.successfully_updated')
       )
     end
-  end
-  
-  def index
-    @story = Story.find(params[:story_id])
-    @tasks = @story.tasks
-    
-    # increase level when there are more sub items for tasks_workflow_user_index_path(@task))
-    @twitter_sidenav_level = 4
   end
   
   def resource
