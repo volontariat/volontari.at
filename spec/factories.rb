@@ -39,7 +39,7 @@ FactoryGirl.define do
     name 'Text Creation'
     user_id Factory(:user, password: 'password', password_confirmation: 'password').id
     area_ids [Area.first.try(:id) || Factory(:area).id]
-    text Faker::Lorem.sentences(5)
+    text Faker::Lorem.sentences(5).join(' ')
     
     after_build do |product|
       product.id = product.name.to_s.parameterize
@@ -49,7 +49,7 @@ FactoryGirl.define do
   factory :project do
     association :user
     sequence(:name) { |n| "project #{n}#{r_str}" }
-    text Faker::Lorem.sentences(20)
+    text Faker::Lorem.sentences(20).join(' ')
     
     after_build do |project|
       resource_has_many(project, :areas) 
@@ -63,7 +63,7 @@ FactoryGirl.define do
   factory :vacancy do
     association :project
     sequence(:name) { |n| "vacancy #{n}" }
-    text Faker::Lorem.sentences(20)
+    text Faker::Lorem.sentences(20).join(' ')
     limit 1
     state 'open'
   end
@@ -72,20 +72,20 @@ FactoryGirl.define do
     association :user
     association :vacancy
     sequence(:name) { |n| "candidature #{n}" }
-    text Faker::Lorem.sentences(20)
+    text Faker::Lorem.sentences(20).join(' ')
   end
   
   factory :comment do
     association :user
     association :commentable, factory: :project
     sequence(:name) { |n| "comment #{n}" }
-    text Faker::Lorem.sentences(5)
+    text Faker::Lorem.sentences(5).join(' ')
   end
   
   factory :story, class: Product::TextCreation::Story do
     project_id Factory(:text_creation_project).id
     sequence(:name) { |n| "story#{n}#{r_str}" }
-    text Faker::Lorem.sentences(10)
+    text Faker::Lorem.sentences(10).join(' ')
     language 'en'
     min_length 10
     max_length 50
@@ -104,7 +104,7 @@ FactoryGirl.define do
   factory :story_without_tasks, class: Product::TextCreation::Story do
     project_id Project.first.try(:id) || Factory(:text_creation_project).id
     sequence(:name) { |n| "story#{n}#{r_str}" }
-    text Faker::Lorem.sentences(10)
+    text Faker::Lorem.sentences(10).join(' ')
     language 'en'
     min_length 10
     max_length 50
@@ -118,7 +118,7 @@ FactoryGirl.define do
   
   factory :task do
     sequence(:name) { |n| "task#{n}#{r_str}" }
-    text Faker::Lorem.sentences(10)
+    text Faker::Lorem.sentences(10).join(' ')
   end
   
   factory :text_creation_task, class: Product::TextCreation::Task do
