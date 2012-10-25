@@ -66,7 +66,7 @@ module NavigationHelpers
       edit_task_workflow_user_index_path(@task || @story.tasks.last)
     
     when /the project owner's workflow page/
-       workflow_project_owner_index_path
+      workflow_project_owner_index_path
        
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
