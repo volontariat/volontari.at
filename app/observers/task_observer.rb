@@ -6,11 +6,12 @@ class TaskObserver < ActiveRecord::Observer
     case transition.event
     when :assign
       object.author_id = object.user_id
-    when :cancel, :unassign
+    when :cancel
+      object.unassigned_user_ids ||= []
       object.unassigned_user_ids << object.user_id
       object.user_id = nil
       object.author_id = nil
-      object.text = nil
+      object.result.text = nil if object.result
     when :review
       object.user_id = object.offeror_id
     when :follow_up
