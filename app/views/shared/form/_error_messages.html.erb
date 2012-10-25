@@ -1,4 +1,4 @@
-<% if resource.errors.any? %>
+<% if resource && resource.errors.any? %>
 <div class="alert alert-error">
   <h2><%= t('general.form.errors_count', count: pluralize(resource.errors.count, t('general.error'))) %></h2>
   <ul>
