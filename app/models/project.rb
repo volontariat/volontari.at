@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   belongs_to :organization
   
-  has_many :project_users
+  has_many :project_users, dependent: :destroy
   has_many :vacancies, dependent: :destroy
   has_many :roles, through: :project_users
   has_many :comments, as: :commentable, dependent: :destroy
@@ -23,6 +23,7 @@ class Project < ActiveRecord::Base
   
   before_validation :include_areas_of_product
   after_create :create_project_user
+  after_destroy :destroy_non_active_records
   
   friendly_id :name, use: :slugged
   
@@ -57,5 +58,9 @@ class Project < ActiveRecord::Base
   
   def create_project_user
     ProjectUser.create(project_id: id, user_id: user_id)
+  end
+  
+  def destroy_non_active_records
+    stories.all.map(&:destroy)
   end
 end
