@@ -21,6 +21,7 @@ module StateMachines::Story
         
         state :tasks_defined do
           validates_associated :tasks
+          validate :presence_of_tasks
         end
         
         event :activate do
@@ -33,6 +34,16 @@ module StateMachines::Story
         
         event :close do
           transition :completed => :closed
+        end
+      end
+      
+      private
+      
+      def presence_of_tasks
+        unless tasks.any?
+          errors[:base] << I18n.t(
+            'activerecord.errors.models.story.attributes.base.missing_tasks'
+          )
         end
       end
     end
