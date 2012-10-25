@@ -42,7 +42,7 @@ class StoriesController < ApplicationController
   end
   
   def update
-    @story.attributes.merge!(params[:story])
+    @story.attributes = params[:story]
     
     success = params[:next_step] == '1' ? @story.send(step) : @story.save
     
