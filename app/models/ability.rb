@@ -38,7 +38,7 @@ class Ability
       can Candidature::EVENTS, Candidature, offeror_id: user.id
       can Vacancy::EVENTS, Vacancy, offeror_id: user.id
       can Story::EVENTS, Story, offeror_id: user.id
-      can [:unassign, :complete], Task, offeror_id: user.id
+      can Task::EVENTS + [:update], Task, offeror_id: user.id
       
       if user.name == 'Master'
         can [:manage, :moderate, :administrate, :supervisor], :all
