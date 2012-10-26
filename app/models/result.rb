@@ -18,7 +18,7 @@ class Result
   field :text, type: String
   field :state, type: String
   
-  attr_accessible :name, :text
+  attr_accessible :task_id, :name, :text
   
   validates :task_id, presence: true
   validates :story_id, presence: true
