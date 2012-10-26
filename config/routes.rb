@@ -60,11 +60,11 @@ Volontariat::Application.routes.draw do
     end
     
     member do
-      get :recommend
-      get :accept_recommendation
-      get :deny_recommendation 
-      get :close
-      get :reopen
+      put :recommend
+      put :accept_recommendation
+      put :deny_recommendation 
+      put :close
+      put :reopen
     end
   end
   
