@@ -6,6 +6,8 @@ class Workflow::TasksController < ApplicationController
   
   before_filter :resource, only: [:edit, :update]
   
+  load_and_authorize_resource except: [:next]
+  
   helper_method :resource
   
   def current_step_is_next_step_after_event
@@ -41,7 +43,7 @@ class Workflow::TasksController < ApplicationController
   
   def edit
     @story = @task.story
-    @task.result ||= Result.new(task: @task)
+    @task.result ||= Result.new(task_id: @task.id)
     @task.result.errors.clear
   end
   
@@ -58,7 +60,10 @@ class Workflow::TasksController < ApplicationController
       end
       
       if params[:event][:cancel]
-        notice = t("general.notifications.event_successful", event: I18n.t("tasks.general.events.cancel"))
+        notice = t(
+          "general.notifications.event_successful", 
+          event: I18n.t("tasks.general.events.cancel")
+        )
         redirect_to(
           tasks_workflow_user_index_path(@task.story), notice: notice
         ) and return
@@ -70,20 +75,30 @@ class Workflow::TasksController < ApplicationController
     end
     
     method = params[:event] ? params[:event].keys.first : 'save'
-    success = params[:next_step] == '1' || (params[:event] && params[:event][:next]) ? @task.send(step) : @task.send(method)
+    success = if params[:next_step] == '1' || (params[:event] && params[:event][:next])
+      @task.send(step) 
+    elsif can? method.to_sym, @task
+      @task.send(method)
+    else
+      false
+    end
     
     render 'edit' and return unless success
     
     if success && params[:event] && params[:event][:next]
       redirect_to(
-        next_task_workflow_user_index_path(@task.story), notice: t('general.form.successfully_updated')
+        next_task_workflow_user_index_path(@task.story), 
+        notice: t('general.form.successfully_updated')
       ) and return
     end
     
     notice = if method == 'save'
       t('general.form.successfully_updated')
     else
-      t("general.notifications.event_successful", event: I18n.t("tasks.general.events.#{method}"))
+      t(
+        "general.notifications.event_successful", 
+        event: I18n.t("tasks.general.events.#{method}")
+      )
     end
     
     if can? :edit, @task
@@ -92,7 +107,7 @@ class Workflow::TasksController < ApplicationController
       )
     else
       redirect_to(
-        tasks_workflow_user_index_path(@task.story), notice: t('general.form.successfully_updated')
+        tasks_workflow_user_index_path(@task.story), notice: notice
       )
     end
   end
