@@ -373,7 +373,7 @@ GEM
       i18n (~> 0.5)
     rails_autolink (1.0.9)
       rails (~> 3.1)
-    rails_info (0.0.8)
+    rails_info (0.0.9)
       coffee-script
       jquery-rails
       jquery-ui-rails
