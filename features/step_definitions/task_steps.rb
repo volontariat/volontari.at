@@ -12,7 +12,6 @@ module TaskFactoryMethods
   end
     
   def set_task_defaults(attributes)
-    attributes[:user_id] ||= @me.id if @me && !attributes[:user_id]
     attributes[:story_id] ||= @story.id if @story && !attributes[:story_id]
   end
 end

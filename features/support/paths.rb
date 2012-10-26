@@ -15,6 +15,10 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+     
+    # authentication
+    when /^the sign in page$/
+      new_user_session_path  
       
     # areas  
     when /the areas page/

@@ -11,6 +11,7 @@ module StoryFactoryMethods
   end
     
   def set_story_defaults(attributes)
+    attributes[:offeror_id] ||= @me.id if @me && !attributes[:offeror_id]
     attributes[:project_id] ||= @project.id if @project && !attributes[:project_id]
   end
 end
@@ -22,9 +23,7 @@ Given /^a story named "([^\"]*)"$/ do |name|
 end
 
 Given /^a story without tasks named "([^\"]*)"$/ do |name|
-  attributes = {name: name, factory: :story_without_tasks}
-  
-  @story.reload
+  new_story(name, factory: :story_without_tasks)
 end
 
 Then /^I should see the following stories:$/ do |expected_table|

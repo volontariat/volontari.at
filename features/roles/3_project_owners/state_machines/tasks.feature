@@ -6,24 +6,22 @@ Feature: Manage a task's transitions
   Background:
   
     Given a user named "Project Owner"
+    And a text creation project named "Project 1"
     And a story without tasks named "Story 1"   
-    
-  @javascript  
-  Scenario: Unassign task
- 
-    Given a user named "User"
-    And an assigned text creation task named "Task 1"
+    And a user named "User"
+  
+  Scenario: Follow up task
+  
+    Given a text creation task under supervision named "Task 1"
     When I log in as "Project Owner"
     And I go to the edit workflow task page
-    And I press "cancel"
-    Then I should see "Cancel successful"
+    And I press "Follow up"
+    Then I should see "Follow up successful"
    
-  @javascript  
   Scenario: Complete task
   
-    Given a user named "User"
-    And a text creation task under supervision named "Task 1"
+    Given a text creation task under supervision named "Task 1"
     When I log in as "Project Owner"
     And I go to the edit workflow task page
-    And I press "complete"
+    And I press "Complete"
     Then I should see "Complete successful"
