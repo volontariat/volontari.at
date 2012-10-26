@@ -221,7 +221,7 @@ SimpleNavigation::Configuration.run do |navigation|
             'text-creation' => 'Text Creation'
           }.each do |slug, text|
             user.item slug.gsub('-', '_').to_sym, text, product_workflow_user_index_path(slug) do |product|
-              product_slug = @story ? (@story.product.try(:slug) || 'no-name') : 'no-name'
+              product_slug = @story ? (@story.product.try(:to_param) || 'no-name') : 'no-name'
               
               unless (@story.new_record? rescue true) || product_slug != slug
                 product.item(:show, @story.name, story_path(@story)) do |story|
