@@ -85,7 +85,6 @@ class StoriesController < ApplicationController
   def build_resource
     @project = find_parent Story::PARENT_TYPES, action_name == 'create' ? :story : nil
     @story = @project.story_class.new({ project_id: @project.id }.merge(params[:story] || {}))
-    logger.info "build_resource: " + [can?(:new, @story), @story.offeror_id, current_user.id].inspect
   end
   
   def render_wizard
