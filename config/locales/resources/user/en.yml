@@ -1,0 +1,14 @@
+en:
+  users:
+    general:
+      events:
+        review: Pull request
+    index: 
+      title: Users
+      empty_collection: No users available.
+    show:
+      title: Profile
+    edit:
+      title: Settings 
+    preferences:
+      title: Preferences

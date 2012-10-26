@@ -1,0 +1,23 @@
+en:
+  
+  products:
+    index:
+      title: Products
+      name: Name
+      empty_collection: No products available.
+      
+    new: 
+      title: New Product
+    edit: 
+      title: Edit Product
+      
+  activerecord:
+    
+    errors:
+      models:
+        product:
+          attributes:
+            name:
+              missing_english_name: Please switch the locale to English.
+              missing_model_file: Please create and deploy a file for the new product model first.
+            

@@ -1,0 +1,12 @@
+en:
+  areas:
+    index:
+      title: Areas
+      name: Name
+      users_count: Users count
+      empty_collection: No areas available.
+      
+    new: 
+      title: New Area
+    edit: 
+      title: Edit Area

@@ -1,0 +1,36 @@
+en:
+  
+  tasks:
+    general:
+      events:
+        assign: Assign
+        cancel: Cancel
+        complete: Complete
+        follow_up: Follow up
+        review: Pull request
+        
+    index:
+      title: Tasks
+      name: Name
+      empty_collection: No tasks available.
+      
+    new: 
+      title: New Task
+    
+    show:
+      story_text: Story
+      text: Task Text
+      states:
+        under_supervision: Under supervision
+    
+    edit: 
+      title: Edit Task  
+      
+  activerecord:
+    errors:
+      models:
+        task:
+          attributes:
+            base:
+              missing_result: 'Valid result missing.'
+        

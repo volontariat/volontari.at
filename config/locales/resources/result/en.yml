@@ -1,0 +1,9 @@
+en:
+  
+  activerecord:
+    errors:
+      models:
+        result:
+          attributes:
+            text:
+              text_length_not_between_range: "Length of text is not greater than %{min_length} or not less than %{max_length}."

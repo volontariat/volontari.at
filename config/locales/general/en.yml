@@ -27,3 +27,45 @@ en:
       not_found: Resource not found.
     notifications:
       event_successful: "%{event} successful."  
+      
+  activerecord:
+    models:
+      area: Area
+      candidature: Candidature
+      comment: Comment
+      product: Product
+      project: Project
+      result: Result
+      story: Story
+      task: Task
+      user: User
+      vacancy: Vacancy
+      
+    attributes:
+      general:
+        name: Name 
+        parent: Parent
+        project_id: Project
+        state: State
+        user_id: User
+        vacancy_id: Vacancy
+      comment:
+        name: Subject
+      vacancy:
+        name: Name 
+        limit: Limit
+      user:
+        area_tokens: Areas
+        country: Country 
+        employment_relationship: Employment relationship
+        foreign_language: Foreign language
+        interface_language: Interface language
+        language: Mother tongue
+        profession: Beruf
+     
+    errors:
+      models:
+        general:
+          attributes:
+            name:
+              reserved_word_included: is a reserved word

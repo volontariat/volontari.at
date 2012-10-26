@@ -1,0 +1,11 @@
+en:
+  comments:
+    index:
+      title: Comments
+      empty_collection: No comments available.
+    new:
+      title: New Comment
+    show:
+      reply: Reply
+    edit:
+      title: Edit Comment   

@@ -1,0 +1,34 @@
+en:
+  stories:
+    index:
+      title: Stories
+      name: Name
+      empty_collection: No stories available.
+      
+    new: 
+      title: New Story
+      
+    show:
+      states:
+        completed: Completed
+        
+    edit: 
+      title: Edit Story 
+      
+    steps:
+      initialization:
+        title: Criteria
+      setup_tasks:
+        title: Setup Tasks
+        add_task: Add Task
+        update: Update Tasks
+      activate:
+        title: Activate
+        
+  activerecord:
+    errors:
+      models:
+        story:
+          attributes:
+            base:
+              missing_tasks: 'Please define at least 1 task.'

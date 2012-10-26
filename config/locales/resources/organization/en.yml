@@ -1,0 +1,11 @@
+en:
+  organizations:
+    index:
+      title: Organizations
+      name: Name
+      empty_collection: No organizations available.
+      
+    new: 
+      title: New Organization
+    edit: 
+      title: Edit Organization

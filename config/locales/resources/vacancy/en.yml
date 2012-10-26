@@ -1,0 +1,29 @@
+en:
+  vacancies:
+    index:
+      title: Vacancies
+      empty_collection: No vacancies available.
+    new:
+      title: New Vacancy
+    edit:
+      title: Edit Vacancy
+    show:
+      states:
+        open: Open
+        recommended: Recommended
+        denied: Denied
+        closed: Closed  
+      events:
+        recommend: Recommend
+        accept_recommendation: Accept recommendation
+        deny_recommendation: Deny recommendation
+        close: Close
+        reopen: Reopen
+       
+  activerecord:     
+    errors:   
+      models:  
+        vacancy:
+          attributes:
+            limit:
+              reached: Limit of candidatures already reached 
