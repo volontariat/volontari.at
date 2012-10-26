@@ -4,6 +4,8 @@
   <%= render 'workflow/tasks/work_form', f: f, resource: resource %>
   
   <div class="form-actions">
+    <%= f.button :submit %>
+    
     <%= f.button :submit, t('tasks.general.events.follow_up'), name: 'event[follow_up]' %>
    
     <%= f.button :submit, t('tasks.general.events.complete'), name: 'event[complete]' %>
