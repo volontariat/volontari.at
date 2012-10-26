@@ -6,8 +6,10 @@
 
 <%= resource.story.text %>
 
+<% if resource.text.present? %>
 <h4><%= t('tasks.show.text') %></h4>
 
 <%= resource.text %>
+<% end %>
 
 <h4><%= t('activerecord.models.result') %></h4>
