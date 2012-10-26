@@ -7,9 +7,9 @@
     <%= f.input :language, collection: all_language_options %>  
     <%= f.input :min_length %>  
     <%= f.input :max_length %>  
-    <%= render 'products/mixins/keywords', f: f %>
-    <%= f.check_box :with_quality_assurance %>
-    <%= f.label :with_quality_assurance, t('activerecord.attributes.story.with_quality_assurance') %>
+    <%#= render 'products/mixins/keywords', f: f %>
+    <%#= f.check_box :with_quality_assurance %>
+    <%#= f.label :with_quality_assurance, t('activerecord.attributes.story.with_quality_assurance') %>
     <%= f.input :text, as: :text, input_html: {style: 'width:500px; height:100px;'} %>
   </div>
   
