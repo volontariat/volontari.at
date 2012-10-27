@@ -1,0 +1,5 @@
+<%= form_tag update_multiple_pages_path, method: :post do %>
+  <%= render 'shared/collection/table', 
+    type: 'pages', collection: @pages, columns: ['name'] 
+  %>
+<% end %>

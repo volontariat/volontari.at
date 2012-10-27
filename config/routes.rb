@@ -3,11 +3,9 @@ Volontariat::Application.routes.draw do
     registrations: 'devise_extensions/registrations',
   }
   
-  resources :pages, only: :index do
+  resources :pages do
     collection do
-      get :privacy_policy
-      get :terms_of_use
-      get :about_us
+      put :update_multiple
       get :autocomplete
     end
   end

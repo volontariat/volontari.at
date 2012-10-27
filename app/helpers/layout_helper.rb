@@ -12,11 +12,11 @@ module LayoutHelper
   def footer_navigation
     links = []
     
-    ['privacy_policy', 'terms_of_use', 'about_us'].each do |page_name|
-      text = t("pages.#{page_name}.title")
-      path = "#{controller_name}/#{action_name}"
-      active = path == "#{controller_name}/#{page_name}" || (path == 'pages/index' && page_name == 'about_us')
-      links << (active ? text : link_to(text, send("#{page_name}_pages_path")))
+    ['privacy-policy', 'terms-of-use', 'about-us'].each do |page_name|
+      text = t("pages.#{page_name.gsub('-', '_')}.title")
+      path = "#{controller_name}/#{params[:id]}"
+      active = path == "#{controller_name}/#{page_name}"
+      links << (active ? text : link_to(text, page_path(page_name)))
     end
     
     raw links.join(' | ')

@@ -1,0 +1,11 @@
+en:
+  pages:
+    index:
+      title: Pages
+      name: Name
+      empty_collection: No pages available.
+      
+    new: 
+      title: New Page
+    edit: 
+      title: Edit Page

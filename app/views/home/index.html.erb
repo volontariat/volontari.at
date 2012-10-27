@@ -1,10 +1,6 @@
 <div class="container-fluid">
   <div class="hero-unit">
-    <h1>Welcome</h1>
-    
-    <p>Volontari.at is an Open Source platform for voluntary Crowdsourcing projects:</p>
-    
-    <p><a href="http://github.com/Applicat/volontariat">Volontariat @ github (Ruby on Rails)</a>
+    <%= @page ? markdown(@page.text) : 'Page not found' %>
   </div>
   <div class="row-fluid">
     <div class="span6">

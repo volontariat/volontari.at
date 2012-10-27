@@ -1,0 +1,12 @@
+<%= simple_form_for(@page, html: {class: 'form-horizontal'}) do |f| %>
+  <%= render partial: 'shared/form/error_messages', locals: { resource: @page } %>
+  
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :text, as: :text, input_html: {style: 'width: 100%; height:300px;'} %>
+  </div>
+  
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

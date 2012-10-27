@@ -13,7 +13,7 @@ module ApplicationHelper
   end
   
   def markdown(text)
-    #text = Redcarpet::Markdown.new(Redcarpet::Render::XHTML.new(filter_html: true)).render(text)
+    text = Redcarpet::Markdown.new(Redcarpet::Render::XHTML.new(filter_html: true)).render(text)
     
     auto_html(text) do 
       youtube(width: 515, height: 300)

@@ -20,6 +20,7 @@ class Ability
       Area, Profession, Product, Project, Vacancy, Candidature, Story, Task, Result, Comment
     ]
     can [:read, :check_name, :check_url, :check_email, :check_email_unblocked], User
+    can :show, Page
     
     if user.present?
       can :destroy, User, id: user.id
