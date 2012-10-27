@@ -4,8 +4,7 @@ class Workflow::TasksController < ApplicationController
   wizard_steps :work, :review
   wizard_step_per_state work: [:assigned], review: [:under_supervision] 
   
-  before_filter :resource, only: [:edit, :update]
-  
+  before_filter :build_result, only: [:edit, :cancel, :skip, :update]
   load_and_authorize_resource except: [:next]
   
   helper_method :resource
@@ -43,59 +42,67 @@ class Workflow::TasksController < ApplicationController
   
   def edit
     @story = @task.story
-    @task.result ||= Result.new(task_id: @task.id)
-    @task.result.errors.clear
+  end
+  
+  def cancel
+    if @task.cancel
+      notice = I18n.t(
+        "general.notifications.event_successful", 
+        event: I18n.t("tasks.general.events.cancel")
+      )
+      redirect_to(
+        tasks_workflow_user_index_path(@task.story), notice: notice
+      ) and return
+    else
+      render 'edit' and return
+    end
+  end
+
+  def skip
+    if @task.cancel
+      redirect_to(
+        next_task_workflow_user_index_path(@task.story)
+      ) and return
+    else
+      render 'edit' and return
+    end
   end
   
   def update
-    if (params[:task][:result_attributes][:text] rescue '').blank?
-      params[:task].delete(:result_attributes)
+    if params[:event] && params[:event].keys.select{|k| ['cancel', 'skip'].include?(k)}.any?
+      send(params[:event].keys.first)
+      return
     end
     
     @task.attributes = params[:task]
-    
-    if params[:event] && params[:event].keys.select{|k| ['cancel', 'skip'].include?(k)}.any?
-      unless @task.cancel
-        render 'edit' and return
-      end
-      
-      if params[:event][:cancel]
-        notice = t(
-          "general.notifications.event_successful", 
-          event: I18n.t("tasks.general.events.cancel")
-        )
-        redirect_to(
-          tasks_workflow_user_index_path(@task.story), notice: notice
-        ) and return
-      elsif params[:event][:skip]
-        redirect_to(
-          next_task_workflow_user_index_path(@task.story)
-        ) and return
-      end
-    end
-    
     method = params[:event] ? params[:event].keys.first : 'save'
-    success = if params[:next_step] == '1' || (params[:event] && params[:event][:next])
-      @task.send(step) 
-    elsif can? method.to_sym, @task
-      @task.send(method)
-    else
-      false
+    success = false
+    
+    if @result.valid?
+      success = if params[:next_step] == '1' || (params[:event] && params[:event][:next])
+        @task.send(step) 
+      elsif (method == 'save' && can?(:update, @task)) || can?(method.to_sym, @task)
+        @task.send(method)
+      else
+        false
+      end
     end
     
     render 'edit' and return unless success
+        
+    @result.save
     
-    if success && params[:event] && params[:event][:next]
+    if params[:event] && params[:event][:next]
       redirect_to(
         next_task_workflow_user_index_path(@task.story), 
-        notice: t('general.form.successfully_updated')
+        notice: I18n.t('general.form.successfully_updated')
       ) and return
     end
     
     notice = if method == 'save'
-      t('general.form.successfully_updated')
+      I18n.t('general.form.successfully_updated')
     else
-      t(
+      I18n.t(
         "general.notifications.event_successful", 
         event: I18n.t("tasks.general.events.#{method}")
       )
@@ -114,5 +121,27 @@ class Workflow::TasksController < ApplicationController
   
   def resource
     @task ||= Task.find(params[:id])
+  end
+  
+  private
+  
+  def build_result
+    result_params = params[:task] ? params[:task].delete(:result_attributes) : nil
+    result_params = result_params || {}
+    
+    unless resource.result_id.present?
+      @result = resource.result_class.new(result_params.merge(task_id: resource.id))
+      @result.errors.clear
+      return
+    end
+    
+    if resource.result
+      @result = resource.result
+    elsif resource.result_id
+      # WORKAROUND: do we still need this case?
+      @result = resource.result_class.find(resource.result_id)
+    end
+    
+    result_params.each {|param,value| @result.send("#{param}=", value) }
   end
 end

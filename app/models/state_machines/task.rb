@@ -28,7 +28,8 @@ module StateMachines::Task
         end
         
         state :under_supervision do
-          validates_associated :result
+          # TODO: move logic of Workflow::TasksController#update here
+          #validates_associated :result
         end
        
         event :follow_up do 

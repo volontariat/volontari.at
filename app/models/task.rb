@@ -8,11 +8,8 @@ class Task
   include Model::MongoDb::Commentable
   include StateMachines::Task
   
-  #embedded_in :story
   belongs_to :story
-  
-  #embeds_one :result
-  has_one :result, dependent: :destroy
+  belongs_to :result, dependent: :destroy
   
   accepts_nested_attributes_for :result, allow_destroy: true
   
@@ -56,6 +53,14 @@ class Task
   
   def author; author_id ? User.find(author_id) : nil; end
   def author=(value); self.author_id = value.id; end
+  
+  def result_class
+    if product_id.present?
+      "#{product.class.name}::Result".constantize rescue Result
+    else
+      Result
+    end
+  end
   
   private
   

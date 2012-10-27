@@ -27,7 +27,9 @@ class Result
   
   after_initialize :cache_associations
   before_validation :cache_associations
-
+  after_create :set_tasks_result_association
+  after_destroy :unset_tasks_result_association
+  
   #track_history on: [:name, :text, :state], scope: :task
   
   # belongs_to (SQL)
@@ -47,4 +49,7 @@ class Result
   def cache_product_association
     self.product_id = task.product_id if task_id.present?
   end
+  
+  def set_tasks_result_association; task.update_attribute(:result_id, id); end
+  def unset_tasks_result_association; task.update_attribute(:result_id, nil); end
 end

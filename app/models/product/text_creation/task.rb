@@ -1,5 +1,5 @@
 class Product::TextCreation::Task < ::Task
-  include StateMachines::Product::TextCreation::Task
+  belongs_to :result, dependent: :destroy, class_name: 'Product::TextCreation::Result', inverse_of: :task
   
   field :keywords, type: Array 
    
