@@ -10,7 +10,7 @@ Feature: Manage a task's transitions
     And a story without tasks named "Story 1"   
     And a user named "User"
   
-  Scenario: Follow up task
+  Scenario: Follow up
   
     Given a text creation task under supervision named "Task 1"
     When I log in as "Project Owner"

@@ -32,5 +32,6 @@ Feature: Manage a task's transitions
     Given an assigned text creation task named "Task 1"
     When I log in as "User"
     And I go to the edit workflow task page
+    And I fill in "task_result_attributes_text" with "Dummy Dummy"
     And I press "Pull request"
     Then I should see "Pull request successful"

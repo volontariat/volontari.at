@@ -14,6 +14,6 @@ Given /^a text creation task under supervision named "([^\"]*)"$/ do |name|
   attributes[:user_id] = @me.id if @me && !attributes[:user_id]
   attributes[:author_id] = @me.id if @me
   task = new_task(name, factory: :text_creation_task, attributes: attributes)
-  Result.create(task_id: task.id, text: 'Dummy')
+  Product::TextCreation::Result.create(task_id: task.id, text: 'Dummy Dummy')
   task.review!
 end

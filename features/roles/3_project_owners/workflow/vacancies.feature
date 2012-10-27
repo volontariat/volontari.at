@@ -14,7 +14,6 @@ Feature: Manage a vacancy transitions
     And I am on the project owner's workflow page
     When I click on the tab "recommended_vacancies"
     And I click on the 1st link of a tab "recommended_vacancies"
-    And show me the page
     And I follow "Accept recommendation"
     Then I should see "Update successful"
     And I should see "open"
