@@ -11,6 +11,8 @@ class Page
   field :text, type: String
   field :state, type: String
   
+  index({ name: 1 }, { unique: true })
+  
   attr_accessible :name, :text
   
   scope :active, where(state: 'active')
