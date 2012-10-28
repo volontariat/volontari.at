@@ -89,9 +89,13 @@ class Product
   end
 
   def get_type
-    [
-      'Product', name.gsub(' - ', '_').gsub('-', '_').gsub(' ', '_').classify
-    ].join('::')
+    if name == 'Product'
+      'Product'
+    else
+      [
+        'Product', name.gsub(' - ', '_').gsub('-', '_').gsub(' ', '_').classify
+      ].join('::')
+    end
   end
   
   def set_type
