@@ -1,11 +1,13 @@
 require 'spec_helper'
 
+class Product::MyProduct; ; end
+
 describe Product do
   describe 'validations' do
     describe 'english_name_available?' do
       it 'assures that a english name is present' do
         I18n.locale = :de
-        subject = Factory.build(:product, name: 'Text Creation')
+        subject = Factory.build(:product, name: 'Product')
         subject.valid?
         
         subject.errors[:name].include?(
@@ -15,7 +17,7 @@ describe Product do
         ).should == true
         
         I18n.locale = I18n.default_locale
-        subject = Factory.build(:product, name: 'Text Creation')
+        subject = Factory.build(:product, name: 'Product')
         subject.valid?
         
         subject.errors[:name].include?(
@@ -37,7 +39,7 @@ describe Product do
           )
         ).should == true
         
-        subject = Factory.build(:product, name: 'Text Creation')
+        subject = Factory.build(:product, name: 'My Product')
         subject.valid?.should == true
       
         subject.errors[:name].include?(
