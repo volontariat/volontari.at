@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121007071543) do
+ActiveRecord::Schema.define(:version => 20121028073712) do
 
   create_table "areas", :force => true do |t|
     t.string   "ancestry"
@@ -103,6 +103,15 @@ ActiveRecord::Schema.define(:version => 20121007071543) do
 
   add_index "mongo_db_documents", ["mongo_db_object_id", "klass_name"], :name => "index_mongo_db_documents_on_mongo_db_object_id_and_klass_name", :unique => true
 
+  create_table "organizations", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "organizations", ["slug"], :name => "index_organizations_on_slug"
+
   create_table "professions", :force => true do |t|
     t.string   "name"
     t.string   "slug"
@@ -117,11 +126,13 @@ ActiveRecord::Schema.define(:version => 20121007071543) do
     t.text     "text"
     t.string   "url"
     t.string   "state"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "product_id"
+    t.integer  "organization_id"
   end
 
+  add_index "projects", ["organization_id"], :name => "index_projects_on_organization_id"
   add_index "projects", ["product_id"], :name => "index_projects_on_product_id"
   add_index "projects", ["slug"], :name => "index_projects_on_slug", :unique => true
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
