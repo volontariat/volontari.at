@@ -129,7 +129,7 @@ gem 'jquery-ui-rails'
 # ffi dependency older than the one from selenium-webdriver
 #gem 'pygments.rb'
 
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', '2.1.3'
 gem 'simple-navigation-bootstrap'
 
 # web
