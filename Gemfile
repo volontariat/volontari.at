@@ -15,7 +15,7 @@ gem 'rails_autolink'
 
 # core
 gem 'rack-cors', '~> 0.2.4', require: 'rack/cors'
-gem 'rails_info'
+gem "rails_info", "~> 0.1.0"
 
 # authentication
 
