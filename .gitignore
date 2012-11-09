@@ -18,3 +18,4 @@ rerun.txt
 pickle-email-*.html
 /config/database.yml
 /config/initializers/recaptcha.rb
+/config/email.yml
