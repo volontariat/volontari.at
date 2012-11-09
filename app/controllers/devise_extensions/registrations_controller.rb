@@ -29,6 +29,7 @@ class DeviseExtensions::RegistrationsController < Devise::RegistrationsControlle
         respond_with resource, :location => after_inactive_sign_up_path_for(resource)
       end
     else
+      @presenter = Resources::User::FormPresenter.new(self.view_context, resource: resource)  
       clean_up_passwords resource
       respond_with resource
     end
