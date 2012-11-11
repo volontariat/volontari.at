@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
        
   # :timeoutable, :token_authenticatable, :lockable,
   # :lock_strategy => :none, :unlock_strategy => :nones
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable,# :confirmable,
          :recoverable, :rememberable, :trackable, :validatable 
   
   extend FriendlyId
