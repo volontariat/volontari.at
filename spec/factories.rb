@@ -26,9 +26,9 @@ FactoryGirl.define do
     password 'password'
     password_confirmation { |u| u.password }
     
-    after_create do |user|
-      User.confirm_by_token(user.confirmation_token)
-    end
+    #after_create do |user|
+    #  User.confirm_by_token(user.confirmation_token)
+    #end
   end
   
   factory :area do

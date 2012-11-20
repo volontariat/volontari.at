@@ -1,7 +1,7 @@
 class Page
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::History::Trackable
+  #include Mongoid::History::Trackable
   include Mongoid::Slug
   
   include StateMachines::Page
@@ -21,7 +21,7 @@ class Page
   validates :name, presence: true, uniqueness: true
   validates :text, presence: true
   
-  track_history on: [:user_id, :name, :text, :state]
+  #track_history on: [:user_id, :name, :text, :state]
   slug :name
   
   # belongs_to (SQL)
