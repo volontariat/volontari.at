@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'bundler', '> 1.1.0'
 ruby '1.9.3' if ENV['HEROKU']
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 
 gem 'pg'
 gem 'mongoid', '~> 3.0.0'
@@ -32,8 +32,8 @@ gem 'remotipart', '~> 1.0'
 gem 'omniauth', '1.0.3'
 gem 'omniauth-facebook'
 gem 'omniauth-tumblr'
-gem 'omniauth-twitter'
-gem 'twitter', '2.0.2'
+#gem 'omniauth-twitter'
+#gem 'twitter', '2.0.2'
 
 # mail
 
@@ -120,7 +120,6 @@ gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on.
 gem 'addressable', '~> 2.2', require: 'addressable/uri'
 gem 'http_accept_language', '~> 1.0.2'
 gem 'typhoeus'
-gem 'capistrano'
 
 # view
 gem 'jquery-rails'
@@ -142,7 +141,7 @@ gem 'jasmine', git: 'https://github.com/pivotal/jasmine-gem.git'
 group :development do
   #gem 'heroku'
   #gem 'heroku_san', '3.0.2', platforms: :mri_19
-  gem 'capistrano', require: false
+  gem 'capistrano', '~> 2.13.5'
   gem 'capistrano_colors', require: false
   gem 'capistrano-ext', require: false
   gem 'linecache', '0.46', platforms: :mri_18
