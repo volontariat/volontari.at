@@ -34,6 +34,7 @@ namespace :deploy do
     put File.read("config/email.yml"), "#{shared_path}/config/email.yml"
     put File.read("config/initializers/airbrake.rb"), "#{shared_path}/config/initializers/airbrake.rb"
     put File.read("config/initializers/recaptcha.rb"), "#{shared_path}/config/initializers/recaptcha.rb"
+    put File.read("config/initializers/secret_token.rb"), "#{shared_path}/config/initializers/secret_token.rb"
   end
   after "deploy:setup", "deploy:setup_config"
 
@@ -42,6 +43,7 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/email.yml #{release_path}/config/email.yml"
     run "ln -nfs #{shared_path}/config/initializers/airbrake.rb #{release_path}/config/initializers/airbrake.rb"
     run "ln -nfs #{shared_path}/config/initializers/recaptcha.rb #{release_path}/config/initializers/recaptcha.rb"
+    run "ln -nfs #{shared_path}/config/initializers/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
