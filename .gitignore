@@ -1,3 +1,7 @@
+# Configuration files
+config/initializers/secret_token.rb
+config/initializers/airbrake.rb
+
 *.rbc
 *.sassc
 .project

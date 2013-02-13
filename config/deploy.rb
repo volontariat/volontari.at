@@ -30,16 +30,17 @@ namespace :deploy do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
     run "mkdir -p #{shared_path}/config"
-    put File.read("config/database.example.yml"), "#{shared_path}/config/database.yml"
-    put File.read("config/email.example.yml"), "#{shared_path}/config/email.yml"
-    put File.read("config/initializers/recaptcha.example"), "#{shared_path}/config/initializers/recaptcha.rb"
-    puts "Now edit the config files in #{shared_path}."
+    put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
+    put File.read("config/email.yml"), "#{shared_path}/config/email.yml"
+    put File.read("config/initializers/airbrake.rb"), "#{shared_path}/config/initializers/airbrake.rb"
+    put File.read("config/initializers/recaptcha.rb"), "#{shared_path}/config/initializers/recaptcha.rb"
   end
   after "deploy:setup", "deploy:setup_config"
 
   task :symlink_config, roles: :app do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/config/email.yml #{release_path}/config/email.yml"
+    run "ln -nfs #{shared_path}/config/initializers/airbrake.rb #{release_path}/config/initializers/airbrake.rb"
     run "ln -nfs #{shared_path}/config/initializers/recaptcha.rb #{release_path}/config/initializers/recaptcha.rb"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
