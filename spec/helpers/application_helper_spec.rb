@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module ApplicationHelper
   def resource
-    @resource ||= Factory(:vacancy)
+    @resource ||= FactoryGirl.create(:vacancy)
   end
 end
 

@@ -1,7 +1,7 @@
 Given /^a comment$/ do
   attributes = { commentable: @project || @vacancy || @candidature }
   attributes[:user_id] ||= @me.id if @me
-  @comment = Factory(:comment, attributes)
+  @comment = FactoryGirl.create(:comment, attributes)
   @comment.reload
 end
 

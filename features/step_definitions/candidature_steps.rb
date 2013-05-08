@@ -11,7 +11,7 @@ module CandidatureFactoryMethods
     
     set_candidature_defaults(attributes)
     
-    @candidature = Factory(:candidature, attributes)
+    @candidature = FactoryGirl.create(:candidature, attributes)
     
     @candidature.reload
   end

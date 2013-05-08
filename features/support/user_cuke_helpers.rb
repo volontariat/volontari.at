@@ -4,7 +4,7 @@ module UserCukeHelpers
   # and the given override attributes, adds the standard aspects to it
   # and returns it
   def create_user(overrides={})
-    Factory(
+    FactoryGirl.create(
       :user, {
         password: 'password',
         password_confirmation: 'password'
@@ -22,7 +22,7 @@ module UserCukeHelpers
   # create a new @me user, if not present, and log in using the
   # integration_sessions controller (automatic)
   def automatic_login
-    @me ||= Factory(:user)
+    @me ||= FactoryGirl.create(:user)
     page.driver.visit(new_integration_sessions_path(user_id: @me.slug))
     click_button "Login"
   end

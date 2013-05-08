@@ -4,7 +4,7 @@ describe Product::TextCreation::Result do
   describe 'validations' do
     describe '#text_length_between_range' do
       it 'principally works' do
-        story = Factory(:story)
+        story = FactoryGirl.create(:story)
         task = story.tasks.first
         subject = Product::TextCreation::Result.new(task_id: task.id, text: 'Dummy')
         subject.valid?.should == false

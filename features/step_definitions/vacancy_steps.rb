@@ -10,7 +10,7 @@ module VacancyFactoryMethods
     
     set_vacancy_defaults(attributes)
     
-    @vacancy = Factory(:vacancy, attributes)
+    @vacancy = FactoryGirl.create(:vacancy, attributes)
     @vacancy.reload
   end
 end

@@ -4,9 +4,9 @@ describe Product do
   describe 'member methods' do
     describe 'next_task_for_user' do
       it 'principally works' do
-        subject = Factory(:story)
+        subject = FactoryGirl.create(:story)
         subject.activate!
-        user = Factory(:user)
+        user = FactoryGirl.create(:user)
         
         next_task = subject.next_task_for_user(user)
         next_task.id.should == subject.tasks.first.id

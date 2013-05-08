@@ -11,16 +11,16 @@ World(ProjectFactoryMethods)
 Given /^a project named "([^\"]*)"$/ do |name|
   attributes = {name: name}
   set_project_defaults(attributes)
-  @project = Factory(:project, attributes)
+  @project = FactoryGirl.create(:project, attributes)
   
   @project.reload
 end
 
 Given /^a text creation project named "([^\"]*)"$/ do |name|
-  product = Product.where(name: 'Text Creation').first || Factory(:product)
+  product = Product.where(name: 'Text Creation').first || FactoryGirl.create(:product)
   attributes = {name: name, product_id: product.id}
   set_project_defaults(attributes)
-  @project = Factory(:project, attributes)
+  @project = FactoryGirl.create(:project, attributes)
   
   @project.reload
 end

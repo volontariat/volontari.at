@@ -5,7 +5,7 @@ module StoryFactoryMethods
     
     attributes.merge!({name: name})
     set_story_defaults(attributes)
-    @story = Factory(factory, attributes)
+    @story = FactoryGirl.create(factory, attributes)
     
     @story.reload
   end

@@ -5,7 +5,7 @@ module TaskFactoryMethods
     
     attributes.merge!({name: name})
     set_task_defaults(attributes)
-    @task = Factory(factory, attributes)
+    @task = FactoryGirl.create(factory, attributes)
     @task.reload
     
     @task
