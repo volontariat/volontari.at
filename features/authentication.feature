@@ -20,4 +20,5 @@ Feature: Authentication
     And I press "Create User"
     #Then an email should have been sent from "no-reply@volontari.at" to "user1@volontari.at" with the subject "Confirmation instructions"
     #And that mail should have "Welcome user1@volontari.at" in the body
-    Then I should see "A message with a confirmation link has been sent to your email address."
+    #Then I should see "A message with a confirmation link has been sent to your email address."
+    Then I should see "Welcome! You have signed up successfully."
