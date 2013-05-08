@@ -1,4 +1,8 @@
 $(document).ready ->
+  $("a[rel=popover]").popover()
+  $(".tooltip").tooltip()
+  $("a[rel=tooltip]").tooltip()
+  
   $( '.accordions' ).each (k, v) ->
     $(v).accordion({ autoHeight: false });
     

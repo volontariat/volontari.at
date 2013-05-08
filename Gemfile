@@ -62,25 +62,8 @@ gem 'mongoid_slug'
 
 # controller
 gem 'has_scope'
-gem 'friendly_id', '~> 4.0.0'
+gem 'friendly_id'
 gem 'wicked'
-
-# view
-gem 'simple-navigation'  
-gem 'acts_as_markup', git: 'git://github.com/vigetlabs/acts_as_markup.git'
-gem 'facebox-rails'
-gem 'simple_form'
-gem 'country_select'
-gem 'auto_html', git: 'git://github.com/Applicat/auto_html'
-gem 'recaptcha', require: 'recaptcha/rails'
-gem 'diffy'
-
-# Could not find a valid gem 'mobile_fu' (>= 0) in any repository
-#gem 'mobile-fu'
-
-gem 'will_paginate'
-gem 'client_side_validations'
-gem 'gon'
 
 # file uploading
 
@@ -122,14 +105,27 @@ gem 'http_accept_language', '~> 1.0.2'
 gem 'typhoeus'
 
 # view
+gem 'sass-rails',                   '~> 3.2'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'simple-navigation'  
+gem 'simple-navigation-bootstrap'
+gem 'acts_as_markup', git: 'git://github.com/vigetlabs/acts_as_markup.git'
+gem 'facebox-rails'
+gem 'simple_form'
+gem 'country_select'
+gem 'auto_html', git: 'git://github.com/Applicat/auto_html'
+gem 'recaptcha', require: 'recaptcha/rails'
+gem 'diffy'
+gem 'will_paginate'
+gem 'client_side_validations'
+gem 'gon'
+
+# Could not find a valid gem 'mobile_fu' (>= 0) in any repository
+#gem 'mobile-fu'
 
 # ffi dependency older than the one from selenium-webdriver
 #gem 'pygments.rb'
-
-gem 'twitter-bootstrap-rails', '2.1.3'
-gem 'simple-navigation-bootstrap'
 
 # web
 
@@ -207,7 +203,6 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -218,6 +213,7 @@ group :assets do
 
   # asset_sync is required as needed by application.rb
   gem 'asset_sync', require: nil
+  gem 'bootstrap-sass',               '~> 2.3.1.0'
   
   gem 'coffee-script'
 end

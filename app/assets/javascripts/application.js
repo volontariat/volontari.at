@@ -2,5 +2,5 @@
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require jquery.tokeninput
-//= require twitter/bootstrap
+//= require bootstrap
 //= require_tree .
