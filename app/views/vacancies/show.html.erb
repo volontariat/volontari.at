@@ -10,8 +10,6 @@
   <%= show_actions %>
 </dl>
 
-<%= render partial: 'shared/resource/actions', locals: { type: 'vacancies', resource: @vacancy } %>
-
 <%= markdown @vacancy.text %>
 
 <%= render 'shared/comments', comment: @vacancy.comments.new %>
