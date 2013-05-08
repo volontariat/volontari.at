@@ -31,7 +31,14 @@ class Project < ActiveRecord::Base
   
   # belongs_to (Mongo DB)
   def product
-    product_id.blank? ? nil : Product.find(product_id)
+    return @product if @product
+    
+    @product = product_id.blank? ? nil : Product.find(product_id)
+  end
+  
+  def product=(document)
+    @product = document
+    self.product_id = @product.try(:id)
   end
     
   # has_many (Mongo DB)

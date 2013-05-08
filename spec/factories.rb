@@ -37,8 +37,8 @@ FactoryGirl.define do
   
   factory :product do
     name 'Text Creation'
-    user_id Factory(:user, password: 'password', password_confirmation: 'password').id
-    area_ids [Area.first.try(:id) || Factory(:area).id]
+    user_id FactoryGirl.create(:user, password: 'password', password_confirmation: 'password').id
+    area_ids [Area.first.try(:id) || FactoryGirl.create(:area).id]
     text Faker::Lorem.sentences(5).join(' ')
     
     after_build do |product|
@@ -54,10 +54,10 @@ FactoryGirl.define do
     after_build do |project|
       resource_has_many(project, :areas) 
     end
-  end
-  
-  factory :text_creation_project, parent: :project do
-    product_id (Product.where(name: 'Text Creation').first || Factory(:product)).id
+    
+    factory :text_creation_project do
+      association :product
+    end
   end
   
   factory :vacancy do
@@ -83,7 +83,7 @@ FactoryGirl.define do
   end
   
   factory :story, class: Product::TextCreation::Story do
-    project_id Factory(:text_creation_project).id
+    association :project, factory: :text_creation_project
     sequence(:name) { |n| "story#{n}#{r_str}" }
     text Faker::Lorem.sentences(10).join(' ')
     language 'en'
@@ -102,7 +102,7 @@ FactoryGirl.define do
   end
   
   factory :story_without_tasks, class: Product::TextCreation::Story do
-    project_id Project.first.try(:id) || Factory(:text_creation_project).id
+    association :project, factory: :text_creation_project
     sequence(:name) { |n| "story#{n}#{r_str}" }
     text Faker::Lorem.sentences(10).join(' ')
     language 'en'
