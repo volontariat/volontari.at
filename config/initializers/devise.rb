@@ -21,11 +21,7 @@ Devise.setup do |config|
   require 'devise/orm/active_record'
 
   #mail setup
-  if AppConfig[:smtp_sender_address]
-    config.mailer_sender = AppConfig[:smtp_sender_address]
-  else
-    config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
-  end
+  config.mailer_sender = 'gawlista@gmail.com'
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating an user. By default is
