@@ -4,6 +4,7 @@
   <title><%= t('layout.title') %></title>
   <meta charset='utf-8'>
   <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+  <%= stylesheet_link_tag 'voluntary/application', media: 'all' %>
   <%= stylesheet_link_tag 'application', media: 'all' %>
 </head>
 <body>
@@ -35,6 +36,7 @@
       </div>
     </div>
   </div>
+  <%= javascript_include_tag 'voluntary/application' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <%= javascript_tag do %>

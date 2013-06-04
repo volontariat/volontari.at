@@ -1,5 +1,0 @@
-Airbrake.configure do |config|
-  config.api_key = 'dummy '
-end
-
-raise 'should not be executed'

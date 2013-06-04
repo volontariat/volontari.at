@@ -1,8 +1,0 @@
-<%= render 'shared/form/error_messages', resource: resource %>
-<div class="form-inputs">
-  <%= render 'shared/form/error_messages', resource: @result %>
-  <fieldset>
-    <input type="hidden" name="task[result_attributes][task_id]" id="task_result_attributes_task_id" value="<%= resource.id %>"/> 
-    <%= text_area_tag 'task[result_attributes][text]', @result.text, style: 'width: 98%; height:200px;' %>
-  </fieldset>
-</div>

@@ -1,7 +1,0 @@
-<%= form_tag update_multiple_candidatures_path, method: :post do %>
-  <%= render partial: "shared/collection/#{@project ? 'list' : 'table'}", locals: { 
-    type: 'vacancies', collection: @vacancies, columns: ['name', 'project_id'], content_column: 'text'
-  } %>
-<% end %>
-
-<%= link_to t('vacancies.new.title'), new_project_vacancy_path(@project) if @project %>

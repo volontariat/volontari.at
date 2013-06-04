@@ -1,7 +1,0 @@
-<h4><a name="comments" href="#top"><%= t('comments.index.title') %></a></h4>
-
-<% (@comments.respond_to?(:where) ? @comments.where(ancestry: nil) : @comments).select{|c| c.id.present? }.each do |current_comment| %>
-  <%= nested_comments current_comment.subtree.arrange(order: :created_at) %>
-<% end %>
-
-<%= render partial: 'comments/form', locals: { resource: comment } %>

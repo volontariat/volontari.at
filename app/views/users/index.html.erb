@@ -1,6 +1,0 @@
-<%= form_tag update_multiple_users_path, method: :post do %>
-  <%= render partial: 'shared/collection/table', locals: { 
-    type: 'users', collection: @users, columns: ['name', 'first_name', 'last_name', 'language'],
-    options: { append_new_link: false }
-  } %>
-<% end %>

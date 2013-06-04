@@ -1,9 +1,0 @@
-en:
-  projects:
-    index:
-      title: Projects
-      empty_collection: No projects available.
-    new:
-      title: New Project
-    edit:
-      title: Edit Project
