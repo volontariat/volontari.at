@@ -22,6 +22,7 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
+/config/application.yml
 /config/database.yml
 /config/initializers/recaptcha.rb
 /config/email.yml
