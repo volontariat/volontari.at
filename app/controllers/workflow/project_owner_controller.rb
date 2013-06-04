@@ -19,7 +19,7 @@ class Workflow::ProjectOwnerController < ApplicationController
       end
     end
     
-    { stories: [:completed], tasks: [:under_supervision] }.each do |controller, states|
+    { stories: [:completed, :active], tasks: [:under_supervision] }.each do |controller, states|
       states.each do |state|
         collection = controller.to_s.classify.constantize.where(
           offeror_id: current_user.id, state: state
