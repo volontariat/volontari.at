@@ -49,4 +49,5 @@ group :production do
   gem "rack-rewrite", "~> 1.2.1", :require => false
   gem "rack-google-analytics", :require => "rack/google-analytics"
   gem "rack-piwik", :require => false
+  gem 'unicorn'
 end
