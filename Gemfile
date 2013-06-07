@@ -6,19 +6,18 @@ ruby '1.9.3' if ENV['HEROKU']
 
 gem 'rails', '3.2.13'
 
-gem 'voluntary', github: 'volontariat/voluntary'
-gem 'voluntary_text_creation'
+gem 'voluntary', '0.1.0.rc1'
+gem 'voluntary_text_creation', '0.0.2'
 gem "rack-cors", "~> 0.2.4", :require => "rack/cors"
 gem "thin", "~> 1.3.1", :require => false
 gem "settingslogic", :git => "https://github.com/binarylogic/settingslogic.git"
-gem "acts-as-taggable-on", :git => "https://github.com/mbleigh/acts-as-taggable-on.git"
-gem "cancan", :git => "https://github.com/ryanb/cancan.git", :branch => "2.0"
 gem "acts_as_markup", :git => "git://github.com/vigetlabs/acts_as_markup.git"
 gem "auto_html", :git => "git://github.com/Applicat/auto_html"
 gem "recaptcha", :require => "recaptcha/rails"
 gem "sinatra", :require => false
 gem "addressable", "~> 2.2", :require => "addressable/uri"
 gem "jasmine", :git => "https://github.com/pivotal/jasmine-gem.git"
+
 group :development do
   gem "linecache", "0.46", :platforms => :mri_18
   gem "capistrano", :require => false
