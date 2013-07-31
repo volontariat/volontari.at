@@ -45,69 +45,6 @@ GIT
       rspec (>= 1.3.1)
       selenium-webdriver (>= 0.1.3)
 
-PATH
-  remote: ../voluntary
-  specs:
-    voluntary (0.1.0.rc2)
-      activerecord-import
-      acts-as-taggable-on
-      acts_as_api
-      acts_as_list
-      ancestry
-      auto_html
-      cancan
-      capistrano
-      carrierwave (= 0.6.2)
-      client_side_validations
-      coffee-rails (~> 3.2.1)
-      coffee-script
-      country_select
-      devise
-      diffy
-      facebox-rails
-      faker
-      faraday
-      faraday_middleware
-      fog
-      foreigner (~> 1.1.0)
-      foreman (= 0.46)
-      friendly_id (~> 4.0.0)
-      gon
-      handlebars_assets
-      has_scope
-      http_accept_language (~> 1.0.2)
-      i18n-inflector-rails (~> 1.0)
-      jquery-rails
-      jquery-ui-bootstrap-rails-asset
-      json
-      koala
-      messagebus_ruby_api (= 1.0.3)
-      mini_magick (= 3.4)
-      mongoid (~> 3.0.0)
-      mongoid-history
-      mongoid_slug
-      omniauth (= 1.0.3)
-      omniauth-facebook
-      omniauth-tumblr
-      paper_trail
-      pg
-      rails (~> 3.2.13)
-      rails-i18n
-      rails_autolink
-      ransack
-      remotipart (~> 1.0)
-      sass-rails (~> 3.2.3)
-      sidekiq
-      simple-navigation
-      simple-navigation-bootstrap
-      simple_form
-      slim
-      state_machine
-      typhoeus
-      uglifier (>= 1.0.3)
-      wicked
-      will_paginate
-
 GEM
   remote: http://gems.github.com/
   remote: http://rubygems.org/
@@ -491,6 +428,65 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    voluntary (0.1.0.rc2)
+      activerecord-import
+      acts-as-taggable-on
+      acts_as_api
+      acts_as_list
+      ancestry
+      auto_html
+      cancan
+      capistrano
+      carrierwave (= 0.6.2)
+      client_side_validations
+      coffee-rails (~> 3.2.1)
+      coffee-script
+      country_select
+      devise
+      diffy
+      facebox-rails
+      faker
+      faraday
+      faraday_middleware
+      fog
+      foreigner (~> 1.1.0)
+      foreman (= 0.46)
+      friendly_id (~> 4.0.0)
+      gon
+      handlebars_assets
+      has_scope
+      http_accept_language (~> 1.0.2)
+      i18n-inflector-rails (~> 1.0)
+      jquery-rails
+      jquery-ui-bootstrap-rails-asset
+      json
+      koala
+      messagebus_ruby_api (= 1.0.3)
+      mini_magick (= 3.4)
+      mongoid (~> 3.0.0)
+      mongoid-history
+      mongoid_slug
+      omniauth (= 1.0.3)
+      omniauth-facebook
+      omniauth-tumblr
+      paper_trail
+      pg
+      rails (~> 3.2.13)
+      rails-i18n
+      rails_autolink
+      ransack
+      remotipart (~> 1.0)
+      sass-rails (~> 3.2.3)
+      sidekiq
+      simple-navigation
+      simple-navigation-bootstrap
+      simple_form
+      slim
+      state_machine
+      typhoeus
+      uglifier (>= 1.0.3)
+      wicked
+      will_paginate
     warden (1.2.3)
       rack (>= 1.0)
     webmock (1.11.0)
@@ -541,7 +537,7 @@ DEPENDENCIES
   therubyracer
   thin (~> 1.3.1)
   unicorn
-  voluntary (= 0.1.0.rc2)!
+  voluntary (= 0.1.0.rc2)
   voluntary_text_creation (= 0.0.2)!
   webmock (~> 1.7)
   yard
