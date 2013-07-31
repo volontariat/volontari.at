@@ -12,6 +12,7 @@ set :scm, "git"
 set :repository, "git@github.com:volontariat/#{application}.git"
 set :branch, "master"
 set :rake, "#{rake} --trace"
+set :bundle_flags, '--deployment'
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
