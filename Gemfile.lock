@@ -23,13 +23,6 @@ GIT
       wikitext (~> 2.0)
 
 GIT
-  remote: git://github.com/volontariat/voluntary_text_creation.git
-  revision: 499ad277b1ba15ec3c252b9df95ff2e4656ea87c
-  specs:
-    voluntary_text_creation (0.0.2)
-      voluntary (= 0.1.0.rc2)
-
-GIT
   remote: https://github.com/binarylogic/settingslogic.git
   revision: 08792a6dd770e0754a73edffdc525507dfcdb81d
   specs:
@@ -44,6 +37,13 @@ GIT
       rack (~> 1.0)
       rspec (>= 1.3.1)
       selenium-webdriver (>= 0.1.3)
+
+GIT
+  remote: https://github.com/volontariat/voluntary_text_creation.git
+  revision: 499ad277b1ba15ec3c252b9df95ff2e4656ea87c
+  specs:
+    voluntary_text_creation (0.0.2)
+      voluntary (= 0.1.0.rc2)
 
 GEM
   remote: http://gems.github.com/
@@ -538,6 +538,6 @@ DEPENDENCIES
   thin (~> 1.3.1)
   unicorn
   voluntary (= 0.1.0.rc2)
-  voluntary_text_creation (= 0.0.2)!
+  voluntary_text_creation!
   webmock (~> 1.7)
   yard
