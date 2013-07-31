@@ -7,7 +7,7 @@ ruby '1.9.3' if ENV['HEROKU']
 gem 'rails', '3.2.13'
 
 gem 'voluntary', '0.1.0.rc2'
-gem 'voluntary_text_creation', github: 'volontariat/voluntary_text_creation' #'0.0.2'
+gem 'voluntary_text_creation', '0.0.2', github: 'volontariat/voluntary_text_creation'
 gem "rack-cors", "~> 0.2.4", :require => "rack/cors"
 gem "thin", "~> 1.3.1", :require => false
 gem "settingslogic", :git => "https://github.com/binarylogic/settingslogic.git"
