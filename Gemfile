@@ -4,10 +4,11 @@ source 'http://rubygems.org'
 gem 'bundler', '> 1.1.0'
 ruby '1.9.3' if ENV['HEROKU']
 
-gem 'rails', '3.2.13'
-
-gem 'voluntary', '0.1.0.rc2'
+gem 'voluntary', path: '../../voluntary/voluntary' #'0.1.0.rc2'
 gem 'voluntary_text_creation', '0.0.3'
+gem 'voluntary_core_module_emberjs', path: '../../voluntary/voluntary_core_module_emberjs' #'0.0.1'
+gem 'voluntary_ranking', path: '../../voluntary/voluntary_ranking' #'0.0.1'
+
 gem "rack-cors", "~> 0.2.4", :require => "rack/cors"
 gem "thin", "~> 1.3.1", :require => false
 gem "settingslogic", :git => "https://github.com/binarylogic/settingslogic.git"
