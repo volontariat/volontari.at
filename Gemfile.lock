@@ -8,8 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/mislav/will_paginate.git
-  revision: b7b0c6b62730397355ba665647b2fdf51d60d3c3
-  branch: mongoid
+  revision: 0da168851b9356f678106abd19055fc6e9a6df72
   specs:
     will_paginate (3.0.4)
 
