@@ -19,7 +19,8 @@ gem "addressable", "~> 2.2", :require => "addressable/uri"
 gem "jasmine", :git => "https://github.com/pivotal/jasmine-gem.git"
 
 # view
-gem "will_paginate", github: 'mislav/will_paginate'
+# set to branch mongoid because of ArgumentError in production: invalid byte sequence in US-ASCII 
+gem "will_paginate", github: 'mislav/will_paginate', branch: 'mongoid'
 
 group :development do
   gem "linecache", "0.46", :platforms => :mri_18
