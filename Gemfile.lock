@@ -30,7 +30,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: 5ccc8f0c7145f93de925d2cb8d208e3a38274e23
+  revision: 37fe909bca6626121846faaa56fd0bc3c0e15899
   specs:
     voluntary (0.1.0.rc2)
       activerecord-import
@@ -39,6 +39,7 @@ GIT
       acts_as_list
       ancestry
       auto_html
+      bootstrap-sass-rails (~> 2)
       cancan
       capistrano
       carrierwave (= 0.6.2)
@@ -46,7 +47,7 @@ GIT
       coffee-rails (~> 3.2.1)
       coffee-script
       country_select
-      devise
+      devise (~> 2)
       diffy
       facebox-rails
       faker
@@ -157,9 +158,8 @@ GEM
     asset_sync (0.5.4)
       activemodel
       fog
-    atomic (1.1.13)
     bcrypt-ruby (3.1.2)
-    bootstrap-sass-rails (3.0.0.2)
+    bootstrap-sass-rails (2.3.2.1)
       railties (>= 3.1.0)
       sass-rails (>= 3.1.0)
     builder (3.0.4)
@@ -214,12 +214,11 @@ GEM
       debugger-ruby_core_source (~> 1.2.1)
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.2)
-    devise (3.1.0)
+    devise (2.2.7)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
-      thread_safe (~> 0.1)
-      warden (~> 1.2.3)
+      railties (~> 3.1)
+      warden (~> 1.2.1)
     diff-lcs (1.2.4)
     diffy (3.0.1)
     easy_diff (0.0.2)
@@ -478,8 +477,6 @@ GEM
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
     thor (0.18.1)
-    thread_safe (0.1.2)
-      atomic
     tilt (1.4.1)
     timers (1.1.0)
     treetop (1.4.15)
