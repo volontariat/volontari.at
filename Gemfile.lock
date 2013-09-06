@@ -7,12 +7,6 @@ GIT
       rinku (~> 1.5.0)
 
 GIT
-  remote: git://github.com/mislav/will_paginate.git
-  revision: 0da168851b9356f678106abd19055fc6e9a6df72
-  specs:
-    will_paginate (3.0.4)
-
-GIT
   remote: git://github.com/vigetlabs/acts_as_markup.git
   revision: c520479908c121a45c6e8a9eda9a34f67bd69a00
   specs:
@@ -501,6 +495,7 @@ GEM
       builder
       expression_parser
     wikitext (2.1.1)
+    will_paginate (3.0.4)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     yard (0.8.6.1)
@@ -540,5 +535,4 @@ DEPENDENCIES
   voluntary (= 0.1.0.rc3)
   voluntary_text_creation (= 0.0.4)
   webmock (~> 1.7)
-  will_paginate!
   yard
