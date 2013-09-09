@@ -1,5 +1,54 @@
+require Rails.root.join('spec', 'support', 'mongo_database_cleaner')
+
+class User
+  def country; 'dummy'; end
+  def interface_language; 'dummy'; end
+  
+  private
+  
+  def set_main_role
+  end
+end
+
+class VolontariatSeed
+  protected
+  
+  def create_roles
+    Role.import([:name], self.class::USER_ROLES.keys.map{|role| [role.to_s.humanize]})
+    
+    self.class::USER_ROLES.keys.each do |role|
+      "Role::#{role.to_s.classify}".constantize.create(name: role.to_s.humanize)
+    end
+  end
+  
+  def create_users
+    self.class::USER_ROLES.each do |role, settings|
+      attributes = {
+        name: role.to_s.humanize, first_name: 'Mister', last_name: role.to_s.humanize, email: "#{role}@volontari.at",
+        password: "#{role}2012", language: 'en'
+      }
+      attributes[:password_confirmation] = attributes[:password]
+      create_record(User, attributes) # events: ['skip_confirmation!']
+    end
+  end
+end
+
+require 'voluntary'
+
 class CreateSchema < ActiveRecord::Migration
   def up
+    MongoDatabaseCleaner.clean
+    
+    # Module.constants.map{|c| begin; c.to_s.constantize; rescue; nil; end}.
+    # select{|c| !c.nil? && c.is_a?(Class) && c.methods.include?(:delete_all)}.map(&:name)
+    [
+      "Version", "User", "Area", "Candidature", "Comment", "Organization", "Page", "Product", 
+      "Profession", "Project", "Result", "Story", "Task", "Vacancy", "AreaUser", "HistoryTracker", 
+      "MongoDbDocument", "ProjectUser", "Role", "UserRole"
+    ].each do |c|
+      begin; c.constantize.delete_all; rescue; end
+    end
+
     create_table :users do |t|
       t.string :name
       t.string :slug
@@ -209,6 +258,8 @@ class CreateSchema < ActiveRecord::Migration
     add_index :friendly_id_slugs, :sluggable_id
     add_index :friendly_id_slugs, [:slug, :sluggable_type], :unique => true
     add_index :friendly_id_slugs, :sluggable_type
+    
+    VolontariatSeed.new.create_fixtures
   end
   
   def down
