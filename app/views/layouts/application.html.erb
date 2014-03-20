@@ -7,9 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag 'voluntary/application', media: 'all' %>
   <%= stylesheet_link_tag 'application', media: 'all' %>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet"/>
 </head>
 <body>
   <%= render 'layouts/shared/navigation' %>
+  
+  <section id="dialog">
+    <img alt="Ajax-loader-small" class="hide " id="dialog_body_spinner" src="<%=image_path('voluntary/spinner.gif')%>"/>
+    <div id="dialog_body"/>
+  </section>
   
   <div class="container-fluid">
 <% unless flash.empty? %>
@@ -20,22 +26,22 @@
     </div>
 <% end %>    
     <div class="row-fluid">
-      <% if sidenav.present? %>
-        <div class="span9">
-          <%= breadcrumbs %>
-          
-          <%= yield %>
-        </div>      
-        <div class="span3">
-          <%= sidenav %>
-        </div>
-      <% else %>
-        <div class="span12">
-          <%= breadcrumbs %>
-          
-          <%= yield %>
-        </div>   
-      <% end %>
+<% if sidenav(@sidenav_links_count).present? %>
+      <div class="span9">
+        <%= breadcrumbs %>
+        
+        <%= yield %>
+      </div>      
+      <div class="span3">
+        <%= sidenav(@sidenav_links_count) %>
+      </div>
+<% else % >
+      <div class="span12">
+        <%= breadcrumbs %>
+        
+        <%= yield %>
+      </div> 
+<% end %>
     </div>
   </div>
   <div class="container-fluid">
@@ -47,6 +53,7 @@
   </div>
   <%= javascript_include_tag 'voluntary/application' %>
   <%= javascript_include_tag 'application' %>
+  <%= yield :javascript_includes %>
   <%= csrf_meta_tags %>
   <%= javascript_tag do %>
     <%= yield :top_javascript %>
