@@ -17,7 +17,10 @@ class ReplaceUserByPolymorphicResourceInCandidatures < ActiveRecord::Migration
     
     remove_column :candidatures, :user_id
     
-    remove_index :candidatures, [:user_id, :vacancy_id]
+    begin
+      remove_index :candidatures, [:user_id, :vacancy_id]
+    rescue
+    end
     
     add_index :candidatures, [:resource_id, :resource_type, :vacancy_id], unique: true, name: 'index_candidatures_on_resource_and_vacancy'
   end
