@@ -7,6 +7,12 @@ GIT
       rinku (~> 1.5.0)
 
 GIT
+  remote: git://github.com/mislav/will_paginate.git
+  revision: ca7d45f955066f0a01d500769a8efbb6acc4032c
+  specs:
+    will_paginate (3.0.4)
+
+GIT
   remote: git://github.com/vigetlabs/acts_as_markup.git
   revision: 436f1862d68733a3b21f201f11024dd297a8cc1d
   specs:
@@ -23,8 +29,23 @@ GIT
       wikitext (~> 2.0)
 
 GIT
-  remote: git://github.com/volontariat/voluntary.git
-  revision: 0a681b8e7de431d6026b8119412a83bf45827e91
+  remote: https://github.com/binarylogic/settingslogic.git
+  revision: 08792a6dd770e0754a73edffdc525507dfcdb81d
+  specs:
+    settingslogic (2.0.9)
+
+GIT
+  remote: https://github.com/pivotal/jasmine-gem.git
+  revision: 25df3e366aac97cdf4ef43303769a9d6ff856b46
+  specs:
+    jasmine (2.0.0)
+      jasmine-core (~> 2.0.0)
+      phantomjs
+      rack (>= 1.2.1)
+      rake
+
+PATH
+  remote: ../voluntary
   specs:
     voluntary (0.1.0)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -101,50 +122,30 @@ GIT
       will_paginate (~> 3.0.4)
       zip-zip (~> 0.2)
 
-GIT
-  remote: git://github.com/volontariat/voluntary_classified_advertisement.git
-  revision: 86deb6243cc7cba05c9d5f312efb36b29d0cc433
+PATH
+  remote: ../voluntary_classified_advertisement
   specs:
     voluntary_classified_advertisement (0.0.1)
       voluntary (= 0.1.0)
 
-GIT
-  remote: git://github.com/volontariat/voluntary_scholarship.git
-  revision: 9c904721958e3b91f91b2d5d9b8a7fe7299b4dc6
+PATH
+  remote: ../voluntary_scholarship
   specs:
     voluntary_scholarship (0.0.1)
       bitmask_attributes (~> 1.0.0)
       voluntary
 
-GIT
-  remote: git://github.com/volontariat/voluntary_text_creation.git
-  revision: 1ccbdb374f06e2b10e7a7619952067118081d292
+PATH
+  remote: ../voluntary_text_creation
   specs:
     voluntary_text_creation (0.0.4)
       voluntary (~> 0)
 
-GIT
-  remote: git://github.com/volontariat/voluntary_translation.git
-  revision: 57be0778584a0f3634db8f7039f2043ff7c01df6
+PATH
+  remote: ../voluntary_translation
   specs:
     voluntary_translation (0.0.1)
       voluntary (= 0.1.0)
-
-GIT
-  remote: https://github.com/binarylogic/settingslogic.git
-  revision: 08792a6dd770e0754a73edffdc525507dfcdb81d
-  specs:
-    settingslogic (2.0.9)
-
-GIT
-  remote: https://github.com/pivotal/jasmine-gem.git
-  revision: 25df3e366aac97cdf4ef43303769a9d6ff856b46
-  specs:
-    jasmine (2.0.0)
-      jasmine-core (~> 2.0.0)
-      phantomjs
-      rack (>= 1.2.1)
-      rake
 
 GEM
   remote: http://gems.github.com/
@@ -559,7 +560,6 @@ GEM
       expression_parser
       rinku
     wikitext (2.1.1)
-    will_paginate (3.0.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     yard (0.8.7.3)
@@ -604,4 +604,5 @@ DEPENDENCIES
   voluntary_text_creation!
   voluntary_translation!
   webmock (~> 1.8.11)
+  will_paginate!
   yard (~> 0.7)
