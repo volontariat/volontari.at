@@ -46,6 +46,7 @@ group :development do
   gem 'capistrano', '~> 2.15.5', require: false
   gem 'capistrano_colors', '~> 0.5.5', require: false
   gem 'capistrano-ext', '~> 1.2.1', require: false
+  gem 'net-ssh', '2.7.0'
   gem 'yard', '~> 0.7', require: false
 end
 

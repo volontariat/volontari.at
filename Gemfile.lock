@@ -386,7 +386,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
-    net-ssh (2.8.0)
+    net-ssh (2.7.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     nokogiri (1.6.1)
@@ -589,6 +589,7 @@ DEPENDENCIES
   jasmine!
   linecache (= 0.46)
   mysql2 (~> 0.3.13)
+  net-ssh (= 2.7.0)
   rack-cors (~> 0.2.4)
   rack-google-analytics (~> 0.11.0)
   rack-piwik (~> 0.1.3)
