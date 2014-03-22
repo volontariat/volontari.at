@@ -29,23 +29,8 @@ GIT
       wikitext (~> 2.0)
 
 GIT
-  remote: https://github.com/binarylogic/settingslogic.git
-  revision: 08792a6dd770e0754a73edffdc525507dfcdb81d
-  specs:
-    settingslogic (2.0.9)
-
-GIT
-  remote: https://github.com/pivotal/jasmine-gem.git
-  revision: 25df3e366aac97cdf4ef43303769a9d6ff856b46
-  specs:
-    jasmine (2.0.0)
-      jasmine-core (~> 2.0.0)
-      phantomjs
-      rack (>= 1.2.1)
-      rake
-
-PATH
-  remote: ../voluntary
+  remote: git://github.com/volontariat/voluntary.git
+  revision: 42c195a6276dd10912ba9976cdd1db328c5cd8ba
   specs:
     voluntary (0.1.0)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -122,30 +107,50 @@ PATH
       will_paginate (~> 3.0.4)
       zip-zip (~> 0.2)
 
-PATH
-  remote: ../voluntary_classified_advertisement
+GIT
+  remote: git://github.com/volontariat/voluntary_classified_advertisement.git
+  revision: cd522bd70286dc4c74d1b09e91dcc7e03d6f0ec7
   specs:
     voluntary_classified_advertisement (0.0.1)
       voluntary (= 0.1.0)
 
-PATH
-  remote: ../voluntary_scholarship
+GIT
+  remote: git://github.com/volontariat/voluntary_scholarship.git
+  revision: 74e926ea2a3fb0a40c9a050dc44d4072c2940bca
   specs:
     voluntary_scholarship (0.0.1)
       bitmask_attributes (~> 1.0.0)
       voluntary
 
-PATH
-  remote: ../voluntary_text_creation
+GIT
+  remote: git://github.com/volontariat/voluntary_text_creation.git
+  revision: 4a6ab75efdeaf6b0c66df488842ad75c5274d6bd
   specs:
     voluntary_text_creation (0.0.4)
       voluntary (~> 0)
 
-PATH
-  remote: ../voluntary_translation
+GIT
+  remote: git://github.com/volontariat/voluntary_translation.git
+  revision: dfdd46947fcdab25d58124a38e8e2aef5bca413e
   specs:
     voluntary_translation (0.0.1)
       voluntary (= 0.1.0)
+
+GIT
+  remote: https://github.com/binarylogic/settingslogic.git
+  revision: 08792a6dd770e0754a73edffdc525507dfcdb81d
+  specs:
+    settingslogic (2.0.9)
+
+GIT
+  remote: https://github.com/pivotal/jasmine-gem.git
+  revision: 25df3e366aac97cdf4ef43303769a9d6ff856b46
+  specs:
+    jasmine (2.0.0)
+      jasmine-core (~> 2.0.0)
+      phantomjs
+      rack (>= 1.2.1)
+      rake
 
 GEM
   remote: http://gems.github.com/
@@ -469,7 +474,7 @@ GEM
     ruby-hmac (0.4.0)
     rubyzip (1.1.2)
     safe_yaml (1.0.1)
-    sass (3.2.16)
+    sass (3.2.17)
     sass-rails (4.0.2)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.2.0)
