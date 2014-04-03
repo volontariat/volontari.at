@@ -4,11 +4,11 @@ source 'http://rubygems.org'
 gem 'bundler', '> 1.1.0'
 ruby '1.9.3' if ENV['HEROKU']
 
-gem 'voluntary', git: 'git://github.com/volontariat/voluntary.git'
-gem 'voluntary_text_creation', git: 'git://github.com/volontariat/voluntary_text_creation.git'
-gem 'voluntary_translation', git: 'git://github.com/volontariat/voluntary_translation.git'
-gem 'voluntary_classified_advertisement', git: 'git://github.com/volontariat/voluntary_classified_advertisement.git'
-gem 'voluntary_scholarship', git: 'git://github.com/volontariat/voluntary_scholarship.git'
+gem 'voluntary', '~> 0.2.0'
+gem 'voluntary_classified_advertisement', '~> 0.1.0'
+gem 'voluntary_text_creation', '~> 0.1.0'
+gem 'voluntary_translation', '~> 0.1.0'
+gem 'voluntary_scholarship', git: 'git://github.com/volontariat/voluntary_scholarship.git' #'~> 0.0.1'
 
 # core
 gem 'rack-cors', '~> 0.2.4', require: 'rack/cors'
