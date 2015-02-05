@@ -37,6 +37,8 @@ namespace :deploy do
     #put File.read("config/initializers/airbrake.rb"), "#{shared_path}/config/initializers/airbrake.rb"
     put File.read("config/initializers/recaptcha.rb"), "#{shared_path}/config/initializers/recaptcha.rb"
     put File.read("config/initializers/secret_token.rb"), "#{shared_path}/config/initializers/secret_token.rb"
+    put File.read("config/initializers/lastfm.rb"), "#{shared_path}/config/initializers/lastfm.rb"
+    put File.read("config/initializers/musicbrainz.rb"), "#{shared_path}/config/initializers/musicbrainz.rb"
   end
   
   after "deploy:setup", "deploy:setup_config"
@@ -48,6 +50,8 @@ namespace :deploy do
     #run "ln -nfs #{shared_path}/config/initializers/airbrake.rb #{release_path}/config/initializers/airbrake.rb"
     run "ln -nfs #{shared_path}/config/initializers/recaptcha.rb #{release_path}/config/initializers/recaptcha.rb"
     run "ln -nfs #{shared_path}/config/initializers/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
+    run "ln -nfs #{shared_path}/config/initializers/lastfm.rb #{release_path}/config/initializers/lastfm.rb"
+    run "ln -nfs #{shared_path}/config/initializers/musicbrainz.rb #{release_path}/config/initializers/musicbrainz.rb"
   end
   
   after "deploy:finalize_update", "deploy:symlink_config"

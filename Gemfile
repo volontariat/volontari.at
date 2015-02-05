@@ -4,11 +4,15 @@ source 'http://rubygems.org'
 gem 'bundler', '> 1.1.0'
 ruby '1.9.3' if ENV['HEROKU']
 
-gem 'voluntary', '~> 0.2.0'
+gem 'voluntary', '~> 0.2.2'
 gem 'voluntary_classified_advertisement', '~> 0.1.0'
 gem 'voluntary_text_creation', '~> 0.1.0'
 gem 'voluntary_translation', '~> 0.1.0'
 gem 'voluntary_scholarship', git: 'git://github.com/volontariat/voluntary_scholarship.git' #'~> 0.0.1'
+gem 'voluntary_music_metadata_enrichment', github: 'volontariat/voluntary_music_metadata_enrichment' # '~> 0.0.1'
+
+# voluntary_music_metadata_enrichment requirements
+gem 'musicbrainz', github: 'localhots/musicbrainz', branch: '0.8.0.rc1'
 
 # core
 gem 'rack-cors', '~> 0.2.4', require: 'rack/cors'
@@ -19,7 +23,6 @@ gem 'settingslogic', git: 'https://github.com/binarylogic/settingslogic.git'
 
 # view 
 gem 'acts_as_markup', git: 'git://github.com/vigetlabs/acts_as_markup.git'
-gem 'auto_html', git: 'git://github.com/Applicat/auto_html'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem "will_paginate", github: "mislav/will_paginate"
 

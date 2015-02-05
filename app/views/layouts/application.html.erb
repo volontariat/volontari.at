@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= t('layout.title') %></title>
+  <title><%= (yield(:title).blank? ? '' : yield(:title) + ' - ') + t('layout.title') %></title>
   <meta charset='utf-8'>
   <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <%= stylesheet_link_tag 'voluntary/application', media: 'all' %>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= stylesheet_link_tag *voluntary_application_stylesheets, media: 'all' %>
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet"/>
 </head>
 <body>
+  <div id="bootstrap_modal" class="modal hide fade"></div>
+  
   <%= render 'layouts/shared/navigation' %>
   
   <section id="dialog">
@@ -26,21 +27,35 @@
     </div>
 <% end %>    
     <div class="row-fluid">
-<% if sidenav(@sidenav_links_count).present? %>
+<% if sidenav(@sidenav_links_count).present? || content_for?(:search) %>
       <div class="span9">
-        <%= breadcrumbs %>
+        <% if content_for?(:breadcrumbs) %>
+          <div class="nav">
+            <%= yield :breadcrumbs %>
+          </div>
+        <% else %>
+          <%= breadcrumbs %>
+        <% end %>
         
         <%= yield %>
       </div>      
       <div class="span3">
+        <%= yield :search %>
+        
         <%= sidenav(@sidenav_links_count) %>
       </div>
 <% else %>
       <div class="span12">
-        <%= breadcrumbs %>
+        <% if content_for?(:breadcrumbs) %>
+          <div class="nav">
+            <%= yield :breadcrumbs %>
+          </div>
+        <% else %>
+          <%= breadcrumbs %>
+        <% end %>
         
         <%= yield %>
-      </div> 
+      </div>      
 <% end %>
     </div>
   </div>
@@ -51,8 +66,7 @@
       </div>
     </div>
   </div>
-  <%= javascript_include_tag 'voluntary/application' %>
-  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag *voluntary_application_javascripts %>
   <%= yield :javascript_includes %>
   <%= csrf_meta_tags %>
   <%= javascript_tag do %>

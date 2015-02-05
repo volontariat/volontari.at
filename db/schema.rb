@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320134069) do
+ActiveRecord::Schema.define(version: 20150205155529) do
 
   create_table "areas", force: true do |t|
     t.string   "ancestry"
@@ -99,6 +99,17 @@ ActiveRecord::Schema.define(version: 20140320134069) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "likes", force: true do |t|
+    t.boolean  "positive",               default: true
+    t.integer  "target_id"
+    t.string   "target_type", limit: 60,                null: false
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "likes", ["target_id", "user_id", "target_type"], name: "index_likes_on_target_id_and_user_id_and_target_type", unique: true, using: :btree
+
   create_table "list_items", force: true do |t|
     t.integer  "list_id"
     t.integer  "user_id"
@@ -128,6 +139,119 @@ ActiveRecord::Schema.define(version: 20140320134069) do
   end
 
   add_index "mongo_db_documents", ["mongo_db_object_id", "klass_name"], name: "index_mongo_db_documents_on_mongo_db_object_id_and_klass_name", unique: true, using: :btree
+
+  create_table "music_artists", force: true do |t|
+    t.string   "mbid",           limit: 36
+    t.string   "name"
+    t.string   "country"
+    t.string   "disambiguation"
+    t.integer  "listeners"
+    t.integer  "plays"
+    t.datetime "founded_at"
+    t.datetime "dissolved_at"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "music_artists", ["mbid"], name: "index_music_artists_on_mbid", unique: true, using: :btree
+
+  create_table "music_library_artists", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "artist_id"
+    t.integer  "plays"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "music_library_artists", ["user_id"], name: "index_music_library_artists_on_user_id", using: :btree
+
+  create_table "music_metadata_enrichment_group_artist_connections", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "artist_id"
+    t.integer  "likes_count",    default: 0
+    t.integer  "dislikes_count", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "music_metadata_enrichment_group_artist_connections", ["artist_id"], name: "index_music_group_artist_connections_on_artist_id", using: :btree
+  add_index "music_metadata_enrichment_group_artist_connections", ["group_id"], name: "index_music_group_artist_connections_on_group_id", using: :btree
+
+  create_table "music_metadata_enrichment_groups", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.string   "current_user_name"
+    t.integer  "current_members_page"
+    t.integer  "synced"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "music_releases", force: true do |t|
+    t.string   "mbid",                limit: 36
+    t.integer  "artist_id"
+    t.string   "artist_name"
+    t.string   "name"
+    t.integer  "tracks_count"
+    t.string   "future_release_date"
+    t.datetime "released_at"
+    t.integer  "listeners"
+    t.integer  "plays"
+    t.integer  "user_id"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "music_releases", ["artist_id"], name: "index_music_releases_on_artist_id", using: :btree
+  add_index "music_releases", ["mbid"], name: "index_music_releases_on_mbid", unique: true, using: :btree
+  add_index "music_releases", ["released_at"], name: "index_music_releases_on_released_at", using: :btree
+
+  create_table "music_tracks", force: true do |t|
+    t.string   "mbid",             limit: 36
+    t.string   "spotify_track_id", limit: 22
+    t.integer  "artist_id"
+    t.string   "artist_name"
+    t.integer  "release_id"
+    t.string   "release_name"
+    t.integer  "master_track_id"
+    t.integer  "nr"
+    t.string   "name"
+    t.integer  "duration"
+    t.integer  "listeners"
+    t.integer  "plays"
+    t.datetime "released_at"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "music_tracks", ["artist_id"], name: "index_music_tracks_on_artist_id", using: :btree
+  add_index "music_tracks", ["master_track_id"], name: "index_music_tracks_on_master_track_id", using: :btree
+  add_index "music_tracks", ["release_id", "name"], name: "index_music_tracks_on_release_id_and_name", unique: true, using: :btree
+  add_index "music_tracks", ["released_at"], name: "index_music_tracks_on_released_at", using: :btree
+
+  create_table "music_videos", force: true do |t|
+    t.string   "status"
+    t.integer  "artist_id"
+    t.string   "artist_name"
+    t.integer  "track_id"
+    t.string   "track_name"
+    t.string   "url"
+    t.string   "location"
+    t.datetime "recorded_at"
+    t.integer  "user_id"
+    t.integer  "likes_count",    default: 0
+    t.integer  "dislikes_count", default: 0
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "music_videos", ["status", "track_id"], name: "index_music_videos_on_status_and_track_id", unique: true, using: :btree
+  add_index "music_videos", ["track_id"], name: "index_music_videos_on_track_id", using: :btree
+  add_index "music_videos", ["url"], name: "index_music_videos_on_url", unique: true, using: :btree
 
   create_table "organizations", force: true do |t|
     t.string   "name"
@@ -272,8 +396,8 @@ ActiveRecord::Schema.define(version: 20140320134069) do
     t.date     "date_of_birth"
     t.string   "place_of_birth"
     t.string   "citizenship"
-    t.string   "email",                   default: "", null: false
-    t.string   "encrypted_password",      default: "", null: false
+    t.string   "email",                   default: ""
+    t.string   "encrypted_password",      default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -300,6 +424,10 @@ ActiveRecord::Schema.define(version: 20140320134069) do
     t.integer  "profession_id"
     t.integer  "main_role_id"
     t.text     "foreign_languages"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "lastfm_user_name"
+    t.boolean  "music_library_imported",  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -339,5 +467,52 @@ ActiveRecord::Schema.define(version: 20140320134069) do
   add_index "vacancies", ["project_id"], name: "index_vacancies_on_project_id", using: :btree
   add_index "vacancies", ["project_user_id"], name: "index_vacancies_on_project_user_id", using: :btree
   add_index "vacancies", ["slug"], name: "index_vacancies_on_slug", unique: true, using: :btree
+
+  create_table "year_in_review_music", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "year_in_review_music", ["user_id"], name: "index_year_in_review_music_on_user_id", using: :btree
+  add_index "year_in_review_music", ["year"], name: "index_year_in_review_music_on_year", using: :btree
+
+  create_table "year_in_review_music_releases", force: true do |t|
+    t.integer  "year_in_review_music_id"
+    t.integer  "user_id"
+    t.integer  "year"
+    t.integer  "position"
+    t.integer  "artist_id"
+    t.string   "artist_name"
+    t.integer  "release_id"
+    t.string   "release_name"
+    t.datetime "released_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "year_in_review_music_releases", ["position"], name: "index_year_in_review_music_releases_on_position", using: :btree
+  add_index "year_in_review_music_releases", ["year_in_review_music_id"], name: "index_year_in_review_music_releases_on_year_in_review_music_id", using: :btree
+
+  create_table "year_in_review_music_tracks", force: true do |t|
+    t.integer  "year_in_review_music_id"
+    t.integer  "user_id"
+    t.integer  "year"
+    t.integer  "position"
+    t.integer  "artist_id"
+    t.string   "artist_name"
+    t.integer  "release_id"
+    t.string   "release_name"
+    t.integer  "track_id"
+    t.string   "spotify_track_id",        limit: 22
+    t.string   "track_name"
+    t.datetime "released_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "year_in_review_music_tracks", ["position"], name: "index_year_in_review_music_tracks_on_position", using: :btree
+  add_index "year_in_review_music_tracks", ["year_in_review_music_id"], name: "index_year_in_review_music_tracks_on_year_in_review_music_id", using: :btree
 
 end
