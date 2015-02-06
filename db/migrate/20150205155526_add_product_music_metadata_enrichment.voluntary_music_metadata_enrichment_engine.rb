@@ -87,6 +87,8 @@ class AddProductMusicMetadataEnrichment < ActiveRecord::Migration
   end
   
   def down
+    Product.where(name: 'Music Metadata Enrichment').first.destroy
+    
     drop_table :music_artists
     drop_table :music_releases
     drop_table :music_tracks
