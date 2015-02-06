@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/localhots/musicbrainz.git
-  revision: 1098acf1bea36081a640389e45cdf93cbddaa1d1
+  revision: 4dced44bf1f8d6c4ac2faf1fd540d0efe3624f3c
   branch: 0.8.0.rc1
   specs:
     musicbrainz (0.7.6)
@@ -32,7 +32,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: d790db43d1ce9b5379be8992b524f549bf23c15f
+  revision: 17db069b19181bdd8fa48951bc4677c26dd8757b
   specs:
     voluntary_music_metadata_enrichment (0.0.1)
       lastfm (~> 1.26.0)
