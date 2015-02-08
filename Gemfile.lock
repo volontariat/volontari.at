@@ -32,7 +32,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: acb243e15c016520751cb9b7973dbdee760d8268
+  revision: bbd69d21473ae8ca71f7c594351e60f45ccafca9
   specs:
     voluntary_music_metadata_enrichment (0.0.1)
       lastfm (~> 1.26.0)
