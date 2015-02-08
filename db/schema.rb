@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205155529) do
+ActiveRecord::Schema.define(version: 20150208145425) do
 
   create_table "areas", force: true do |t|
     t.string   "ancestry"
@@ -202,6 +202,7 @@ ActiveRecord::Schema.define(version: 20150205155529) do
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_lp",                          default: false, null: false
   end
 
   add_index "music_releases", ["artist_id"], name: "index_music_releases_on_artist_id", using: :btree
