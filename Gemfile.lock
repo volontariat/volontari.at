@@ -181,6 +181,9 @@ GEM
     acts_as_list (0.4.0)
       activerecord (>= 3.0)
     addressable (2.3.7)
+    airbrake (4.1.0)
+      builder
+      multi_json
     ancestry (2.0.0)
       activerecord (>= 3.0.0)
     arel (4.0.2)
@@ -588,6 +591,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_markup!
   addressable (~> 2.2)
+  airbrake (~> 4.1.0)
   asset_sync (~> 0.5.0)
   bundler (> 1.1.0)
   capistrano (~> 2.15.5)

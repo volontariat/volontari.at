@@ -81,5 +81,6 @@ group :production do
   gem 'rack-google-analytics', '~> 0.11.0', require: 'rack/google-analytics'
   gem 'rack-piwik', '~> 0.1.3', require: 'rack/piwik', require: false
   gem 'unicorn'
+  gem 'airbrake',                '~> 4.1.0'
 end
         
