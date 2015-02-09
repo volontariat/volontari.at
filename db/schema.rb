@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208145425) do
+ActiveRecord::Schema.define(version: 20150209155622) do
 
   create_table "areas", force: true do |t|
     t.string   "ancestry"
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 20150208145425) do
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_ambiguous"
   end
 
   add_index "music_artists", ["mbid"], name: "index_music_artists_on_mbid", unique: true, using: :btree
@@ -479,6 +480,21 @@ ActiveRecord::Schema.define(version: 20150208145425) do
   add_index "year_in_review_music", ["user_id"], name: "index_year_in_review_music_on_user_id", using: :btree
   add_index "year_in_review_music", ["year"], name: "index_year_in_review_music_on_year", using: :btree
 
+  create_table "year_in_review_music_release_flops", force: true do |t|
+    t.integer  "year_in_review_music_id"
+    t.integer  "user_id"
+    t.integer  "year"
+    t.integer  "artist_id"
+    t.string   "artist_name"
+    t.integer  "release_id"
+    t.string   "release_name"
+    t.datetime "released_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "year_in_review_music_release_flops", ["year_in_review_music_id", "release_id"], name: "year_in_review_music_release_flop_releases", using: :btree
+
   create_table "year_in_review_music_releases", force: true do |t|
     t.integer  "year_in_review_music_id"
     t.integer  "user_id"
@@ -495,6 +511,24 @@ ActiveRecord::Schema.define(version: 20150208145425) do
 
   add_index "year_in_review_music_releases", ["position"], name: "index_year_in_review_music_releases_on_position", using: :btree
   add_index "year_in_review_music_releases", ["year_in_review_music_id"], name: "index_year_in_review_music_releases_on_year_in_review_music_id", using: :btree
+
+  create_table "year_in_review_music_track_flops", force: true do |t|
+    t.integer  "year_in_review_music_id"
+    t.integer  "user_id"
+    t.integer  "year"
+    t.integer  "artist_id"
+    t.string   "artist_name"
+    t.integer  "release_id"
+    t.string   "release_name"
+    t.integer  "track_id"
+    t.string   "spotify_track_id",        limit: 22
+    t.string   "track_name"
+    t.datetime "released_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "year_in_review_music_track_flops", ["year_in_review_music_id", "track_id"], name: "year_in_review_music_release_flop_tracks", using: :btree
 
   create_table "year_in_review_music_tracks", force: true do |t|
     t.integer  "year_in_review_music_id"
