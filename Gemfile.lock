@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/localhots/musicbrainz.git
-  revision: 4dced44bf1f8d6c4ac2faf1fd540d0efe3624f3c
+  revision: cf2ea92cc412f866f257562d6d1b3a1e490e768b
   branch: 0.8.0.rc1
   specs:
     musicbrainz (0.7.6)
