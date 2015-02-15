@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: d9b7aa0f8c8f3ea451b57c6bf4e7ace3b8c34e6e
+  revision: b21794b3760db5a257054d21a9b0c1d025ccf883
   specs:
     voluntary (0.2.2)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -104,7 +104,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: 7747aade4d3464a5c0a5f643f05efdb3efdaec04
+  revision: 4f9b628513f0b5b422fe988d3d18defef104f531
   specs:
     voluntary_music_metadata_enrichment (0.0.1)
       lastfm (~> 1.26.0)
@@ -231,12 +231,12 @@ GEM
       countries (= 0.9.3)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
-    cucumber (1.3.18)
+    cucumber (1.3.19)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.3)
       gherkin (~> 2.12)
       multi_json (>= 1.7.5, < 2.0)
-      multi_test (>= 0.1.1)
+      multi_test (>= 0.1.2)
     cucumber-rails (1.3.0)
       capybara (>= 1.1.2)
       cucumber (>= 1.1.8)

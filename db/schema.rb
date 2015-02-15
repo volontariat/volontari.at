@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209155622) do
+ActiveRecord::Schema.define(version: 20150215144847) do
 
   create_table "areas", force: true do |t|
     t.string   "ancestry"
@@ -179,6 +179,63 @@ ActiveRecord::Schema.define(version: 20150209155622) do
   add_index "music_metadata_enrichment_group_artist_connections", ["artist_id"], name: "index_music_group_artist_connections_on_artist_id", using: :btree
   add_index "music_metadata_enrichment_group_artist_connections", ["group_id"], name: "index_music_group_artist_connections_on_group_id", using: :btree
 
+  create_table "music_metadata_enrichment_group_memberships", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "music_metadata_enrichment_group_memberships", ["group_id", "user_id"], name: "uniq_music_metadata_enrichment_group_membership", using: :btree
+
+  create_table "music_metadata_enrichment_group_year_in_review", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "year"
+    t.integer  "users_count", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "music_metadata_enrichment_group_year_in_review", ["group_id", "year"], name: "uniq_music_metadata_enrichment_group_year_in_review", using: :btree
+
+  create_table "music_metadata_enrichment_group_year_in_review_releases", force: true do |t|
+    t.integer  "year_in_review_music_id"
+    t.integer  "group_id"
+    t.integer  "year"
+    t.integer  "position"
+    t.float    "score"
+    t.integer  "artist_id"
+    t.string   "artist_name"
+    t.integer  "release_id"
+    t.string   "release_name"
+    t.datetime "released_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "spotify_album_id",        limit: 22
+  end
+
+  add_index "music_metadata_enrichment_group_year_in_review_releases", ["year_in_review_music_id", "position"], name: "uniq_music_metadata_enrichment_group_year_in_review_release", using: :btree
+
+  create_table "music_metadata_enrichment_group_year_in_review_tracks", force: true do |t|
+    t.integer  "year_in_review_music_id"
+    t.integer  "group_id"
+    t.integer  "year"
+    t.integer  "position"
+    t.float    "score"
+    t.integer  "artist_id"
+    t.string   "artist_name"
+    t.integer  "release_id"
+    t.string   "release_name"
+    t.integer  "track_id"
+    t.string   "spotify_track_id",        limit: 22
+    t.string   "track_name"
+    t.datetime "released_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "music_metadata_enrichment_group_year_in_review_tracks", ["year_in_review_music_id", "position"], name: "uniq_music_metadata_enrichment_group_year_in_review_track", using: :btree
+
   create_table "music_metadata_enrichment_groups", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -204,6 +261,7 @@ ActiveRecord::Schema.define(version: 20150209155622) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_lp",                          default: false, null: false
+    t.string   "spotify_album_id",    limit: 22
   end
 
   add_index "music_releases", ["artist_id"], name: "index_music_releases_on_artist_id", using: :btree
@@ -475,10 +533,11 @@ ActiveRecord::Schema.define(version: 20150209155622) do
     t.integer  "year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "top_track_matches"
+    t.text     "top_release_matches"
   end
 
-  add_index "year_in_review_music", ["user_id"], name: "index_year_in_review_music_on_user_id", using: :btree
-  add_index "year_in_review_music", ["year"], name: "index_year_in_review_music_on_year", using: :btree
+  add_index "year_in_review_music", ["user_id", "year"], name: "index_year_in_review_music_on_user_id_and_year", using: :btree
 
   create_table "year_in_review_music_release_flops", force: true do |t|
     t.integer  "year_in_review_music_id"
@@ -491,6 +550,7 @@ ActiveRecord::Schema.define(version: 20150209155622) do
     t.datetime "released_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "spotify_album_id",        limit: 22
   end
 
   add_index "year_in_review_music_release_flops", ["year_in_review_music_id", "release_id"], name: "year_in_review_music_release_flop_releases", using: :btree
@@ -507,10 +567,10 @@ ActiveRecord::Schema.define(version: 20150209155622) do
     t.datetime "released_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "spotify_album_id",        limit: 22
   end
 
-  add_index "year_in_review_music_releases", ["position"], name: "index_year_in_review_music_releases_on_position", using: :btree
-  add_index "year_in_review_music_releases", ["year_in_review_music_id"], name: "index_year_in_review_music_releases_on_year_in_review_music_id", using: :btree
+  add_index "year_in_review_music_releases", ["year_in_review_music_id", "position"], name: "uniq_year_in_review_music_release", using: :btree
 
   create_table "year_in_review_music_track_flops", force: true do |t|
     t.integer  "year_in_review_music_id"
@@ -547,7 +607,6 @@ ActiveRecord::Schema.define(version: 20150209155622) do
     t.datetime "updated_at"
   end
 
-  add_index "year_in_review_music_tracks", ["position"], name: "index_year_in_review_music_tracks_on_position", using: :btree
-  add_index "year_in_review_music_tracks", ["year_in_review_music_id"], name: "index_year_in_review_music_tracks_on_year_in_review_music_id", using: :btree
+  add_index "year_in_review_music_tracks", ["year_in_review_music_id", "position"], name: "uniq_year_in_review_music_track", using: :btree
 
 end
