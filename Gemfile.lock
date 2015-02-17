@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: 2a930fc4e34a51637d193cb3d62c5eea265b3f9b
+  revision: bd93af05ff711a43653a3f2bb119085673ca3ef9
   specs:
     voluntary (0.2.2)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -104,7 +104,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: d9c7bd7990d8e225a742ceb136111c82a70416db
+  revision: f78f7523859e99c4759964dd6c4f115ca68339e3
   specs:
     voluntary_music_metadata_enrichment (0.0.1)
       lastfm (~> 1.26.0)
@@ -373,7 +373,7 @@ GEM
     multi_test (0.1.2)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
-    mysql2 (0.3.17)
+    mysql2 (0.3.18)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
