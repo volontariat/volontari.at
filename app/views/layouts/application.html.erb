@@ -31,7 +31,7 @@
     </div>
 <% end %>    
     <div class="row-fluid">
-<% if sidenav(@sidenav_links_count).present? || content_for?(:search) %>
+<% if sidenav(@sidenav_links_count).present? || content_for?(:search) || content_for?(:sidebar) %>
       <div class="span9">
         <% if content_for?(:breadcrumbs) %>
           <div class="nav">
@@ -47,6 +47,8 @@
         <%= yield :search %>
         
         <%= sidenav(@sidenav_links_count) %>
+        
+        <%= yield :sidebar %>
       </div>
 <% else %>
       <div class="span12">
