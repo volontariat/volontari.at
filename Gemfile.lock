@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: becb756a4091f360f4f2bc2ee0ef1ae278b392e0
+  revision: 522ee57d1a9d5cd00cd7fa2a0742e03b32c8dca6
   specs:
     voluntary (0.2.2)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -353,7 +353,7 @@ GEM
       subexec (~> 0.2.1)
     mini_portile (0.6.2)
     minitest (4.7.5)
-    mongoid (4.0.1)
+    mongoid (4.0.2)
       activemodel (~> 4.0)
       moped (~> 2.0.0)
       origin (~> 2.1)
