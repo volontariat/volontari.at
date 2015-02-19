@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/localhots/musicbrainz.git
-  revision: cf2ea92cc412f866f257562d6d1b3a1e490e768b
+  revision: 07e10a069997aeccb0b0681538ff5b644b55113d
   branch: 0.8.0.rc1
   specs:
     musicbrainz (0.7.6)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: 4859652e2b9ca515db7455362f36deadfc96851a
+  revision: 29c27e3b7e2d6f6a785d02499aafe1e8a5b3d08c
   specs:
     voluntary (0.2.2)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -104,7 +104,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: 4978e415328a2dfc589377604dcaf68788f8167e
+  revision: a72f4c14287fa46e9d1d854a2034b08b8f4666bd
   specs:
     voluntary_music_metadata_enrichment (0.0.1)
       lastfm (~> 1.26.0)
@@ -222,7 +222,7 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.0)
+    coffee-script-source (1.9.1)
     columnize (0.9.0)
     connection_pool (2.1.1)
     countries (0.9.3)
@@ -304,7 +304,7 @@ GEM
     gon (5.0.4)
       actionpack (>= 2.3.0)
       json
-    handlebars_assets (0.18)
+    handlebars_assets (0.19)
       execjs (>= 1.2.9)
       multi_json
       sprockets (>= 2.0.3)
