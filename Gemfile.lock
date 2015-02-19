@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: 522ee57d1a9d5cd00cd7fa2a0742e03b32c8dca6
+  revision: 499fba0da2e70a777201f8e7361abd993a5cc841
   specs:
     voluntary (0.2.2)
       activerecord-deprecated_finders (~> 1.0.3)
