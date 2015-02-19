@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: 499fba0da2e70a777201f8e7361abd993a5cc841
+  revision: 14932dd251543b55b9c490b6f65ec46deff097d9
   specs:
     voluntary (0.2.2)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -104,7 +104,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: a72f4c14287fa46e9d1d854a2034b08b8f4666bd
+  revision: 49437b0486a92ab8d6b6f4754b4793fbfed1189f
   specs:
     voluntary_music_metadata_enrichment (0.0.1)
       lastfm (~> 1.26.0)
@@ -311,7 +311,7 @@ GEM
       tilt
     has_scope (0.5.1)
     hashie (3.4.0)
-    highline (1.6.21)
+    highline (1.7.0)
     hike (1.2.3)
     http_accept_language (1.0.2)
     httparty (0.13.3)
