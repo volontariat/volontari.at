@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150215144847) do
+ActiveRecord::Schema.define(version: 20150220125255) do
 
   create_table "areas", force: true do |t|
     t.string   "ancestry"
@@ -535,6 +535,7 @@ ActiveRecord::Schema.define(version: 20150215144847) do
     t.datetime "updated_at"
     t.text     "top_track_matches"
     t.text     "top_release_matches"
+    t.string   "state",               default: "draft"
   end
 
   add_index "year_in_review_music", ["user_id", "year"], name: "index_year_in_review_music_on_user_id_and_year", using: :btree
@@ -568,6 +569,7 @@ ActiveRecord::Schema.define(version: 20150215144847) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "spotify_album_id",        limit: 22
+    t.string   "state",                              default: "draft"
   end
 
   add_index "year_in_review_music_releases", ["year_in_review_music_id", "position"], name: "uniq_year_in_review_music_release", using: :btree
@@ -605,6 +607,7 @@ ActiveRecord::Schema.define(version: 20150215144847) do
     t.datetime "released_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state",                              default: "draft"
   end
 
   add_index "year_in_review_music_tracks", ["year_in_review_music_id", "position"], name: "uniq_year_in_review_music_track", using: :btree
