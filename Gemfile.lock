@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/localhots/musicbrainz.git
-  revision: 07e10a069997aeccb0b0681538ff5b644b55113d
+  revision: f5e53369f3f603d69e48c89aa71dfd656bf7c6e1
   branch: 0.8.0.rc1
   specs:
     musicbrainz (0.7.6)
@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: 7c3dc713b906ab5d6723394bb18c00e5ec4a3d54
+  revision: 098de40a2d5d0884fde39beb16a0ad98a4dbf540
   specs:
     voluntary (0.2.2)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -104,7 +104,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: 165a8d4be12b17d57e5241dbba1e6ed2aa3dda12
+  revision: 3aa5af62910f91dc994716941abd78185c306d64
   specs:
     voluntary_music_metadata_enrichment (0.0.1)
       lastfm (~> 1.26.0)
@@ -304,7 +304,7 @@ GEM
     gon (5.0.4)
       actionpack (>= 2.3.0)
       json
-    handlebars_assets (0.19)
+    handlebars_assets (0.19.1)
       execjs (>= 1.2.9)
       multi_json
       sprockets (>= 2.0.3)
@@ -365,7 +365,7 @@ GEM
     mongoid_slug (3.2.1)
       mongoid (> 3.0)
       stringex (~> 2.0)
-    moped (2.0.3)
+    moped (2.0.4)
       bson (~> 2.2)
       connection_pool (~> 2.0)
       optionable (~> 0.2.0)
