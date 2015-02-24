@@ -104,7 +104,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: 05d994cfd11c9ce3ca2f0150a19129ba89ad2846
+  revision: 80221988f66316b19ce53edf012c9c9ef161e899
   specs:
     voluntary_music_metadata_enrichment (0.0.1)
       lastfm (~> 1.26.0)
@@ -304,11 +304,11 @@ GEM
     gon (5.0.4)
       actionpack (>= 2.3.0)
       json
-    handlebars_assets (0.19.1)
-      execjs (>= 1.2.9)
-      multi_json
-      sprockets (>= 2.0.3)
-      tilt
+    handlebars_assets (0.20.0)
+      execjs (~> 2.0)
+      multi_json (~> 1.0)
+      sprockets (~> 2.0)
+      tilt (~> 1.2)
     has_scope (0.5.1)
     hashie (3.4.0)
     highline (1.7.0)
