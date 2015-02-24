@@ -1,6 +1,6 @@
 require "bundler/capistrano"
 
-server "83.133.105.18", :web, :app, :db, primary: true
+server "volontari.at", :web, :app, :db, primary: true
 
 set :application, "volontariat"
 set :user, "deployer"
