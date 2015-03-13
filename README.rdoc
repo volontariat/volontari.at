@@ -1,6 +1,6 @@
 = Volontariat Wiki[https://github.com/applicat/volontariat/wiki] {<img src="https://secure.travis-ci.org/Applicat/volontariat.png" />}[http://travis-ci.org/Applicat/volontariat] {<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/Applicat/volontariat] {<img src="https://gemnasium.com/Applicat/volontariat.png?travis"/>}[https://gemnasium.com/Applicat/volontariat]
 
-Creative Open Crowd Source Platform Volontari.at
+Crowdsourcing platform Volontari.at
 
 == Installation
 
