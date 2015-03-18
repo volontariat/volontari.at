@@ -4,7 +4,7 @@ source 'http://rubygems.org'
 gem 'bundler', '> 1.1.0'
 ruby '1.9.3' if ENV['HEROKU']
 
-gem 'voluntary', github: 'volontariat/voluntary' #'~> 0.2.2'
+gem 'voluntary', '~> 0.2.3' #github: 'volontariat/voluntary'
 gem 'voluntary_classified_advertisement', '~> 0.1.0'
 gem 'voluntary_text_creation', '~> 0.1.0'
 gem 'voluntary_translation', '~> 0.1.0'
