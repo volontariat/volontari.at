@@ -25,7 +25,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: 8aecc1b75cb1acf99ad16b6fae860ffb5e7aca3a
+  revision: c4220af72c7c7daaba45bef78e64eddf45f23dba
   specs:
     voluntary (0.2.3)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -36,7 +36,6 @@ GIT
       ancestry (~> 2.0.0)
       auto_html (~> 1.6.4)
       bootstrap-datetimepicker-rails (~> 0.0.11)
-      bootstrap-sass-rails (~> 2)
       bootstrap-sass-rails (~> 2.3.2.1)
       cancan (~> 1.6.10)
       capistrano (~> 2.15.5)
@@ -62,8 +61,6 @@ GIT
       http_accept_language (~> 1.0.2)
       i18n-inflector-rails (~> 1.0)
       jquery-rails (= 2.2.2)
-      jquery-rails
-      jquery-ui-bootstrap-rails-asset
       jquery-ui-bootstrap-rails-asset (~> 0.0.3)
       json (~> 1.8.1)
       koala (~> 1.8.0)
@@ -103,7 +100,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: 17681c1faf043f018e9d79d7a951c1c56234ee7f
+  revision: 54adcf3e3b2d63fe153ec1462ecce798c76a7789
   specs:
     voluntary_music_metadata_enrichment (0.0.1)
       lastfm (~> 1.26.0)
@@ -112,7 +109,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_scholarship.git
-  revision: d5a2abdca5732ddf2e0386b0139ee43d8fbaebb1
+  revision: d732a523a042c4ca85389654ec64b2b3da717ac0
   specs:
     voluntary_scholarship (0.0.1)
       bitmask_attributes (~> 1.0.0)
@@ -223,7 +220,7 @@ GEM
       execjs
     coffee-script-source (1.9.1)
     columnize (0.9.0)
-    connection_pool (2.1.2)
+    connection_pool (2.1.3)
     countries (0.9.3)
       currencies (~> 0.4.2)
     country_select (1.3.1)
