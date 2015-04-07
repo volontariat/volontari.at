@@ -24,8 +24,40 @@ GIT
       rdiscount
 
 GIT
-  remote: git://github.com/volontariat/voluntary.git
-  revision: 9bfa6ef72a90c0930c22bab1156425a56c76965a
+  remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
+  revision: f67d941e1d823a53c53a611a151af4e4467ebbe5
+  specs:
+    voluntary_music_metadata_enrichment (0.1.1)
+      lastfm (~> 1.26.0)
+      musicbrainz
+      voluntary (~> 0.2.4)
+
+GIT
+  remote: git://github.com/volontariat/voluntary_scholarship.git
+  revision: d732a523a042c4ca85389654ec64b2b3da717ac0
+  specs:
+    voluntary_scholarship (0.0.1)
+      bitmask_attributes (~> 1.0.0)
+      voluntary (~> 0.2.0)
+
+GIT
+  remote: https://github.com/binarylogic/settingslogic.git
+  revision: 0ae134bc6b93463bb0bc406e5b0df82ed07fc53f
+  specs:
+    settingslogic (2.0.9)
+
+GIT
+  remote: https://github.com/pivotal/jasmine-gem.git
+  revision: 6d7b6041de007ad6fc08071a6a7e317c6ddbf272
+  specs:
+    jasmine (2.2.0)
+      jasmine-core (~> 2.2)
+      phantomjs
+      rack (>= 1.2.1)
+      rake
+
+PATH
+  remote: ../voluntary
   specs:
     voluntary (0.2.4)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -97,38 +129,17 @@ GIT
       will_paginate (~> 3.0.4)
       zip-zip (~> 0.2)
 
-GIT
-  remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: f67d941e1d823a53c53a611a151af4e4467ebbe5
+PATH
+  remote: ../voluntary_classified_advertisement
   specs:
-    voluntary_music_metadata_enrichment (0.1.1)
-      lastfm (~> 1.26.0)
-      musicbrainz
-      voluntary (~> 0.2.4)
-
-GIT
-  remote: git://github.com/volontariat/voluntary_scholarship.git
-  revision: d732a523a042c4ca85389654ec64b2b3da717ac0
-  specs:
-    voluntary_scholarship (0.0.1)
-      bitmask_attributes (~> 1.0.0)
+    voluntary_classified_advertisement (0.1.0)
       voluntary (~> 0.2.0)
 
-GIT
-  remote: https://github.com/binarylogic/settingslogic.git
-  revision: 0ae134bc6b93463bb0bc406e5b0df82ed07fc53f
+PATH
+  remote: ../voluntary_text_creation
   specs:
-    settingslogic (2.0.9)
-
-GIT
-  remote: https://github.com/pivotal/jasmine-gem.git
-  revision: 6d7b6041de007ad6fc08071a6a7e317c6ddbf272
-  specs:
-    jasmine (2.2.0)
-      jasmine-core (~> 2.2)
-      phantomjs
-      rack (>= 1.2.1)
-      rake
+    voluntary_text_creation (0.1.0)
+      voluntary (~> 0)
 
 GEM
   remote: http://gems.github.com/
@@ -421,7 +432,6 @@ GEM
     rack (1.5.2)
     rack-cors (0.2.9)
     rack-google-analytics (0.11.0)
-    rack-piwik (0.1.3)
     rack-protection (1.5.3)
       rack
     rack-rewrite (1.2.1)
@@ -561,10 +571,6 @@ GEM
     versionist (1.2.1)
       rails (>= 3)
       yard (~> 0.7)
-    voluntary_classified_advertisement (0.1.0)
-      voluntary (~> 0.2.0)
-    voluntary_text_creation (0.1.0)
-      voluntary (~> 0)
     voluntary_translation (0.1.0)
       voluntary (~> 0.2.0)
     warden (1.2.3)
@@ -603,7 +609,6 @@ DEPENDENCIES
   net-ssh (= 2.7.0)
   rack-cors (~> 0.2.4)
   rack-google-analytics (~> 0.11.0)
-  rack-piwik (~> 0.1.3)
   rack-rewrite (~> 1.2.1)
   rack-ssl (~> 1.3.3)
   recaptcha
@@ -616,10 +621,10 @@ DEPENDENCIES
   thin (~> 1.3.1)
   unicorn
   voluntary!
-  voluntary_classified_advertisement (~> 0.1.0)
+  voluntary_classified_advertisement!
   voluntary_music_metadata_enrichment!
   voluntary_scholarship!
-  voluntary_text_creation (~> 0.1.0)
+  voluntary_text_creation!
   voluntary_translation (~> 0.1.0)
   webmock (~> 1.8.11)
   will_paginate!

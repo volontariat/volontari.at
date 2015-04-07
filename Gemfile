@@ -4,9 +4,9 @@ source 'http://rubygems.org'
 gem 'bundler', '> 1.1.0'
 ruby '1.9.3' if ENV['HEROKU']
 
-gem 'voluntary', github: 'volontariat/voluntary'# '~> 0.2.3'
-gem 'voluntary_classified_advertisement', '~> 0.1.0'
-gem 'voluntary_text_creation', '~> 0.1.0'
+gem 'voluntary', path: '../voluntary'#github: 'volontariat/voluntary'# '~> 0.2.3'
+gem 'voluntary_classified_advertisement', path: '../voluntary_classified_advertisement'#'~> 0.1.0'
+gem 'voluntary_text_creation', path: '../voluntary_text_creation'#'~> 0.1.0'
 gem 'voluntary_translation', '~> 0.1.0'
 gem 'voluntary_scholarship', git: 'git://github.com/volontariat/voluntary_scholarship.git' #'~> 0.0.1'
 gem 'voluntary_music_metadata_enrichment', github: 'volontariat/voluntary_music_metadata_enrichment' # '~> 0.0.1'
@@ -79,7 +79,6 @@ group :production do
   
   # analytics
   gem 'rack-google-analytics', '~> 0.11.0', require: 'rack/google-analytics'
-  gem 'rack-piwik', '~> 0.1.3', require: 'rack/piwik', require: false
   gem 'unicorn'
   gem 'airbrake',                '~> 4.1.0'
 end
