@@ -24,40 +24,8 @@ GIT
       rdiscount
 
 GIT
-  remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: f67d941e1d823a53c53a611a151af4e4467ebbe5
-  specs:
-    voluntary_music_metadata_enrichment (0.1.1)
-      lastfm (~> 1.26.0)
-      musicbrainz
-      voluntary (~> 0.2.4)
-
-GIT
-  remote: git://github.com/volontariat/voluntary_scholarship.git
-  revision: d732a523a042c4ca85389654ec64b2b3da717ac0
-  specs:
-    voluntary_scholarship (0.0.1)
-      bitmask_attributes (~> 1.0.0)
-      voluntary (~> 0.2.0)
-
-GIT
-  remote: https://github.com/binarylogic/settingslogic.git
-  revision: 0ae134bc6b93463bb0bc406e5b0df82ed07fc53f
-  specs:
-    settingslogic (2.0.9)
-
-GIT
-  remote: https://github.com/pivotal/jasmine-gem.git
-  revision: 6d7b6041de007ad6fc08071a6a7e317c6ddbf272
-  specs:
-    jasmine (2.2.0)
-      jasmine-core (~> 2.2)
-      phantomjs
-      rack (>= 1.2.1)
-      rake
-
-PATH
-  remote: ../voluntary
+  remote: git://github.com/volontariat/voluntary.git
+  revision: 78edbe5c531ed37e6ed0fb90ec0394afce515fe4
   specs:
     voluntary (0.2.4)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -129,43 +97,64 @@ PATH
       will_paginate (~> 3.0.4)
       zip-zip (~> 0.2)
 
-PATH
-  remote: ../voluntary_classified_advertisement
+GIT
+  remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
+  revision: bd4eb84b8030e39017ede1a6e2e053b49705ff1c
   specs:
-    voluntary_classified_advertisement (0.1.0)
+    voluntary_music_metadata_enrichment (0.1.1)
+      lastfm (~> 1.26.0)
+      musicbrainz
+      voluntary (~> 0.2.4)
+
+GIT
+  remote: git://github.com/volontariat/voluntary_scholarship.git
+  revision: d732a523a042c4ca85389654ec64b2b3da717ac0
+  specs:
+    voluntary_scholarship (0.0.1)
+      bitmask_attributes (~> 1.0.0)
       voluntary (~> 0.2.0)
 
-PATH
-  remote: ../voluntary_text_creation
+GIT
+  remote: https://github.com/binarylogic/settingslogic.git
+  revision: 0ae134bc6b93463bb0bc406e5b0df82ed07fc53f
   specs:
-    voluntary_text_creation (0.1.0)
-      voluntary (~> 0)
+    settingslogic (2.0.9)
+
+GIT
+  remote: https://github.com/pivotal/jasmine-gem.git
+  revision: 6d7b6041de007ad6fc08071a6a7e317c6ddbf272
+  specs:
+    jasmine (2.2.0)
+      jasmine-core (~> 2.2)
+      phantomjs
+      rack (>= 1.2.1)
+      rake
 
 GEM
   remote: http://gems.github.com/
   remote: http://rubygems.org/
   specs:
-    actionmailer (4.0.13)
-      actionpack (= 4.0.13)
+    actionmailer (4.0.12)
+      actionpack (= 4.0.12)
       mail (~> 2.5, >= 2.5.4)
-    actionpack (4.0.13)
-      activesupport (= 4.0.13)
+    actionpack (4.0.12)
+      activesupport (= 4.0.12)
       builder (~> 3.1.0)
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    activemodel (4.0.13)
-      activesupport (= 4.0.13)
+    activemodel (4.0.12)
+      activesupport (= 4.0.12)
       builder (~> 3.1.0)
-    activerecord (4.0.13)
-      activemodel (= 4.0.13)
+    activerecord (4.0.12)
+      activemodel (= 4.0.12)
       activerecord-deprecated_finders (~> 1.0.2)
-      activesupport (= 4.0.13)
+      activesupport (= 4.0.12)
       arel (~> 4.0.0)
-    activerecord-deprecated_finders (1.0.3)
+    activerecord-deprecated_finders (1.0.4)
     activerecord-import (0.4.1)
       activerecord (>= 3.0)
-    activesupport (4.0.13)
+    activesupport (4.0.12)
       i18n (~> 0.6, >= 0.6.9)
       minitest (~> 4.2)
       multi_json (~> 1.3)
@@ -275,7 +264,7 @@ GEM
       mime-types (~> 1.18)
     eventmachine (1.0.7)
     excon (0.31.0)
-    execjs (2.4.0)
+    execjs (2.5.2)
     facebox-rails (0.2.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -317,7 +306,7 @@ GEM
       sprockets (~> 2.0)
       tilt (~> 1.2)
     has_scope (0.5.1)
-    hashie (3.4.0)
+    hashie (3.4.1)
     highline (1.7.1)
     hike (1.2.3)
     http_accept_language (1.0.2)
@@ -365,7 +354,7 @@ GEM
       moped (~> 2.0.0)
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
-    mongoid-history (0.4.5)
+    mongoid-history (0.4.7)
       activesupport
       easy_diff
       mongoid (>= 3.0)
@@ -439,22 +428,22 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rails (4.0.13)
-      actionmailer (= 4.0.13)
-      actionpack (= 4.0.13)
-      activerecord (= 4.0.13)
-      activesupport (= 4.0.13)
+    rails (4.0.12)
+      actionmailer (= 4.0.12)
+      actionpack (= 4.0.12)
+      activerecord (= 4.0.12)
+      activesupport (= 4.0.12)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.0.13)
+      railties (= 4.0.12)
       sprockets-rails (~> 2.0)
     rails-i18n (4.0.4)
       i18n (~> 0.6)
       railties (~> 4.0)
     rails_autolink (1.1.6)
       rails (> 3.1)
-    railties (4.0.13)
-      actionpack (= 4.0.13)
-      activesupport (= 4.0.13)
+    railties (4.0.12)
+      actionpack (= 4.0.12)
+      activesupport (= 4.0.12)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
@@ -466,9 +455,9 @@ GEM
     rbx-require-relative (0.0.9)
     rdiscount (2.1.8)
     recaptcha (0.4.0)
-    redcarpet (3.2.2)
+    redcarpet (3.2.3)
     redis (3.2.1)
-    redis-namespace (1.5.1)
+    redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
     ref (1.0.5)
     remotipart (1.2.1)
@@ -483,9 +472,9 @@ GEM
       rspec-core (~> 3.2.0)
       rspec-expectations (~> 3.2.0)
       rspec-mocks (~> 3.2.0)
-    rspec-core (3.2.2)
+    rspec-core (3.2.3)
       rspec-support (~> 3.2.0)
-    rspec-expectations (3.2.0)
+    rspec-expectations (3.2.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
     rspec-instafail (0.2.6)
@@ -547,7 +536,7 @@ GEM
     stringex (2.5.2)
     subexec (0.2.3)
     temple (0.6.10)
-    therubyracer (0.12.1)
+    therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
     thin (1.3.1)
@@ -571,6 +560,10 @@ GEM
     versionist (1.2.1)
       rails (>= 3)
       yard (~> 0.7)
+    voluntary_classified_advertisement (0.1.0)
+      voluntary (~> 0.2.0)
+    voluntary_text_creation (0.1.0)
+      voluntary (~> 0)
     voluntary_translation (0.1.0)
       voluntary (~> 0.2.0)
     warden (1.2.3)
@@ -621,10 +614,10 @@ DEPENDENCIES
   thin (~> 1.3.1)
   unicorn
   voluntary!
-  voluntary_classified_advertisement!
+  voluntary_classified_advertisement (~> 0.1.0)
   voluntary_music_metadata_enrichment!
   voluntary_scholarship!
-  voluntary_text_creation!
+  voluntary_text_creation (~> 0.1.0)
   voluntary_translation (~> 0.1.0)
   webmock (~> 1.8.11)
   will_paginate!
