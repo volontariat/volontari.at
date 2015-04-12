@@ -10,7 +10,7 @@ set :use_sudo, false
 
 set :scm, "git"
 set :repository, "git@github.com:volontariat/volontari.at.git"
-set :branch, "master"
+set :branch, "rails_4.2.1"
 set :rake, "#{rake} --trace"
 set :bundle_flags, '--deployment'
 

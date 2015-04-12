@@ -3,12 +3,12 @@ source 'http://rubygems.org'
 
 gem 'bundler', '> 1.1.0'
 
-gem 'voluntary', github: 'volontariat/voluntary'# '~> 0.2.3' path: '../voluntary'#
-gem 'voluntary_classified_advertisement', '~> 0.1.0' #, path: '../voluntary_classified_advertisement'
-gem 'voluntary_text_creation', '~> 0.1.0'#, path: '../voluntary_text_creation'
-gem 'voluntary_translation', '~> 0.1.0'
-gem 'voluntary_scholarship', git: 'git://github.com/volontariat/voluntary_scholarship.git' #'~> 0.0.1'
-gem 'voluntary_music_metadata_enrichment', github: 'volontariat/voluntary_music_metadata_enrichment' # '~> 0.0.1'
+gem 'voluntary', path: '../voluntary' # github: 'volontariat/voluntary', branch: 'rails_4.2.1' # '~> 0.3.0' # path: '../voluntary'#
+gem 'voluntary_classified_advertisement', '~> 0.2.0' #, path: '../voluntary_classified_advertisement'
+gem 'voluntary_text_creation', '~> 0.2.0'#, path: '../voluntary_text_creation'
+gem 'voluntary_translation', '~> 0.2.0'
+gem 'voluntary_scholarship', '~> 0.1.0'
+gem 'voluntary_music_metadata_enrichment', '~> 0.2.0' # github: 'volontariat/voluntary_music_metadata_enrichment' # '~> 0.0.1'
 
 # voluntary_music_metadata_enrichment requirements
 gem 'musicbrainz', github: 'localhots/musicbrainz', branch: '0.8.0.rc1'
@@ -23,7 +23,6 @@ gem 'settingslogic', git: 'https://github.com/binarylogic/settingslogic.git'
 # view 
 gem 'acts_as_markup', git: 'git://github.com/vigetlabs/acts_as_markup.git'
 gem 'recaptcha', require: 'recaptcha/rails'
-gem "will_paginate", github: "mislav/will_paginate"
 
 # queue
 
@@ -50,6 +49,9 @@ group :development do
   gem 'capistrano-ext', '~> 1.2.1', require: false
   gem 'net-ssh', '2.7.0'
   gem 'yard', '~> 0.7', require: false
+  gem 'spring',                   '~> 1.3.4'
+  gem 'spring-commands-rspec',    '~> 1.0.4'
+  gem 'spring-commands-cucumber', '~> 1.0.1'
 end
 
 group :test do
