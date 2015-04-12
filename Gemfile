@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 
 gem 'bundler', '> 1.1.0'
 
-gem 'voluntary', path: '../voluntary' # github: 'volontariat/voluntary', branch: 'rails_4.2.1' # '~> 0.3.0' # path: '../voluntary'#
+gem 'voluntary', github: 'volontariat/voluntary', branch: 'rails_4.2.1' # '~> 0.3.0' # path: '../voluntary'#
 gem 'voluntary_classified_advertisement', '~> 0.2.0' #, path: '../voluntary_classified_advertisement'
 gem 'voluntary_text_creation', '~> 0.2.0'#, path: '../voluntary_text_creation'
 gem 'voluntary_translation', '~> 0.2.0'
