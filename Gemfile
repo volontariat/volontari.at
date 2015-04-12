@@ -16,6 +16,7 @@ gem 'musicbrainz', github: 'localhots/musicbrainz', branch: '0.8.0.rc1'
 # core
 gem 'rack-cors', '~> 0.2.4', require: 'rack/cors'
 gem 'thin', '~> 1.3.1', require: false
+gem 'sprockets', '~> 2.12.3' # 3.0 renames manifest-x.json to .sprockets-manifest-x.json which cannot be handled by old capistrano version yet
 
 # model 
 gem 'settingslogic', git: 'https://github.com/binarylogic/settingslogic.git'
