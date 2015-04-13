@@ -12,7 +12,7 @@ set :repo_url, 'git@github.com:volontariat/volontari.at.git'
 set :branch, ENV['BRANCH_NAME'] || 'master'
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/home/deployer/apps/#{application}"
+set :deploy_to, "/home/deployer/apps/#{fetch(:application)}"
 
 set :rbenv_type, :system
 set :rbenv_ruby, '2.2.0'
