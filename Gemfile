@@ -16,7 +16,7 @@ gem 'musicbrainz', github: 'localhots/musicbrainz', branch: '0.8.0.rc1'
 # core
 gem 'rack-cors', '~> 0.2.4', require: 'rack/cors'
 gem 'thin', '~> 1.3.1', require: false
-gem 'sprockets', '~> 2.12.3' # 3.0 renames manifest-x.json to .sprockets-manifest-x.json which cannot be handled by old capistrano version yet
+#gem 'sprockets', '~> 2.12.3' # 3.0 renames manifest-x.json to .sprockets-manifest-x.json which cannot be handled by old capistrano version yet
 
 # model 
 gem 'settingslogic', git: 'https://github.com/binarylogic/settingslogic.git'
@@ -45,9 +45,13 @@ gem 'jasmine', git: 'https://github.com/pivotal/jasmine-gem.git'
 group :development do
   gem 'mysql2', '~> 0.3.13'
   gem 'linecache', '0.46', platforms: :mri_18
-  gem 'capistrano', '~> 2.15.5', require: false
+  #gem 'capistrano', '~> 3.4.0', require: false
   gem 'capistrano_colors', '~> 0.5.5', require: false
-  gem 'capistrano-ext', '~> 1.2.1', require: false
+  #gem 'capistrano-ext', '~> 1.2.1', require: false
+  gem 'capistrano-rails', '~> 1.1.2', require: false
+  gem 'capistrano-bundler', '~> 1.1.4', require: false
+  gem 'capistrano-rbenv', '~> 2.0.3', require: false
+  gem 'capistrano-cookbook', '~> 0.2.1', require: false
   gem 'net-ssh', '2.7.0'
   gem 'yard', '~> 0.7', require: false
   gem 'spring',                   '~> 1.3.4'

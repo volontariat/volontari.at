@@ -1,72 +1,123 @@
-require "bundler/capistrano"
+# config valid only for current version of Capistrano
+lock '3.4.0'
 
-server "volontari.at", :web, :app, :db, primary: true
+set :stage, :production
+set :rails_env, :production
+set :application, 'volontariat'
+set :full_app_name, "#{fetch(:application)}_#{fetch(:stage)}"
+set :repo_url, 'git@github.com:volontariat/volontari.at.git'
 
-set :application, "volontariat"
-set :user, "deployer"
-set :deploy_to, "/home/#{user}/apps/#{application}"
-set :deploy_via, :remote_cache
-set :use_sudo, false
+# Default branch is :master
+# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
-set :scm, "git"
-set :repository, "git@github.com:volontariat/volontari.at.git"
-set :branch, "rails_4.2.1"
-set :rake, "#{rake} --trace"
-set :bundle_flags, '--deployment'
+# Default deploy_to directory is /var/www/my_app_name
+set :deploy_to, "/home/deployer/apps/#{application}"
 
-default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
+set :rbenv_type, :system
+set :rbenv_ruby, '2.2.0'
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
-after "deploy", "deploy:cleanup" # keep only the last 5 releases
+# Default value for :scm is :git
+# set :scm, :git
+
+# Default value for :format is :pretty
+# set :format, :pretty
+
+# Default value for :log_level is :debug
+# set :log_level, :debug
+
+# Default value for :pty is false
+# set :pty, true
+
+# Default value for :linked_files is []
+set :linked_files, fetch(:linked_files, []).push(
+  'config/application.yml', 'config/database.yml', 'config/email.yml', 'config/initializers/airbrake.rb', 'config/initializers/recaptcha.rb',
+  'config/initializers/secret_token.rb', 'config/initializers/lastfm.rb', 'config/initializers/musicbrainz.rb'
+)
+
+# Default value for linked_dirs is []
+# set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
+# what specs should be run before deployment is allowed to
+# continue, see lib/capistrano/tasks/run_tests.cap
+set :tests, []
+
+set(:config_files, %w(
+  nginx.conf
+  unicorn_init.sh
+  application.yml
+  database.yml
+  email.yml
+  initializers/airbrake.rb
+  initializers/recaptcha.rb
+  initializers/secret_token.rb
+  initializers/lastfm.rb
+  initializers/musicbrainz.rb
+))
+
+# Default value for default_env is {}
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+
+# Default value for keep_releases is 5
+# set :keep_releases, 5
+
+# which config files should be made executable after copying
+# by deploy:setup_config
+set(:executable_config_files, %w(
+  unicorn_init.sh
+))
+
+# files which need to be symlinked to other parts of the
+# filesystem. For example nginx virtualhosts, log rotation
+# init scripts etc.
+set(:symlinks, [
+  {
+    source: "nginx.conf",
+    link: "/etc/nginx/sites-enabled/#{fetch(:application)}"
+  },
+  {
+    source: "unicorn_init.sh",
+    link: "/etc/init.d/unicorn_#{fetch(:application)}"
+  }
+  #{
+  #  source: "log_rotation",
+  # link: "/etc/logrotate.d/#{fetch(:full_app_name)}"
+  #},
+  #{
+  #  source: "monit",
+  #  link: "/etc/monit/conf.d/#{fetch(:full_app_name)}.conf"
+  #}
+])
+
+# this:
+# http://www.capistranorb.com/documentation/getting-started/flow/
+# is worth reading for a quick overview of what tasks are called
+# and when for `cap stage deploy`
 
 namespace :deploy do
-  %w[start stop restart].each do |command|
-    desc "#{command} unicorn server"
-    task command, roles: :app, except: {no_release: true} do
-      run "/etc/init.d/unicorn_#{application} #{command}"
-    end
-  end
+  # make sure we're deploying what we think we're deploying
+  before :deploy, "deploy:check_revision"
+  # only allow a deploy with passing tests to deployed
+  #before :deploy, "deploy:run_tests"
+  # compile assets locally then rsync
+  after 'deploy:symlink:shared', 'deploy:compile_assets_locally'
+  after :finishing, 'deploy:cleanup'
 
-  task :setup_config, roles: :app do
-    sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
-    sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
-    run "mkdir -p #{shared_path}/config"
-    put File.read("config/application.yml"), "#{shared_path}/config/application.yml"
-    put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
-    put File.read("config/email.yml"), "#{shared_path}/config/email.yml"
-    put File.read("config/initializers/airbrake.rb"), "#{shared_path}/config/initializers/airbrake.rb"
-    put File.read("config/initializers/recaptcha.rb"), "#{shared_path}/config/initializers/recaptcha.rb"
-    put File.read("config/initializers/secret_token.rb"), "#{shared_path}/config/initializers/secret_token.rb"
-    put File.read("config/initializers/lastfm.rb"), "#{shared_path}/config/initializers/lastfm.rb"
-    put File.read("config/initializers/musicbrainz.rb"), "#{shared_path}/config/initializers/musicbrainz.rb"
-  end
-  
-  after "deploy:setup", "deploy:setup_config"
+  # remove the default nginx configuration as it will tend
+  # to conflict with our configs.
+  before 'deploy:setup_config', 'nginx:remove_default_vhost'
 
-  task :symlink_config, roles: :app do
-    run "ln -nfs #{shared_path}/config/application.yml #{release_path}/config/application.yml"
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    run "ln -nfs #{shared_path}/config/email.yml #{release_path}/config/email.yml"
-    run "ln -nfs #{shared_path}/config/initializers/airbrake.rb #{release_path}/config/initializers/airbrake.rb"
-    run "ln -nfs #{shared_path}/config/initializers/recaptcha.rb #{release_path}/config/initializers/recaptcha.rb"
-    run "ln -nfs #{shared_path}/config/initializers/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
-    run "ln -nfs #{shared_path}/config/initializers/lastfm.rb #{release_path}/config/initializers/lastfm.rb"
-    run "ln -nfs #{shared_path}/config/initializers/musicbrainz.rb #{release_path}/config/initializers/musicbrainz.rb"
-  end
-  
-  after "deploy:finalize_update", "deploy:symlink_config"
+  # reload nginx to it will pick up any modified vhosts from
+  # setup_config
+  after 'deploy:setup_config', 'nginx:reload'
 
-  desc "Make sure local git is in sync with remote."
-  task :check_revision, roles: :web do
-    unless `git rev-parse HEAD` == `git rev-parse origin/master`
-      puts "WARNING: HEAD is not the same as origin/master"
-      puts "Run `git push` to sync changes."
-      exit
-    end
-  end
-  
-  before "deploy", "deploy:check_revision"
+  # Restart monit so it will pick up any monit configurations
+  # we've added
+  #after 'deploy:setup_config', 'monit:restart'
+
+  # As of Capistrano 3.1, the `deploy:restart` task is not called
+  # automatically.
+  after 'deploy:publishing', 'deploy:restart'
 end
-
-require './config/boot'
-require 'airbrake/capistrano'
