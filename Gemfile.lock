@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: cfa4a174c58c741f522ffa4a4b0e63ba8ecf7409
+  revision: 1bfc5f164d477a5894e95ab70e7b1d8608093363
   branch: rails_4.2.1
   specs:
     voluntary (0.3.0)
