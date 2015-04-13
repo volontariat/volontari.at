@@ -6,4 +6,4 @@ require File.expand_path('../config/application', __FILE__)
 
 require 'airbrake/tasks'
 
-Volontariat::Application.load_tasks
+Rails.application.load_tasks

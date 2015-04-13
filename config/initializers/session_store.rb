@@ -1,1 +1,1 @@
-Volontariat::Application.config.session_store :cookie_store, key: '_volontari.at_session'
+Rails.application.config.session_store :cookie_store, key: '_volontari.at_session'
