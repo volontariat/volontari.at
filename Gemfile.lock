@@ -90,7 +90,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: 515d027deac7979b4c0298fa9938e3f418d3c9a4
+  revision: 26090e4852080a9eb71d61957a81846b53eb4cb0
   branch: jquery-competitive_list
   specs:
     voluntary_music_metadata_enrichment (0.2.0)
