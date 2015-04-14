@@ -5,7 +5,8 @@ set :stage, :production
 set :rails_env, :production
 set :application, 'volontariat'
 set :pty, true
-set :full_app_name, "#{fetch(:application)}_#{fetch(:stage)}"
+#set :full_app_name, "#{fetch(:application)}_#{fetch(:stage)}"
+set :full_app_name, fetch(:application)
 set :repo_url, 'git@github.com:volontariat/volontari.at.git'
 
 # Default branch is :master
