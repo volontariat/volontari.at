@@ -19,8 +19,8 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: 1bfc5f164d477a5894e95ab70e7b1d8608093363
-  branch: rails_4.2.1
+  revision: 4b87ea800168e241addcc249bf21fdbf42f108b2
+  branch: jquery-competitive_list
   specs:
     voluntary (0.3.0)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -87,6 +87,16 @@ GIT
       will_paginate (~> 3.0.7)
       will_paginate_mongoid (~> 2.0.1)
       zip-zip (~> 0.2)
+
+GIT
+  remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
+  revision: 515d027deac7979b4c0298fa9938e3f418d3c9a4
+  branch: jquery-competitive_list
+  specs:
+    voluntary_music_metadata_enrichment (0.2.0)
+      lastfm (~> 1.26.0)
+      musicbrainz
+      voluntary (~> 0.3.0)
 
 GIT
   remote: https://github.com/binarylogic/settingslogic.git
@@ -421,7 +431,7 @@ GEM
     messagebus_ruby_api (1.0.11)
     mime-types (1.25.1)
     mini_portile (0.6.2)
-    minitest (5.5.1)
+    minitest (5.6.0)
     mongoid (4.0.2)
       activemodel (~> 4.0)
       moped (~> 2.0.0)
@@ -637,10 +647,6 @@ GEM
       yard (~> 0.7)
     voluntary_classified_advertisement (0.2.0)
       voluntary (~> 0.3.0)
-    voluntary_music_metadata_enrichment (0.2.0)
-      lastfm (~> 1.26.0)
-      musicbrainz
-      voluntary (~> 0.3.0)
     voluntary_scholarship (0.1.0)
       bitmask_attributes (~> 1.0.0)
       voluntary (~> 0.3.0)
@@ -706,7 +712,7 @@ DEPENDENCIES
   unicorn
   voluntary!
   voluntary_classified_advertisement (~> 0.2.0)
-  voluntary_music_metadata_enrichment (~> 0.2.0)
+  voluntary_music_metadata_enrichment!
   voluntary_scholarship (~> 0.1.0)
   voluntary_text_creation (~> 0.2.0)
   voluntary_translation (~> 0.2.0)
