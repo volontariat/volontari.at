@@ -24,6 +24,7 @@ rerun.txt
 pickle-email-*.html
 /config/application.yml
 /config/database.yml
+/config/mongoid.yml
 /config/initializers/recaptcha.rb
 /config/initializers/lastfm.rb
 /config/initializers/musicbrainz.rb
