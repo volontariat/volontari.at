@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/vigetlabs/acts_as_markup.git
-  revision: 83986419976c0105f5bf3ff2aee9c3bf6c5a68f9
+  revision: 5e9b4c7383f82cd8fa588ec55276be0364b9d088
   specs:
     acts_as_markup (2.0.1)
       activerecord (>= 3.0.20)
@@ -20,7 +20,6 @@ GIT
 GIT
   remote: git://github.com/volontariat/voluntary.git
   revision: 4b87ea800168e241addcc249bf21fdbf42f108b2
-  branch: jquery-competitive_list
   specs:
     voluntary (0.3.0)
       activerecord-deprecated_finders (~> 1.0.3)
@@ -90,8 +89,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: 26090e4852080a9eb71d61957a81846b53eb4cb0
-  branch: jquery-competitive_list
+  revision: 6476e7d6c06196666c11d7d84eef3f320482134e
   specs:
     voluntary_music_metadata_enrichment (0.2.0)
       lastfm (~> 1.26.0)
