@@ -10,9 +10,9 @@ GIT
 
 GIT
   remote: git://github.com/vigetlabs/acts_as_markup.git
-  revision: 5e9b4c7383f82cd8fa588ec55276be0364b9d088
+  revision: d654f61ad06a2dba5fca5c7a84615654d8ae583e
   specs:
-    acts_as_markup (2.0.1)
+    acts_as_markup (2.0.2)
       activerecord (>= 3.0.20)
       activesupport (>= 3.0.20)
       rdiscount
@@ -89,7 +89,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: 6476e7d6c06196666c11d7d84eef3f320482134e
+  revision: 287e1dc79176080b8ca5dcf3e097b7c15596fdf5
   specs:
     voluntary_music_metadata_enrichment (0.2.0)
       lastfm (~> 1.26.0)
@@ -183,7 +183,7 @@ GEM
     bootstrap-sass-rails (2.3.2.1)
       railties (>= 3.1.0)
       sass-rails (>= 3.1.0)
-    bson (3.1.2)
+    bson (3.2.1)
     builder (3.2.2)
     cancan (1.6.10)
     capistrano (3.4.0)
@@ -302,7 +302,7 @@ GEM
     fog-atmos (0.1.0)
       fog-core
       fog-xml
-    fog-aws (0.7.3)
+    fog-aws (0.7.4)
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
@@ -334,7 +334,7 @@ GEM
       fog-core (~> 1.27)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
-    fog-profitbricks (0.0.3)
+    fog-profitbricks (0.0.5)
       fog-core
       fog-xml
       nokogiri
@@ -455,7 +455,7 @@ GEM
     multi_test (0.1.2)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
-    mysql2 (0.3.18)
+    mysql2 (0.3.19)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
@@ -535,7 +535,7 @@ GEM
       activesupport (= 4.2.3)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    raindrops (0.14.0)
+    raindrops (0.15.0)
     rake (10.4.2)
     rbx-require-relative (0.0.9)
     rdiscount (2.1.8)
@@ -587,7 +587,7 @@ GEM
     simple-navigation-bootstrap (1.0.2)
       railties (>= 3.1)
       simple-navigation (>= 3.7.0, < 4.0.0)
-    simple_form (3.0.3)
+    simple_form (3.0.4)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
     simplecov (0.7.1)
