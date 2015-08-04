@@ -18,83 +18,42 @@ GIT
       rdiscount
 
 GIT
-  remote: git://github.com/volontariat/voluntary.git
-  revision: 4b87ea800168e241addcc249bf21fdbf42f108b2
+  remote: git://github.com/volontariat/voluntary_classified_advertisement.git
+  revision: db4dc708a83f1b42dee42be408c0dc6c8db37cb8
   specs:
-    voluntary (0.3.0)
-      activerecord-deprecated_finders (~> 1.0.3)
-      activerecord-import (~> 0.4.1)
-      acts-as-taggable-on (~> 2.4.1)
-      acts_as_api (~> 0.4.2)
-      acts_as_list (~> 0.4.0)
-      ancestry (~> 2.0.0)
-      auto_html (~> 1.6.4)
-      bootstrap-datetimepicker-rails (~> 0.0.11)
-      bootstrap-sass-rails (~> 2.3.2.1)
-      cancan (~> 1.6.10)
-      coffee-rails (~> 4.1.0)
-      coffee-script (~> 2.2.0)
-      country_select (~> 1.3.1)
-      devise (~> 3.4.1)
-      devise-encryptable (~> 0.2.0)
-      diffy (~> 3.0.1)
-      facebox-rails (~> 0.2.0)
-      faker (~> 1.2.0)
-      faraday (~> 0.8.9)
-      faraday_middleware (~> 0.9.0)
-      font-awesome-rails (~> 4.0.3.1)
-      foreigner (~> 1.1.0)
-      foreman (~> 0.46)
-      friendly_id (~> 5.0.0)
-      gon (~> 5.0.1)
-      handlebars_assets (~> 0.15)
-      has_scope (~> 0.5.1)
-      http_accept_language (~> 1.0.2)
-      i18n-inflector-rails (~> 1.0)
-      jquery-rails (= 2.2.2)
-      jquery-ui-bootstrap-rails-asset (~> 0.0.3)
-      json (~> 1.8.1)
-      koala (~> 1.8.0)
-      messagebus_ruby_api (~> 1.0.3)
-      mongoid (~> 4.0.0.alpha2)
-      mongoid-history (~> 0.4.1)
-      mongoid_slug (~> 3.2.0)
-      omniauth (~> 1.2.2)
-      omniauth-facebook (~> 2.0.0)
-      omniauth-google-oauth2 (~> 0.2.6)
-      omniauth-lastfm (~> 0.0.6)
-      paper_trail (~> 3.0.0)
-      pg (~> 0.17.1)
-      protected_attributes (~> 1.0.5)
-      rails (~> 4.2.1)
-      rails-i18n (~> 4.0.1)
-      rails_autolink (~> 1.1.5)
-      redcarpet (~> 3.2.3)
-      remotipart (~> 1.0)
-      rubyzip (~> 1.1.0)
-      sass-rails (~> 5.0)
-      selectize-rails (~> 0.12.0)
-      simple-navigation (~> 3.11.0)
-      simple-navigation-bootstrap (~> 1.0.0)
-      simple_form (~> 3.0.0)
-      slim (~> 2.0.2)
-      state_machine (~> 1.2.0)
-      typhoeus (~> 0.5.3)
-      uglifier (~> 2.4.0)
-      versionist (~> 1.2.1)
-      wicked (~> 1.0.2)
-      will_paginate (~> 3.0.7)
-      will_paginate_mongoid (~> 2.0.1)
-      zip-zip (~> 0.2)
+    voluntary_classified_advertisement (0.2.0)
+      voluntary (~> 0.4.0)
 
 GIT
   remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: 287e1dc79176080b8ca5dcf3e097b7c15596fdf5
+  revision: 3d8006d8a7c49ecbcdaa862dc97905d04c2d0601
   specs:
     voluntary_music_metadata_enrichment (0.2.0)
       lastfm (~> 1.26.0)
       musicbrainz
-      voluntary (~> 0.3.0)
+      voluntary (~> 0.4.0)
+
+GIT
+  remote: git://github.com/volontariat/voluntary_scholarship.git
+  revision: 2573450e4840b05cc4207911829a62a4d4b08a7c
+  specs:
+    voluntary_scholarship (0.1.0)
+      bitmask_attributes (~> 1.0.0)
+      voluntary (~> 0.4.0)
+
+GIT
+  remote: git://github.com/volontariat/voluntary_text_creation.git
+  revision: ea03cea85f8fb8724c8c8dd904c487e2587b8812
+  specs:
+    voluntary_text_creation (0.2.0)
+      voluntary (~> 0.4.0)
+
+GIT
+  remote: git://github.com/volontariat/voluntary_translation.git
+  revision: 9eecbd4509e692c45f15dc74c838c4f3034ff048
+  specs:
+    voluntary_translation (0.2.0)
+      voluntary (~> 0.4.0)
 
 GIT
   remote: https://github.com/binarylogic/settingslogic.git
@@ -113,7 +72,6 @@ GIT
       rake
 
 GEM
-  remote: http://gems.github.com/
   remote: http://rubygems.org/
   specs:
     CFPropertyList (2.3.1)
@@ -255,7 +213,7 @@ GEM
       devise (>= 2.1.0)
     diff-lcs (1.2.5)
     diffy (3.0.7)
-    easy_diff (0.0.4)
+    easy_diff (0.0.5)
     erubis (2.7.0)
     ethon (0.5.12)
       ffi (>= 1.3.0)
@@ -646,15 +604,73 @@ GEM
     versionist (1.2.1)
       rails (>= 3)
       yard (~> 0.7)
-    voluntary_classified_advertisement (0.2.0)
-      voluntary (~> 0.3.0)
-    voluntary_scholarship (0.1.0)
-      bitmask_attributes (~> 1.0.0)
-      voluntary (~> 0.3.0)
-    voluntary_text_creation (0.2.0)
-      voluntary (~> 0.3.0)
-    voluntary_translation (0.2.0)
-      voluntary (~> 0.3.0)
+    voluntary (0.4.0)
+      activerecord-deprecated_finders (~> 1.0.3)
+      activerecord-import (~> 0.4.1)
+      acts-as-taggable-on (~> 2.4.1)
+      acts_as_api (~> 0.4.2)
+      acts_as_list (~> 0.4.0)
+      ancestry (~> 2.0.0)
+      auto_html (~> 1.6.4)
+      bootstrap-datetimepicker-rails (~> 0.0.11)
+      bootstrap-sass-rails (~> 2.3.2.1)
+      cancan (~> 1.6.10)
+      coffee-rails (~> 4.1.0)
+      coffee-script (~> 2.2.0)
+      country_select (~> 1.3.1)
+      devise (~> 3.4.1)
+      devise-encryptable (~> 0.2.0)
+      diffy (~> 3.0.1)
+      facebox-rails (~> 0.2.0)
+      faker (~> 1.2.0)
+      faraday (~> 0.8.9)
+      faraday_middleware (~> 0.9.0)
+      font-awesome-rails (~> 4.0.3.1)
+      foreigner (~> 1.1.0)
+      foreman (~> 0.46)
+      friendly_id (~> 5.0.0)
+      gon (~> 5.0.1)
+      handlebars_assets (~> 0.15)
+      has_scope (~> 0.5.1)
+      http_accept_language (~> 1.0.2)
+      i18n-inflector-rails (~> 1.0)
+      jquery-rails (= 2.2.2)
+      jquery-ui-bootstrap-rails-asset (~> 0.0.3)
+      json (~> 1.8.1)
+      koala (~> 1.8.0)
+      messagebus_ruby_api (~> 1.0.3)
+      mongoid (~> 4.0.0.alpha2)
+      mongoid-history (~> 0.4.1)
+      mongoid_slug (~> 3.2.0)
+      omniauth (~> 1.2.2)
+      omniauth-facebook (~> 2.0.0)
+      omniauth-google-oauth2 (~> 0.2.6)
+      omniauth-lastfm (~> 0.0.6)
+      paper_trail (~> 3.0.0)
+      pg (~> 0.17.1)
+      protected_attributes (~> 1.0.5)
+      rails (~> 4.2.1)
+      rails-i18n (~> 4.0.1)
+      rails_autolink (~> 1.1.5)
+      redcarpet (~> 3.2.3)
+      remotipart (~> 1.0)
+      rubyzip (~> 1.1.0)
+      sass-rails (~> 5.0)
+      selectize-rails (~> 0.12.0)
+      simple-navigation (~> 3.11.0)
+      simple-navigation-bootstrap (~> 1.0.0)
+      simple_form (~> 3.0.0)
+      slim (~> 2.0.2)
+      state_machine (~> 1.2.0)
+      typhoeus (~> 0.5.3)
+      uglifier (~> 2.4.0)
+      versionist (~> 1.2.1)
+      wicked (~> 1.0.2)
+      will_paginate (~> 3.0.7)
+      will_paginate_mongoid (~> 2.0.1)
+      zip-zip (~> 0.2)
+    voluntary_recruiting (0.0.1)
+      voluntary (~> 0.4.0)
     warden (1.2.3)
       rack (>= 1.0)
     webmock (1.8.11)
@@ -711,12 +727,13 @@ DEPENDENCIES
   therubyracer (~> 0.12.0)
   thin (~> 1.3.1)
   unicorn
-  voluntary!
-  voluntary_classified_advertisement (~> 0.2.0)
+  voluntary (~> 0.4.0)
+  voluntary_classified_advertisement!
   voluntary_music_metadata_enrichment!
-  voluntary_scholarship (~> 0.1.0)
-  voluntary_text_creation (~> 0.2.0)
-  voluntary_translation (~> 0.2.0)
+  voluntary_recruiting (~> 0.0.1)
+  voluntary_scholarship!
+  voluntary_text_creation!
+  voluntary_translation!
   webmock (~> 1.8.11)
   yard (~> 0.7)
 

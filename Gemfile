@@ -1,13 +1,13 @@
-source "http://gems.github.com"
 source 'http://rubygems.org'
 
 gem 'bundler', '> 1.1.0'
 
-gem 'voluntary', github: 'volontariat/voluntary' # '~> 0.3.0' # path: '../voluntary'#
-gem 'voluntary_classified_advertisement', '~> 0.2.0' #, path: '../voluntary_classified_advertisement'
-gem 'voluntary_text_creation', '~> 0.2.0'#, path: '../voluntary_text_creation'
-gem 'voluntary_translation', '~> 0.2.0'
-gem 'voluntary_scholarship', '~> 0.1.0'
+gem 'voluntary', '~> 0.4.0' # path: '../voluntary'
+gem 'voluntary_recruiting', '~> 0.0.1'
+gem 'voluntary_classified_advertisement', github: 'volontariat/voluntary_classified_advertisement' #'~> 0.2.0' #, path: '../voluntary_classified_advertisement'
+gem 'voluntary_text_creation', github: 'volontariat/voluntary_text_creation' # '~> 0.2.0'#, path: '../voluntary_text_creation'
+gem 'voluntary_translation', github: 'volontariat/voluntary_translation' # '~> 0.2.0'
+gem 'voluntary_scholarship', github: 'volontariat/voluntary_scholarship' #'~> 0.1.0'
 gem 'voluntary_music_metadata_enrichment', github: 'volontariat/voluntary_music_metadata_enrichment' # '~> 0.2.0'
 
 # voluntary_music_metadata_enrichment requirements
