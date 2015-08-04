@@ -34,6 +34,13 @@ GIT
       voluntary (~> 0.4.0)
 
 GIT
+  remote: git://github.com/volontariat/voluntary_recruiting.git
+  revision: db2633fe9bc3406b83930124a7d73305f2bff4b7
+  specs:
+    voluntary_recruiting (0.0.1)
+      voluntary (~> 0.4.0)
+
+GIT
   remote: git://github.com/volontariat/voluntary_scholarship.git
   revision: 2573450e4840b05cc4207911829a62a4d4b08a7c
   specs:
@@ -669,8 +676,6 @@ GEM
       will_paginate (~> 3.0.7)
       will_paginate_mongoid (~> 2.0.1)
       zip-zip (~> 0.2)
-    voluntary_recruiting (0.0.1)
-      voluntary (~> 0.4.0)
     warden (1.2.3)
       rack (>= 1.0)
     webmock (1.8.11)
@@ -730,7 +735,7 @@ DEPENDENCIES
   voluntary (~> 0.4.0)
   voluntary_classified_advertisement!
   voluntary_music_metadata_enrichment!
-  voluntary_recruiting (~> 0.0.1)
+  voluntary_recruiting!
   voluntary_scholarship!
   voluntary_text_creation!
   voluntary_translation!
