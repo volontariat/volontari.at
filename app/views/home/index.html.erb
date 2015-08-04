@@ -13,7 +13,7 @@
     <div class="span6">
       <h3><%= I18n.t('home.index.last_vacancies') %></h3>
       <%= render partial: 'shared/collection/table', locals: { 
-        type: 'vacancies', collection: @vacancies, columns: ['name', 'project_id'],
+        type: 'vacancies', collection: Vacancy.open.limit(5).order('created_at DESC').all, columns: ['name', 'project_id'],
         options: {show_title: false, append_new_link: false } 
       } %>
     </div>
