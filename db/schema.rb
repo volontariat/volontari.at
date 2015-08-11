@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804082401) do
+ActiveRecord::Schema.define(version: 20150811111923) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "ancestry",       limit: 255
@@ -153,6 +153,8 @@ ActiveRecord::Schema.define(version: 20150804082401) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_ambiguous"
+    t.boolean  "is_classic",                 default: false, null: false
+    t.boolean  "is_jazz",                    default: false, null: false
   end
 
   add_index "music_artists", ["mbid"], name: "index_music_artists_on_mbid", unique: true, using: :btree
@@ -351,25 +353,14 @@ ActiveRecord::Schema.define(version: 20150804082401) do
   create_table "projects_users", force: :cascade do |t|
     t.integer "project_id", limit: 4
     t.integer "vacancy_id", limit: 4
-    t.integer "role_id",    limit: 4
     t.integer "user_id",    limit: 4
     t.string  "state",      limit: 255
   end
 
   add_index "projects_users", ["project_id", "user_id", "vacancy_id"], name: "index_projects_users_on_project_id_and_user_id_and_vacancy_id", unique: true, using: :btree
   add_index "projects_users", ["project_id"], name: "index_projects_users_on_project_id", using: :btree
-  add_index "projects_users", ["role_id"], name: "index_projects_users_on_role_id", using: :btree
   add_index "projects_users", ["user_id"], name: "index_projects_users_on_user_id", using: :btree
   add_index "projects_users", ["vacancy_id"], name: "index_projects_users_on_vacancy_id", using: :btree
-
-  create_table "roles", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "state",      limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "public",                 default: false
-    t.string   "type",       limit: 255
-  end
 
   create_table "scholarship_iteration_participations", force: :cascade do |t|
     t.integer  "iteration_id", limit: 4
@@ -482,12 +473,13 @@ ActiveRecord::Schema.define(version: 20150804082401) do
     t.string   "interface_language",      limit: 255
     t.string   "employment_relationship", limit: 255
     t.integer  "profession_id",           limit: 4
-    t.integer  "main_role_id",            limit: 4
     t.text     "foreign_languages",       limit: 65535
     t.string   "provider",                limit: 255
     t.string   "uid",                     limit: 255
     t.string   "lastfm_user_name",        limit: 255
     t.boolean  "music_library_imported",                default: false
+    t.string   "api_key",                 limit: 32
+    t.integer  "roles",                   limit: 8,     default: 0,     null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -495,14 +487,6 @@ ActiveRecord::Schema.define(version: 20150804082401) do
   add_index "users", ["profession_id"], name: "index_users_on_profession_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
-
-  create_table "users_roles", force: :cascade do |t|
-    t.integer "role_id", limit: 4
-    t.integer "user_id", limit: 4
-    t.string  "state",   limit: 255
-  end
-
-  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", unique: true, using: :btree
 
   create_table "vacancies", force: :cascade do |t|
     t.string   "type",            limit: 255
