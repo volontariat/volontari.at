@@ -4,16 +4,20 @@ class ReplaceUserByPolymorphicResourceInCandidatures < ActiveRecord::Migration
     add_column :vacancies, :resource_type, :string
     add_column :vacancies, :resource_id, :integer
     
-    Vacancy.update_all(resource_type: "User")
-    Vacancy.update_all('resource_id = user_id')
+    if (Product::Recruiting rescue nil)
+      Vacancy.where('user_id IS NOT NULL').update_all(resource_type: "User")
+      Vacancy.where('user_id IS NOT NULL').update_all('resource_id = user_id')
+    end
     
     remove_column :vacancies, :user_id
     
     add_column :candidatures, :resource_type, :string
     add_column :candidatures, :resource_id, :integer
     
-    Candidature.update_all(resource_type: "User")
-    Candidature.update_all('resource_id = user_id')
+    if (Product::Recruiting rescue nil)
+      Candidature.where('user_id IS NOT NULL').update_all(resource_type: "User")
+      Candidature.where('user_id IS NOT NULL').update_all('resource_id = user_id')
+    end
     
     remove_column :candidatures, :user_id
     
@@ -28,8 +32,10 @@ class ReplaceUserByPolymorphicResourceInCandidatures < ActiveRecord::Migration
   def down
     add_column :vacancies, :user_id, :integer
     
-    Vacancy.where('resource_type = "User"').update_all('user_id = resource_id')
-    Vacancy.where('resource_type <> "User"').destroy_all
+    if (Product::Recruiting rescue nil)
+      Vacancy.where('resource_type = "User"').update_all('user_id = resource_id')
+      Vacancy.where('resource_type <> "User"').destroy_all
+    end
     
     remove_column :vacancies, :resource_type
     remove_column :vacancies, :resource_id
@@ -38,8 +44,10 @@ class ReplaceUserByPolymorphicResourceInCandidatures < ActiveRecord::Migration
     
     add_index :candidatures, [:user_id, :vacancy_id]
     
-    Candidature.where('resource_type = "User"').update_all('user_id = resource_id')
-    Candidature.where('resource_type <> "User"').destroy_all
+    if (Product::Recruiting rescue nil)
+      Candidature.where('resource_type = "User"').update_all('user_id = resource_id')
+      Candidature.where('resource_type <> "User"').destroy_all
+    end
     
     remove_column :candidatures, :resource_type
     remove_column :candidatures, :resource_id

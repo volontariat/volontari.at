@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811111923) do
+ActiveRecord::Schema.define(version: 20150816175042) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "ancestry",       limit: 255
@@ -45,6 +45,25 @@ ActiveRecord::Schema.define(version: 20150811111923) do
   add_index "areas_users", ["area_id", "user_id"], name: "index_areas_users_on_area_id_and_user_id", unique: true, using: :btree
   add_index "areas_users", ["area_id"], name: "index_areas_users_on_area_id", using: :btree
   add_index "areas_users", ["user_id"], name: "index_areas_users_on_user_id", using: :btree
+
+  create_table "argument_topics", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.text     "text",       limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "argument_topics", ["name"], name: "index_argument_topics_on_name", unique: true, using: :btree
+
+  create_table "arguments", force: :cascade do |t|
+    t.integer  "topic_id",   limit: 4
+    t.integer  "thing_id",   limit: 4
+    t.string   "value",      limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "arguments", ["topic_id", "thing_id"], name: "index_arguments_on_topic_id_and_thing_id", unique: true, using: :btree
 
   create_table "assets", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -362,6 +381,31 @@ ActiveRecord::Schema.define(version: 20150811111923) do
   add_index "projects_users", ["user_id"], name: "index_projects_users_on_user_id", using: :btree
   add_index "projects_users", ["vacancy_id"], name: "index_projects_users_on_vacancy_id", using: :btree
 
+  create_table "ranking_items", force: :cascade do |t|
+    t.integer  "position",                 limit: 4
+    t.integer  "ranking_id",               limit: 4
+    t.integer  "thing_id",                 limit: 4
+    t.boolean  "best"
+    t.integer  "user_ranking_items_count", limit: 4, default: 0
+    t.integer  "stars_sum",                limit: 4, default: 0
+    t.integer  "stars",                    limit: 4, default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ranking_items", ["ranking_id", "position"], name: "index_ranking_items_on_ranking_id_and_position", using: :btree
+  add_index "ranking_items", ["ranking_id", "stars_sum"], name: "index_ranking_items_on_ranking_id_and_stars_sum", using: :btree
+  add_index "ranking_items", ["ranking_id", "thing_id"], name: "index_ranking_items_on_ranking_id_and_thing_id", unique: true, using: :btree
+
+  create_table "rankings", force: :cascade do |t|
+    t.string   "adjective",          limit: 255
+    t.string   "topic",              limit: 255
+    t.string   "scope",              limit: 255
+    t.string   "negative_adjective", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "scholarship_iteration_participations", force: :cascade do |t|
     t.integer  "iteration_id", limit: 4
     t.integer  "user_id",      limit: 4
@@ -430,6 +474,21 @@ ActiveRecord::Schema.define(version: 20150811111923) do
   end
 
   add_index "things", ["name"], name: "index_things_on_name", unique: true, using: :btree
+
+  create_table "user_ranking_items", force: :cascade do |t|
+    t.integer  "user_id",         limit: 4
+    t.integer  "ranking_item_id", limit: 4
+    t.integer  "position",        limit: 4
+    t.boolean  "best"
+    t.integer  "stars",           limit: 4, default: 0
+    t.integer  "ranking_id",      limit: 4
+    t.integer  "thing_id",        limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_ranking_items", ["user_id", "ranking_id", "position"], name: "index_user_ranking_items_on_user_id_and_ranking_id_and_position", using: :btree
+  add_index "user_ranking_items", ["user_id", "ranking_id", "thing_id"], name: "index_user_ranking_items_on_user_id_and_ranking_id_and_thing_id", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                    limit: 255
