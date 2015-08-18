@@ -10,10 +10,11 @@ gem 'voluntary_translation', github: 'volontariat/voluntary_translation' # '~> 0
 gem 'voluntary_scholarship', github: 'volontariat/voluntary_scholarship' #'~> 0.1.0'
 gem 'voluntary_music_metadata_enrichment', github: 'volontariat/voluntary_music_metadata_enrichment' # '~> 0.2.0'
 gem 'voluntary-ember_js', github: 'volontariat/voluntary-ember_js'
-gem 'voluntary_ranking', '~> 0.0.1'#github: 'volontariat/voluntary_ranking' 
+gem 'voluntary_ranking', github: 'volontariat/voluntary_ranking'#'~> 0.0.2'#github: 'volontariat/voluntary_ranking' 
 
 # voluntary_music_metadata_enrichment requirements
 gem 'musicbrainz', github: 'localhots/musicbrainz', branch: '0.8.0.rc1'
+gem 'lastfm', github: 'volontarian/ruby-lastfm', branch: 'handle_nil_releasedates'
 
 # core
 gem 'rack-cors', '~> 0.2.4', require: 'rack/cors'

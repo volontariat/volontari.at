@@ -18,6 +18,16 @@ GIT
       rdiscount
 
 GIT
+  remote: git://github.com/volontarian/ruby-lastfm.git
+  revision: e9c03f05af859e46c1ed79b56604eea53b0557a9
+  branch: handle_nil_releasedates
+  specs:
+    lastfm (1.27.0)
+      activesupport (>= 3.2.0)
+      httparty
+      xml-simple
+
+GIT
   remote: git://github.com/volontariat/voluntary-ember_js.git
   revision: af291315b895a65b328dfec476c91e0b28e43d39
   specs:
@@ -37,12 +47,20 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_music_metadata_enrichment.git
-  revision: 131ed24ee57e67f2b47a28e35eb80d284202b1cf
+  revision: 031d2cca78fa91af83a73f6d75a40ae27a060ac3
   specs:
     voluntary_music_metadata_enrichment (0.2.0)
       lastfm (~> 1.27.0)
       musicbrainz
       voluntary (~> 0.5.0)
+
+GIT
+  remote: git://github.com/volontariat/voluntary_ranking.git
+  revision: 0989538503456a6e47cd89cf6eb60d63ae4858bd
+  specs:
+    voluntary_ranking (0.0.1)
+      voluntary (~> 0.5.0)
+      voluntary-ember_js (~> 0.0.1)
 
 GIT
   remote: git://github.com/volontariat/voluntary_recruiting.git
@@ -420,14 +438,10 @@ GEM
       addressable
       faraday
       multi_json
-    lastfm (1.27.0)
-      activesupport (>= 3.2.0)
-      httparty
-      xml-simple
     libv8 (3.16.14.11)
     linecache (0.46)
       rbx-require-relative (> 0.0.4)
-    loofah (2.0.2)
+    loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
@@ -711,9 +725,6 @@ GEM
       will_paginate (~> 3.0.7)
       will_paginate_mongoid (~> 2.0.1)
       zip-zip (~> 0.2)
-    voluntary_ranking (0.0.1)
-      voluntary (~> 0.5.0)
-      voluntary-ember_js (~> 0.0.1)
     warden (1.2.3)
       rack (>= 1.0)
     webmock (1.8.11)
@@ -748,6 +759,7 @@ DEPENDENCIES
   debugger
   fastercsv (~> 1.5.5)
   jasmine!
+  lastfm!
   linecache (= 0.46)
   musicbrainz!
   mysql2 (~> 0.3.13)
@@ -772,7 +784,7 @@ DEPENDENCIES
   voluntary-ember_js!
   voluntary_classified_advertisement!
   voluntary_music_metadata_enrichment!
-  voluntary_ranking (~> 0.0.1)
+  voluntary_ranking!
   voluntary_recruiting!
   voluntary_scholarship!
   voluntary_text_creation!
