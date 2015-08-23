@@ -38,7 +38,7 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :linked_files, fetch(:linked_files, []).push(
   'config/application.yml', 'config/database.yml', 'config/email.yml', 'config/mongoid.yml', 'config/initializers/airbrake.rb', 
   'config/initializers/recaptcha.rb', 'config/initializers/secret_token.rb', 'config/initializers/lastfm.rb', 
-  'config/initializers/musicbrainz.rb'
+  'config/initializers/musicbrainz.rb', 'config/initializers/message_bus.rb'
 )
 
 # Default value for linked_dirs is []
@@ -60,6 +60,7 @@ set(:config_files, %w(
   initializers/secret_token.rb
   initializers/lastfm.rb
   initializers/musicbrainz.rb
+  initializers/message_bus.rb
 ))
 
 # Default value for default_env is {}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150816175042) do
+ActiveRecord::Schema.define(version: 20150823190014) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "ancestry",       limit: 255
@@ -56,14 +56,21 @@ ActiveRecord::Schema.define(version: 20150816175042) do
   add_index "argument_topics", ["name"], name: "index_argument_topics_on_name", unique: true, using: :btree
 
   create_table "arguments", force: :cascade do |t|
-    t.integer  "topic_id",   limit: 4
-    t.integer  "thing_id",   limit: 4
-    t.string   "value",      limit: 255
+    t.integer  "topic_id",          limit: 4
+    t.string   "value",             limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "argumentable_type", limit: 255
+    t.integer  "argumentable_id",   limit: 4
+    t.integer  "user_id",           limit: 4
+    t.boolean  "vote"
+    t.integer  "likes_count",       limit: 4,   default: 0
+    t.integer  "dislikes_count",    limit: 4,   default: 0
   end
 
-  add_index "arguments", ["topic_id", "thing_id"], name: "index_arguments_on_topic_id_and_thing_id", unique: true, using: :btree
+  add_index "arguments", ["argumentable_id", "argumentable_type"], name: "arguments_index_on_argumentable", using: :btree
+  add_index "arguments", ["topic_id", "argumentable_id", "argumentable_type"], name: "arguments_index_on_argumentable_topic", unique: true, using: :btree
+  add_index "arguments", ["topic_id"], name: "index_arguments_on_topic_id_and_thing_id", unique: true, using: :btree
 
   create_table "assets", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -71,6 +78,42 @@ ActiveRecord::Schema.define(version: 20150816175042) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "brainstorming_idea_votes", force: :cascade do |t|
+    t.integer  "idea_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "brainstorming_idea_votes", ["idea_id", "user_id"], name: "index_brainstorming_idea_votes_on_idea_id_and_user_id", unique: true, using: :btree
+  add_index "brainstorming_idea_votes", ["idea_id"], name: "index_brainstorming_idea_votes_on_idea_id", using: :btree
+  add_index "brainstorming_idea_votes", ["user_id"], name: "index_brainstorming_idea_votes_on_user_id", using: :btree
+
+  create_table "brainstorming_ideas", force: :cascade do |t|
+    t.integer  "brainstorming_id", limit: 4
+    t.integer  "user_id",          limit: 4
+    t.string   "name",             limit: 255
+    t.text     "text",             limit: 65535
+    t.integer  "votes_count",      limit: 4,     default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "brainstorming_ideas", ["brainstorming_id", "name"], name: "index_brainstorming_ideas_on_brainstorming_id_and_name", unique: true, using: :btree
+  add_index "brainstorming_ideas", ["user_id"], name: "index_brainstorming_ideas_on_user_id", using: :btree
+
+  create_table "brainstormings", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "name",       limit: 255
+    t.string   "slug",       limit: 255
+    t.text     "text",       limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "brainstormings", ["slug", "user_id"], name: "index_brainstormings_on_slug_and_user_id", unique: true, using: :btree
+  add_index "brainstormings", ["user_id"], name: "index_brainstormings_on_user_id", using: :btree
 
   create_table "candidatures", force: :cascade do |t|
     t.integer  "vacancy_id",    limit: 4
