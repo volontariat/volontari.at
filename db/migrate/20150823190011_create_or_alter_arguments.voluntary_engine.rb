@@ -5,7 +5,7 @@ class CreateOrAlterArguments < ActiveRecord::Migration
       add_column :arguments, :argumentable_type, :string
       add_column :arguments, :argumentable_id, :integer
       
-      Argument.update_all 'argumentable_type = "Thing", argumentable_id = thing_id'
+      Argument.update_all "argumentable_type = 'Thing', argumentable_id = thing_id"
       
       remove_column :arguments, :thing_id
       add_index :arguments, [:topic_id, :argumentable_id, :argumentable_type], name: 'arguments_index_on_argumentable_topic', unique: true
