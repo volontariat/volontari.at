@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: 62b74908c89659086f7dc3ac5b93635dab18f3c1
+  revision: e70b3af7fd1619d396c7161bbb06777b170a30a3
   specs:
     voluntary (0.5.1)
       active_model_serializers (~> 0.9.3)
@@ -107,6 +107,14 @@ GIT
       will_paginate (~> 3.0.7)
       will_paginate_mongoid (~> 2.0.1)
       zip-zip (~> 0.2)
+
+GIT
+  remote: git://github.com/volontariat/voluntary_brainstorming.git
+  revision: f973cfe64b6e8449f4d7bc90f8eb6973df49c459
+  specs:
+    voluntary_brainstorming (0.0.2)
+      message_bus (~> 1.0.16)
+      voluntary (~> 0.5.0)
 
 GIT
   remote: git://github.com/volontariat/voluntary_classified_advertisement.git
@@ -734,9 +742,6 @@ GEM
     versionist (1.2.1)
       rails (>= 3)
       yard (~> 0.7)
-    voluntary_brainstorming (0.0.2)
-      message_bus (~> 1.0.16)
-      voluntary (~> 0.5.0)
     warden (1.2.3)
       rack (>= 1.0)
     webmock (1.8.11)
@@ -794,7 +799,7 @@ DEPENDENCIES
   unicorn
   voluntary!
   voluntary-ember_js!
-  voluntary_brainstorming (~> 0.0.2)
+  voluntary_brainstorming!
   voluntary_classified_advertisement!
   voluntary_music_metadata_enrichment!
   voluntary_ranking!
