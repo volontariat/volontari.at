@@ -27,5 +27,6 @@ pickle-email-*.html
 /config/mongoid.yml
 /config/initializers/recaptcha.rb
 /config/initializers/lastfm.rb
+/config/initializers/message_bus.rb
 /config/initializers/musicbrainz.rb
 /config/email.yml
