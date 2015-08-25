@@ -15,9 +15,12 @@ en:
    
   home:
     index:
+      product_screencasts: Product screencasts
+      you_can_find_it: 'You can find it %{link}.'
+      here: Here
       last_projects: Last projects
       last_vacancies: Last vacancies
-      
+        
   authentication:
     title: Authentication
     sign_in: Sign in
