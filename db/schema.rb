@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823190014) do
+ActiveRecord::Schema.define(version: 20150902110042) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "ancestry",       limit: 255
@@ -149,6 +149,55 @@ ActiveRecord::Schema.define(version: 20150823190014) do
 
   add_index "comments", ["ancestry"], name: "index_comments_on_ancestry", using: :btree
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+
+  create_table "communities", force: :cascade do |t|
+    t.integer  "organization_id", limit: 4
+    t.string   "name",            limit: 255
+    t.string   "slug",            limit: 255
+    t.text     "text",            limit: 65535
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "communities", ["organization_id"], name: "index_communities_on_organization_id", using: :btree
+  add_index "communities", ["slug"], name: "index_communities_on_slug", unique: true, using: :btree
+
+  create_table "community_categories", force: :cascade do |t|
+    t.integer  "community_id",    limit: 4
+    t.string   "name",            limit: 255
+    t.string   "slug",            limit: 255
+    t.integer  "feedbacks_count", limit: 4,   default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "community_categories", ["community_id", "slug"], name: "index_community_categories_on_community_id_and_slug", unique: true, using: :btree
+
+  create_table "community_category_feedbacks", force: :cascade do |t|
+    t.integer "category_id", limit: 4
+    t.integer "feedback_id", limit: 4
+  end
+
+  add_index "community_category_feedbacks", ["category_id"], name: "index_community_category_feedbacks_on_category_id", using: :btree
+  add_index "community_category_feedbacks", ["feedback_id"], name: "index_community_category_feedbacks_on_feedback_id", using: :btree
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.integer  "community_id",   limit: 4
+    t.string   "feedback_type",  limit: 255
+    t.integer  "user_id",        limit: 4
+    t.string   "name",           limit: 255
+    t.string   "slug",           limit: 255
+    t.text     "text",           limit: 65535
+    t.integer  "mood_type",      limit: 4
+    t.string   "mood_text",      limit: 255
+    t.integer  "likes_count",    limit: 4
+    t.integer  "dislikes_count", limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "feedbacks", ["community_id", "feedback_type"], name: "index_feedbacks_on_community_id_and_feedback_type", using: :btree
+  add_index "feedbacks", ["community_id", "slug"], name: "index_feedbacks_on_community_id_and_slug", unique: true, using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false
@@ -448,6 +497,20 @@ ActiveRecord::Schema.define(version: 20150823190014) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "replies", force: :cascade do |t|
+    t.integer  "feedback_id",    limit: 4
+    t.integer  "reply_id",       limit: 4
+    t.integer  "user_id",        limit: 4
+    t.text     "text",           limit: 65535
+    t.integer  "likes_count",    limit: 4
+    t.integer  "dislikes_count", limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "replies", ["feedback_id"], name: "index_replies_on_feedback_id", using: :btree
+  add_index "replies", ["reply_id"], name: "index_replies_on_reply_id", using: :btree
 
   create_table "scholarship_iteration_participations", force: :cascade do |t|
     t.integer  "iteration_id", limit: 4

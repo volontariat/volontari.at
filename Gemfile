@@ -12,6 +12,7 @@ gem 'voluntary_music_metadata_enrichment', github: 'volontariat/voluntary_music_
 gem 'voluntary-ember_js', github: 'volontariat/voluntary-ember_js'
 gem 'voluntary_ranking', github: 'volontariat/voluntary_ranking'#'~> 0.0.2'#github: 'volontariat/voluntary_ranking' 
 gem 'voluntary_brainstorming', github: 'volontariat/voluntary_brainstorming'#'~> 0.0.2'
+gem 'voluntary_feedback', '~> 0.1.0'
 
 # voluntary_music_metadata_enrichment requirements
 gem 'musicbrainz', github: 'localhots/musicbrainz', branch: '0.8.0.rc1'
