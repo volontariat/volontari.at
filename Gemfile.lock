@@ -134,7 +134,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_ranking.git
-  revision: 53cdd13f21be401964de0af5c271d6c17d37501d
+  revision: c8d4c3b4c7bd3f52987c2c0dd27c3a2ac236fa96
   specs:
     voluntary_ranking (0.0.1)
       voluntary (~> 0.5.0)
