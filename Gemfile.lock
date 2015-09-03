@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: 6883360844466520f40210a03faee09662bd9fb0
+  revision: ae443f786817df7aa583c48595a6a49ba51a09c0
   specs:
     voluntary (0.5.2)
       active_model_serializers (~> 0.9.3)
@@ -134,7 +134,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_ranking.git
-  revision: d2c6cb1eaba65798473a051e0677ae6e28543a1a
+  revision: 53cdd13f21be401964de0af5c271d6c17d37501d
   specs:
     voluntary_ranking (0.0.1)
       voluntary (~> 0.5.0)
@@ -207,7 +207,7 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active-model-adapter-source (2.0.0)
+    active-model-adapter-source (2.0.1)
       ember-data-source (>= 1.13, < 3.0)
     active_model_serializers (0.9.3)
       activemodel (>= 3.2)
