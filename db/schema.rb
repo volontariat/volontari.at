@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 20150902110042) do
 
   add_index "arguments", ["argumentable_id", "argumentable_type"], name: "arguments_index_on_argumentable", using: :btree
   add_index "arguments", ["topic_id", "argumentable_id", "argumentable_type"], name: "arguments_index_on_argumentable_topic", unique: true, using: :btree
-  add_index "arguments", ["topic_id"], name: "index_arguments_on_topic_id_and_thing_id", unique: true, using: :btree
 
   create_table "assets", force: :cascade do |t|
     t.string   "name",       limit: 255
