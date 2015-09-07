@@ -60,7 +60,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'volontari.at' }
  
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :sendmail
   config.action_mailer.smtp_settings = YAML::load(File.open("#{Rails.root.to_s}/config/email.yml"))['production']
  
   # Enable threaded mode
