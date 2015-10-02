@@ -166,7 +166,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_survey.git
-  revision: 102528d0e9f51a24f8ddcb2a49f367d448b57cb1
+  revision: cac99a664d7e977b3990377780b0b28fdb10288d
   specs:
     voluntary_survey (0.1.1)
       voluntary (~> 0.6)
@@ -588,7 +588,7 @@ GEM
       rack (~> 1.0)
     omniauth-facebook (2.0.1)
       omniauth-oauth2 (~> 1.2)
-    omniauth-google-oauth2 (0.2.7)
+    omniauth-google-oauth2 (0.2.8)
       addressable (~> 2.3)
       jwt (~> 1.0)
       multi_json (~> 1.3)
