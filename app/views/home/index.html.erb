@@ -11,9 +11,27 @@
           <li data-target="#product-screencasts" data-slide-to="0" class="active"></li>
           <li data-target="#product-screencasts" data-slide-to="1"></li>
           <li data-target="#product-screencasts" data-slide-to="2"></li>
+          <li data-target="#product-screencasts" data-slide-to="3"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
           <div class="item active" style="background-color:#939393;">
+            <table style="width:100%;">
+              <tr>
+                <td style="text-align:center;">
+                  <%= raw markdown('https://www.youtube.com/watch?v=PsScfVDCFFU').gsub('width="515"', 'width="450"') %>
+                </td>
+              </tr>
+              <tr>
+                <td style="height: 125px;">
+                </td>
+              </tr>
+            </table>
+            <div class="carousel-caption">
+              <h3>Survey</h3>
+              <p><%= raw t('home.index.you_can_find_it', link: link_to('here', '/products/survey/projects/new', style: 'color:black;')) %></p>
+            </div>
+          </div>
+          <div class="item" style="background-color:#939393;">
             <table style="width:100%;">
               <tr>
                 <td style="text-align:center;">
