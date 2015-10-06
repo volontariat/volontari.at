@@ -58,7 +58,7 @@ group :development do
   gem 'capistrano-bundler', '~> 1.1.4', require: false
   gem 'capistrano-rbenv', '~> 2.0.3', require: false
   gem 'capistrano-cookbook', '~> 0.2.1', require: false
-  gem 'net-ssh', '2.7.0'
+  gem 'net-ssh', '2.9.2'
   gem 'yard', '~> 0.7', require: false
   gem 'spring',                   '~> 1.3.4'
   gem 'spring-commands-rspec',    '~> 1.0.4'
