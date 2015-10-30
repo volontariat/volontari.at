@@ -121,7 +121,7 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_classified_advertisement.git
-  revision: 7c5c7549aeeb3f797180b835cecef4a758b34b4e
+  revision: 69808b1ea5756b629fe8822776aa677a1f00de31
   specs:
     voluntary_classified_advertisement (0.3.0)
       voluntary (~> 0.7)
