@@ -39,9 +39,9 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary.git
-  revision: 20ba27c4dfe488017aaaf55deeff0ddd11c9d6eb
+  revision: 74157f46e15ddc5b1617f085dc639ba0b2e77340
   specs:
-    voluntary (0.6.0)
+    voluntary (0.7.0)
       active_model_serializers (~> 0.9.3)
       activerecord-deprecated_finders (~> 1.0.3)
       activerecord-import (~> 0.4.1)
@@ -67,13 +67,14 @@ GIT
       foreigner (~> 1.1.0)
       foreman (~> 0.46)
       friendly_id (~> 5.0.0)
+      fullcalendar-rails (~> 2.4)
       gon (~> 5.0.1)
       handlebars_assets (~> 0.15)
       has_scope (~> 0.5.1)
       http_accept_language (~> 1.0.2)
       httparty (~> 0.13.5)
       i18n-inflector-rails (~> 1.0)
-      jquery-rails (= 2.2.2)
+      jquery-rails (~> 3.1.1)
       jquery-ui-bootstrap-rails-asset (~> 0.0.3)
       json (~> 1.8.1)
       koala (~> 1.8.0)
@@ -120,11 +121,11 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_classified_advertisement.git
-  revision: ffe8d813f46714ec9bded230732def514dfab504
+  revision: 7c5c7549aeeb3f797180b835cecef4a758b34b4e
   specs:
-    voluntary_classified_advertisement (0.2.0)
-      voluntary (~> 0.5)
-      voluntary_recruiting (~> 0.0)
+    voluntary_classified_advertisement (0.3.0)
+      voluntary (~> 0.7)
+      voluntary_recruiting (~> 0.1)
 
 GIT
   remote: git://github.com/volontariat/voluntary_feedback.git
@@ -153,10 +154,10 @@ GIT
 
 GIT
   remote: git://github.com/volontariat/voluntary_recruiting.git
-  revision: abc2221b13f06f41f82d6cd2d1f63ecfa9dddd5d
+  revision: c2b50cc3fd6152d66f35147e22a354fb522de4f6
   specs:
-    voluntary_recruiting (0.0.1)
-      voluntary (~> 0.5)
+    voluntary_recruiting (0.1.0)
+      voluntary (~> 0.7)
 
 GIT
   remote: git://github.com/volontariat/voluntary_scholarship.git
@@ -195,7 +196,7 @@ GIT
 
 GIT
   remote: https://github.com/pivotal/jasmine-gem.git
-  revision: d5e0d6aba6391c6592591c6ad3bb15c1d0975393
+  revision: 293cb072d2f19b1534a6472a1a8c6844ffb575ae
   specs:
     jasmine (2.3.1)
       jasmine-core (~> 2.3)
@@ -226,7 +227,7 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active-model-adapter-source (2.0.1)
+    active-model-adapter-source (2.0.2)
       ember-data-source (>= 1.13, < 3.0)
     active_model_serializers (0.9.3)
       activemodel (>= 3.2)
@@ -279,7 +280,7 @@ GEM
       bootstrap-sass (~> 3.1.0.0)
       railties (>= 3.2.0)
       sass-rails (>= 3.2.0)
-    bson (3.2.4)
+    bson (3.2.6)
     builder (3.2.2)
     cancan (1.6.10)
     capistrano (3.4.0)
@@ -291,7 +292,7 @@ GEM
       sshkit (~> 1.2)
     capistrano-cookbook (0.2.1)
       capistrano (~> 3.2)
-    capistrano-rails (1.1.3)
+    capistrano-rails (1.1.5)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
     capistrano-rbenv (2.0.3)
@@ -379,7 +380,7 @@ GEM
       thor (>= 0.14, < 2.0)
     faker (1.2.0)
       i18n (~> 0.5)
-    faraday (0.9.1)
+    faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.9.2)
       faraday (>= 0.7.4, < 0.10)
@@ -387,14 +388,15 @@ GEM
     ffi (1.9.10)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
-    fog (1.34.0)
+    fog (1.35.0)
+      fog-aliyun
       fog-atmos
       fog-aws (>= 0.6.0)
       fog-brightbox (~> 0.4)
       fog-core (~> 1.32)
       fog-dynect (~> 0.0.2)
       fog-ecloud (~> 0.1)
-      fog-google (>= 0.0.2)
+      fog-google (>= 0.1.1)
       fog-json
       fog-local
       fog-powerdns (>= 0.1.1)
@@ -408,9 +410,15 @@ GEM
       fog-terremark
       fog-vmfusion
       fog-voxel
+      fog-xenserver
       fog-xml (~> 0.1.1)
       ipaddress (~> 0.5)
-      nokogiri (~> 1.5, >= 1.5.11)
+      nokogiri
+    fog-aliyun (0.0.10)
+      fog-core (~> 1.27)
+      fog-json (~> 1.0)
+      ipaddress (~> 0.8)
+      xml-simple (~> 1.1)
     fog-atmos (0.1.0)
       fog-core
       fog-xml
@@ -468,7 +476,7 @@ GEM
     fog-serverlove (0.1.2)
       fog-core
       fog-json
-    fog-softlayer (0.4.7)
+    fog-softlayer (1.0.1)
       fog-core
       fog-json
     fog-storm_on_demand (0.1.1)
@@ -483,6 +491,9 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
+    fog-xenserver (0.2.2)
+      fog-core
+      fog-xml
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
@@ -495,6 +506,9 @@ GEM
     formatador (0.2.5)
     friendly_id (5.0.5)
       activerecord (>= 4.0.0)
+    fullcalendar-rails (2.4.0.0)
+      jquery-rails (>= 3.1.1, < 5.0.0)
+      momentjs-rails (>= 2.9.0)
     gherkin3 (3.1.2)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -507,7 +521,7 @@ GEM
       sprockets (>= 2.0.0, < 4.0)
       tilt (~> 1.2)
     has_scope (0.5.1)
-    hashie (3.4.2)
+    hashie (3.4.3)
     http_accept_language (1.0.2)
     httparty (0.13.7)
       json (~> 1.8)
@@ -522,20 +536,20 @@ GEM
     inflecto (0.0.2)
     ipaddress (0.8.0)
     jasmine-core (2.3.4)
-    jquery-rails (2.2.2)
+    jquery-rails (3.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     jquery-ui-bootstrap-rails-asset (0.0.3)
       bootstrap-sass-rails
       railties (>= 3.1.0)
     json (1.8.3)
-    jwt (1.5.1)
+    jwt (1.5.2)
     kgio (2.10.0)
     koala (1.8.0)
       addressable
       faraday
       multi_json
-    libv8 (3.16.14.11)
+    libv8 (3.16.14.13)
     linecache (0.46)
       rbx-require-relative (> 0.0.4)
     loofah (2.0.3)
@@ -548,7 +562,9 @@ GEM
     messagebus_ruby_api (1.0.11)
     mime-types (1.25.1)
     mini_portile (0.6.2)
-    minitest (5.8.1)
+    minitest (5.8.2)
+    momentjs-rails (2.10.6)
+      railties (>= 3.1)
     mongoid (4.0.2)
       activemodel (~> 4.0)
       moped (~> 2.0.0)
@@ -575,7 +591,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
-    netrc (0.10.3)
+    netrc (0.11.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     oauth (0.4.7)
@@ -590,12 +606,12 @@ GEM
       rack (~> 1.0)
     omniauth-facebook (2.0.1)
       omniauth-oauth2 (~> 1.2)
-    omniauth-google-oauth2 (0.2.8)
+    omniauth-google-oauth2 (0.2.9)
       addressable (~> 2.3)
       jwt (~> 1.0)
       multi_json (~> 1.3)
       omniauth (>= 1.1.1)
-      omniauth-oauth2 (>= 1.1.1)
+      omniauth-oauth2 (~> 1.3.1)
     omniauth-lastfm (0.0.6)
       omniauth-oauth (~> 1.0)
       rest-client (>= 1.6.6, < 1.8)
@@ -644,8 +660,8 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
-    rails-i18n (4.0.5)
-      i18n (~> 0.6)
+    rails-i18n (4.0.6)
+      i18n (~> 0.7)
       railties (~> 4.0)
     rails_autolink (1.1.6)
       rails (> 3.1)
@@ -694,7 +710,7 @@ GEM
       linecache (>= 0.3)
     rubyzip (1.1.7)
     safe_yaml (1.0.4)
-    sass (3.4.18)
+    sass (3.4.19)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)

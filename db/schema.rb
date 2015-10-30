@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001172149) do
+ActiveRecord::Schema.define(version: 20151030091234) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "ancestry",       limit: 255
@@ -125,6 +125,8 @@ ActiveRecord::Schema.define(version: 20151001172149) do
     t.datetime "updated_at"
     t.string   "resource_type", limit: 255
     t.integer  "resource_id",   limit: 4
+    t.integer  "user_id",       limit: 4
+    t.integer  "amount",        limit: 4
   end
 
   add_index "candidatures", ["resource_id", "resource_type", "vacancy_id"], name: "index_candidatures_on_resource_and_vacancy", unique: true, using: :btree
@@ -644,6 +646,7 @@ ActiveRecord::Schema.define(version: 20151001172149) do
     t.boolean  "music_library_imported",                default: false
     t.string   "api_key",                 limit: 32
     t.integer  "roles",                   limit: 8,     default: 0,     null: false
+    t.string   "timezone",                limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -668,10 +671,12 @@ ActiveRecord::Schema.define(version: 20151001172149) do
     t.string   "resource_type",   limit: 255
     t.integer  "resource_id",     limit: 4
     t.string   "task_id",         limit: 255
+    t.string   "timezone",        limit: 255
+    t.datetime "from"
+    t.datetime "to"
   end
 
   add_index "vacancies", ["offeror_id"], name: "index_vacancies_on_offeror_id", using: :btree
-  add_index "vacancies", ["project_id", "name"], name: "index_vacancies_on_project_id_and_name", unique: true, using: :btree
   add_index "vacancies", ["project_id"], name: "index_vacancies_on_project_id", using: :btree
   add_index "vacancies", ["project_user_id"], name: "index_vacancies_on_project_user_id", using: :btree
   add_index "vacancies", ["slug"], name: "index_vacancies_on_slug", unique: true, using: :btree
