@@ -15,6 +15,9 @@ gem 'voluntary_brainstorming', github: 'volontariat/voluntary_brainstorming'#'~>
 gem 'voluntary_feedback', github: 'volontariat/voluntary_feedback'
 gem 'voluntary_survey', github: 'volontariat/voluntary_survey'
 
+# without it, it installs version 3 and then you have to fix https://github.com/leshill/handlebars_assets/issues/145 but then it renders no handlebars templates
+gem 'sprockets-rails', '~> 2.3.3'
+
 # voluntary_music_metadata_enrichment requirements
 gem 'musicbrainz', github: 'localhots/musicbrainz', branch: '0.8.0.rc1'
 gem 'lastfm', github: 'volontarian/ruby-lastfm', branch: 'handle_nil_releasedates'
